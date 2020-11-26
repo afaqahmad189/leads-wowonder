@@ -22,5 +22,4 @@ $site_url = "http://localhost/leads/"; // e.g (http://example.com)
 
 // Purchase code
 $purchase_code = "833550d8-7363-4b44-99ae-3e7f36a76682"; // Your purchase code, don't give it to anyone.
-echo"test";
 ?>
