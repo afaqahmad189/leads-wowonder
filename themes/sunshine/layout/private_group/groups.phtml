@@ -1,0 +1,36 @@
+<?php $groupData = Wo_GetMyPrivateGroups(); ?>
+
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-2 leftcol"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+		<div class="col-md-7 singlecol">
+			<div class="wo_my_pages">
+				<div class="my_pages_header row" style="margin: 0px 0px 20px;">
+					<ul class="<?php echo Wo_RightToLeft('pull-left'); ?>">
+						<li class="active"><a href="<?php echo Wo_SeoLink('index.php?link1=private-groups'); ?>" data-ajax="?link1=private-groups"><?php echo $wo['lang']['private_groups'] ?></a></li>
+					</ul>
+					<?php if (count($groupData) == 0 && !empty($wo['private_categories'])) { ?>
+						<span class="btn btn-success <?php echo Wo_RightToLeft('pull-right'); ?>" title="<?php echo $wo['lang']['create'] ?>">
+							<a href="<?php echo Wo_SeoLink('index.php?link1=create-private-group'); ?>" data-ajax="?link1=create-private-group"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+									<line x1="12" y1="5" x2="12" y2="19"></line>
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg></a>
+						</span>
+					<?php } ?>
+				</div>
+
+				<div class="row">
+					<?php if (count($groupData) > 0) {
+						$wo['group']['Wo_GroupSug'] = ($groupData['type'] == 'join') ? true : false;
+						$wo['group'] = $groupData['group'];
+						echo Wo_LoadPage('private_group/group-list');
+					} else {
+						echo '<h5 class="search-filter-center-text empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> ' . $wo['lang']['no_groups_found'] . '</h5>';
+					} ?>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- .row -->
+</div>

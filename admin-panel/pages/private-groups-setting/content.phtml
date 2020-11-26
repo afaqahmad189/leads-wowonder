@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="block-header">
+        <h2>Manage Features > Private Groups > Private Groups Setting</h2>
+    </div>
+    <!-- Vertical Layout -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Manage Private Groups Setting</h2>
+                </div>
+                <div class="body">
+                    <div class="alert alert-success site-settings-alert"></div>
+                    <form class="site-settings" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="creation_fee" name="creation_fee" class="form-control" value="<?php echo $wo['config']['creation_fee'] ?>">
+                                        <label class="form-label">Private Group Creation Fee in <?php echo Wo_GetCurrency($wo['config']['currency']); ?></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="joining_fee" name="joining_fee" class="form-control" value="<?php echo $wo['config']['joining_fee'] ?>">
+                                        <label class="form-label">Private Group Joining Fee in <?php echo Wo_GetCurrency($wo['config']['currency']); ?></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="link_expiry" name="link_expiry" class="form-control" value="<?php echo $wo['config']['link_expiry'] ?>">
+                                <label class="form-label">Referral Link Expiry Time</label>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession(); ?>">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            var form_site_settings = $('form.site-settings');
+            form_site_settings.ajaxForm({
+                url: Wo_Ajax_Requests_File() + '?f=admin_setting&s=update_general_setting',
+                beforeSend: function() {
+                    form_site_settings.find('button').text('Please wait..');
+                },
+                success: function(data) {
+                    if (data.status == 200) {
+                        form_site_settings.find('button').text('Save');
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        $('.site-settings-alert').html('<i class="fa fa-check"></i> Settings updated successfully');
+                        setTimeout(function() {
+                            $('.site-settings-alert').empty();
+                        }, 2000);
+                    }
+                }
+            });
+        });
+    </script>

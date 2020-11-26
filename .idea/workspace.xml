@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="ProjectId" id="1jEJeQMBFmaYEOcRtvuN1dG0lXO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\leads\themes\wowonder\layout\private_lead" />
+      <recent name="C:\wamp64\www\leads\sources\private_lead" />
+      <recent name="C:\wamp64\www\leads\themes\wowonder\layout" />
+      <recent name="C:\wamp64\www\leads\admin-panel\pages" />
+      <recent name="C:\xampp\htdocs\backupWW\sources\leads" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="" />
+      <created>1603363412517</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603363412517</updated>
+      <workItem from="1603363413781" duration="30447000" />
+      <workItem from="1603785204230" duration="36000" />
+      <workItem from="1604742840322" duration="15710000" />
+      <workItem from="1604815221490" duration="1625000" />
+      <workItem from="1604897962605" duration="35000" />
+      <workItem from="1604990789832" duration="18985000" />
+      <workItem from="1605694500984" duration="9412000" />
+      <workItem from="1605764582713" duration="3883000" />
+      <workItem from="1605776546796" duration="10448000" />
+      <workItem from="1605854609840" duration="515000" />
+      <workItem from="1605872850837" duration="11026000" />
+      <workItem from="1605933391748" duration="30000" />
+      <workItem from="1605942971117" duration="1047000" />
+      <workItem from="1605952144807" duration="2264000" />
+      <workItem from="1605954724106" duration="769000" />
+      <workItem from="1606204537234" duration="6988000" />
+      <workItem from="1606213157353" duration="14133000" />
+      <workItem from="1606282657409" duration="43000" />
+      <workItem from="1606300696245" duration="14203000" />
+      <workItem from="1606370681665" duration="145000" />
+      <workItem from="1606390142325" duration="3759000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606207013819">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606207013819" />
+    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605791991703">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1605791991703" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1606370827783">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606370827783" />
+    <state x="477" y="265" key="NewPhpFileDialog" timestamp="1603374474934">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="477" y="265" key="NewPhpFileDialog/0.0.1280.689@0.0.1280.689" timestamp="1603374474934" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1603437868907">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1603437868907" />
+    <state x="389" y="0" width="643" height="728" key="find.popup" timestamp="1606393259064">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="389" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1606393259064" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1606305226695">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.1366.728@0.0.1366.728" timestamp="1606305226695" />
+    <state x="324" y="90" width="700" height="530" key="recent.locations.popup" timestamp="1606309543488">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="324" y="90" width="700" height="530" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1606309543488" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1606392865502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1606392865502" />
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1606302258007">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606302258007" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin-panel/autoload.php</url>
+          <line>756</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

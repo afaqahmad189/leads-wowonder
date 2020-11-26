@@ -1,0 +1,415 @@
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-2 leftcol"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+		<div class="col-md-7 middlecol">
+			<div class="page-margin wow_content mt-0">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_innr">
+						<span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+								<path fill="currentColor" d="M13 3V11H21V3H13M3 21H11V13H3V21M3 3V11H11V3H3M13 16H16V13H18V16H21V18H18V21H16V18H13V16Z"></path>
+							</svg></span> <?php echo $wo['lang']['create_lead']; ?>
+					</div>
+				</div>
+			</div>
+
+			<div class="page-margin wow_content wow_sett_content">
+				<form class="create-group-form form-horizontal" id="form-create-lead" method="post">
+					<div class="app-general-alert setting-update-alert"></div>
+
+                    <div class="wow_form_fields">
+                        <label for="lead-name"><?php echo $wo['lang']['ser_name']; ?></label>
+                        <input id="lead-name" placeholder="<?php echo $wo['lang']['ser_name']; ?>" name="service_name" type="text">
+                    </div>
+                    <div class="wow_form_fields">
+                        <label for="lead-tag-keyword"><?php echo $wo['lang']['tag_key']; ?></label>
+                        <input id="lead-tag-keyword" placeholder="<?php echo $wo['lang']['tag_key_placeholder']; ?>" name="tag_keyword" type="text">
+                    </div>
+					<div class="wow_form_fields">
+						<label for="group_name"><?php echo $wo['lang']['group']; ?> URL</label>
+						<div class="input-group">
+							<span class="input-group-addon"><?php echo $wo['config']['site_url']; ?>/</span>
+							<input id="group_name" name="lead_name" type="text">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="wow_form_fields">
+								<label for="category"><?php echo $wo['lang']['category']; ?></label>
+								<select name="group_category" id="category" onchange="GetGroupJobCategory(this)">
+									<?php foreach ($wo['private_categories'] as $category_id => $category_name) { ?>
+										<option value="<?php echo $category_id ?>"><?php echo $category_name; ?></option>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+						<?php if (!empty($wo['private_job_categories'])) { ?>
+							<div class="col-md-6">
+								<div class="wow_form_fields">
+									<label for="group_job_category"><?php echo $wo['lang']['job_category']; ?></label>
+									<select name="job_category" id="group_job_category" onchange="Wo_ChangeOptions(this)">
+										<?php if (!empty($wo['private_job_categories'][array_keys($wo['private_categories'])[0]])) {
+											foreach ($wo['private_job_categories'][array_keys($wo['private_categories'])[0]] as $id => $sub_category) { ?>
+												<option value="<?php echo $sub_category['id'] ?>"><?php echo $sub_category['lang']; ?></option>
+											<?php } ?>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+						<?php } ?>
+						<div class="clear"></div>
+					</div>
+                    <div class="row h-m0">
+                        <div class="col-md-6 wow_form_fields h-p0">
+                            <label class="col-md-12" for="category"><?php echo $wo['lang']['product_category']; ?> *</label>
+                            <div class="col-md-12">
+                                <select name="product_category" id="category" class="form-control">
+                                    <?php
+                                    $productCategories = Wo_ProductCategoryFromDB();
+                                    foreach ($productCategories as $productCategory) { ?>
+                                        <option value="<?php echo $productCategory['id'] ?>"><?php echo $productCategory['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 wow_form_fields">
+                            <label for="lead-start"><?php echo $wo['lang']['lead_budget']; ?></label>
+
+
+                            <input type="text" id="" placeholder="<?php echo $wo['lang']['lead_budget_placeholder']; ?>" class="" name="budget">
+                        </div>
+                    </div>
+                    <div class="wow_form_fields">
+                        <label for="address"><?php echo $wo['lang']['service_location']; ?></label>
+                        <input id="address" name="service_location" type="text">
+                    </div>
+                    <div class="wow_form_fields">
+                        <label for="lead-description"><?php echo $wo['lang']['lead_details']; ?></label>
+                        <textarea name="details" id="lead-description" placeholder="<?php echo $wo['lang']['lead_details_placeholder']; ?>" rows="5"></textarea>
+                    </div>
+
+					<?php $show = true;
+
+					$payedData = Wo_GetUserPaymentStatus();
+					if (!empty($payedData)) {
+						$show = false;
+						$payment_id = $payedData;
+					} ?>
+
+					<?php if ($show) { ?>
+						<div class="row bank-row" style="display: flex; align-items: center">
+							<div class="col-md-6">
+								<?php $orginal_txt  = array(
+									"{currency}",
+									"{amount}"
+								);
+								$replaced_txt = array(
+									Wo_GetCurrency($wo['config']['currency']),
+									$wo['config']['creation_fee']
+								);
+								echo str_replace($orginal_txt, $replaced_txt, $wo['lang']['creation_fee']); ?>
+							</div>
+
+							<div class="col-md-6 text-right">
+								<button type="button" class="btn btn-main btn-mat btn-mat-raised btn_life" onclick="();"><?php echo $wo['lang']['pay']; ?></button>
+							</div>
+						</div>
+					<?php } ?>
+
+					<div class="text-center">
+						<a class="btn btn-mat" data-ajax="?link1=private-groups" href="<?php echo Wo_SeoLink('index.php?link1=private-groups'); ?>">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+								<path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+							</svg> <?php echo $wo['lang']['go_back']; ?>
+						</a>
+						<button class="btn btn-main btn-mat btn-mat-raised add_wow_loader" type="submit"><?php echo $wo['lang']['create']; ?></button>
+					</div>
+					<input type="hidden" name="payment_id" id="payment_id" value="<?php echo (!$show) ? $payment_id : "" ?>">
+					<input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession(); ?>">
+				</form>
+			</div>
+		</div>
+		<!-- .col-md-8 -->
+		<?php echo Wo_LoadPage('sidebar/content'); ?>
+	</div>
+	<!-- .row -->
+</div>
+<?php if ($show) { ?>
+	<div id="pay-modal"></div>
+	<div class="modal fade" id="bank_transfer_modal" role="dialog" data-keyboard="false" style="overflow-y: auto;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+								<line x1="18" y1="6" x2="6" y2="18"></line>
+								<line x1="6" y1="6" x2="18" y2="18"></line>
+							</svg></span></button>
+					<h4 class="modal-title"><?php echo $wo['lang']['bank_transfer'] ?></h4>
+				</div>
+				<form class="form form-horizontal" method="post" id="bank_transfer_form" action="#">
+					<div class="modal-body dt_bank_trans_modal">
+						<div id="blog-alert"></div>
+
+						<?php echo $wo['config']['bank_description']; ?>
+
+						<?php if (!empty($wo['config']['bank_transfer_note'])) { ?>
+							<div class="dt_user_profile hide_alert_info_bank_trans">
+								<span class="valign-wrapper">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+										<path fill="currentColor" d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path>
+									</svg> Note:
+								</span>
+								<ul class="dt_prof_vrfy">
+									<li><?php echo $wo['config']['bank_transfer_note']; ?></li>
+								</ul>
+							</div>
+						<?php } ?>
+						<p class="dt_bank_trans_upl_rec"><a href="javascript:void(0);" onclick="$('#bank_transfer_modal').addClass('up_rec_active'); return false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13.5,16V19H10.5V16H8L12,12L16,16H13.5M13,9V3.5L18.5,9H13Z"></path>
+								</svg> <?php echo $wo['lang']['upload'] ?></a></p>
+						<div class="upload_bank_receipts">
+							<div onclick="document.getElementById('thumbnail').click(); return false">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13.5,16V19H10.5V16H8L12,12L16,16H13.5M13,9V3.5L18.5,9H13Z"></path>
+								</svg>
+								<p><?php echo $wo['lang']['browse_to_upload']; ?></p>
+								<img id="receipt_img_preview" src="">
+							</div>
+						</div>
+						<input type="file" class="hidden" id="thumbnail" name="thumbnail" accept="image/*">
+						<input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession(); ?>">
+						<input name="image" type="file" id="upload" class="hidden">
+						<input name="type" type="hidden" id="bank_transfer_type" class="hidden">
+						<input type="reset" id="configreset" value="Reset" class="hidden">
+					</div>
+					<div class="modal-footer">
+						<div class="ball-pulse">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<button type="submit" class="btn btn-main btn-mat"><?php echo $wo['lang']['publish']; ?></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<?php } ?>
+<!-- .page-margin -->
+<script type="text/javascript">
+	<?php
+	$js_array = json_encode($wo['private_job_categories']);
+	echo "var job_categories_array = " . $js_array . ";\n";
+	?>
+
+	function GetGroupJobCategory(self) {
+		id = $(self).val();
+		var text = "";
+		if (typeof(job_categories_array[id]) == 'undefined') {
+			$('#group_job_category').parents('.col-md-6:first').hide();
+			$('#group_job_category').html('');
+			$('#group_employee_job_category').parents('.col-md-12:first').hide();
+			$('#group_employee_job_category').html('');
+
+			$('#group_job_category').trigger('change');
+			$('#group_employee_job_category').multipleSelect('refreshOptions', {
+				selectAll: false
+			});
+
+		} else {
+			job_categories_array[id].forEach(function(entry) {
+				text = text + "<option value='" + entry.id + "'>" + entry.lang + "</option>";
+			});
+			$('#group_job_category').parents('.col-md-6:first').show();
+			$('#group_job_category').html(text);
+
+			$('#group_employee_job_category').parents('.col-md-12:first').show();
+			$('#group_employee_job_category').html(text);
+
+			$('#group_job_category').trigger('change');
+			$('#group_employee_job_category').multipleSelect('refreshOptions', {
+				selectAll: false
+			});
+		}
+	}
+
+	function Wo_ChangeOptions(self) {
+		id = $('#category').val();
+		var text = "";
+
+		var current = $(self).val();
+		job_categories_array[id].forEach(function(entry) {
+			if (current != entry.id) {
+				text = text + "<option value='" + entry.id + "'>" + entry.lang + "</option>";
+			}
+		});
+
+		$('#group_employee_job_category').parents('.col-md-12:first').show();
+		$('#group_employee_job_category').html(text);
+
+		$('#group_employee_job_category').multipleSelect('refreshOptions', {
+			selectAll: false
+		});
+	}
+
+	var pac_input = document.getElementById('address');
+	(function pacSelectFirst(input) {
+		// store the original event binding function
+		var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+
+		function addEventListenerWrapper(type, listener) {
+			// Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+			// and then trigger the original listener.
+			if (type == "keydown") {
+				var orig_listener = listener;
+				listener = function(event) {
+					var suggestion_selected = $(".pac-item-selected").length > 0;
+					if (event.which == 13 && !suggestion_selected) {
+						var simulated_downarrow = $.Event("keydown", {
+							keyCode: 40,
+							which: 40
+						});
+						orig_listener.apply(input, [simulated_downarrow]);
+					}
+					orig_listener.apply(input, [event]);
+				};
+			}
+			// add the modified listener
+			_addEventListener.apply(input, [type, listener]);
+		}
+		if (input.addEventListener)
+			input.addEventListener = addEventListenerWrapper;
+		else if (input.attachEvent)
+			input.attachEvent = addEventListenerWrapper;
+	})(pac_input);
+
+	<?php if ($wo['config']['google_map']) { ?>
+		$(function() {
+			var autocomplete = new google.maps.places.Autocomplete(pac_input);
+		});
+	<?php } ?>
+
+	<?php if ($show) { ?>
+
+		function Wo_GetPaymentLink() {
+			$.get(Wo_Ajax_Requests_File() + '?f=private_group&s=get_private_payment_method&type=create', function(data) {
+				if (data.status == 200) {
+					$('#pay-modal').html(data.html);
+					$('#pay-private').modal({
+						show: true
+					});
+				}
+			});
+		}
+
+		function Wo_CheckOutCard(type, amount, payment_type) {
+			$('#configreset').click();
+			$("#blog-alert").html('');
+			$('#bank_transfer_type').val(type);
+			$('#pay-private').modal('hide');
+			$('#bank_transfer_modal').modal({
+				show: true
+			});
+		}
+	<?php } ?>
+
+	$(function() {
+		$('#group_employee_job_category').multipleSelect({
+			selectAll: false
+		});
+
+		$('#group_job_category').trigger('change');
+
+		$(document).on('change', '#thumbnail', function(event) {
+			let imgPath = $(this)[0].files[0].name;
+			if (typeof(FileReader) != "undefined") {
+				let reader = new FileReader();
+				reader.onload = function(e) {
+					$('#receipt_img_preview').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
+			$('#bank_transfer_modal').addClass('up_rec_img_ready');
+		});
+
+		$('#bank_transfer_form').ajaxForm({
+			url: Wo_Ajax_Requests_File() + '?f=private_group&s=bank_transfer',
+			beforeSend: function() {
+				$('#bank_transfer_form').find('.ball-pulse').fadeIn(100);
+			},
+			success: function(data) {
+				if (data['status'] == 200) {
+					$('.bank-row').remove();
+					$('#payment_id').val(data['p_id']);
+					$("#blog-alert").html('<div class="alert alert-success">' + data['message'] + '</div>');
+					setTimeout(function() {
+						$('#bank_transfer_modal').removeClass('up_rec_active');
+						$("#blog-alert").html('');
+						$('#configreset').click();
+						$('#bank_transfer_modal').modal('hide');
+					}, 3000);
+				} else if (data['message']) {
+					$("#blog-alert").html('<div class="alert alert-danger">' + data['message'] + '</div>');
+				}
+				$('#bank_transfer_form').find('.ball-pulse').fadeOut(100);
+			}
+		});
+
+		$('form.create-group-form1').ajaxForm({
+			url: Wo_Ajax_Requests_File() + '?f=private_group&s=create_group',
+			beforeSend: function() {
+				$('.create-group-form').find('.add_wow_loader').addClass('btn-loading');
+			},
+			success: function(data) {
+			    alert(Wo_Ajax_Requests_File() );
+			    // alert('amir ishaque');
+				scrollToTop();
+				$('.app-general-alert').html('');
+
+				if (data.status == 200) {
+					$('.app-general-alert').html('<div class="alert alert-success">' + data.message + '</div>');
+					$('.alert-success').fadeIn('fast', function() {
+						window.setTimeout(function() {
+							window.location.href = data.location;
+						}, 2000);
+					});
+				} else {
+					var errors = data.errors.join("<br>");
+					$('.app-general-alert').html('<div class="alert alert-danger">' + errors + '</div>');
+					$('.alert-danger').fadeIn(300);
+				}
+				$('.create-group-form').find('.add_wow_loader').removeClass('btn-loading');
+			}
+		});
+        $('#form-create-lead').ajaxForm({
+            url: Wo_Ajax_Requests_File() + '?f=lead&s=insert',
+            beforeSend: function() {
+                $('#form-create-lead').find('.add_wow_loader').addClass('btn-loading');
+            },
+            success: function(data) {
+                alert(Wo_Ajax_Requests_File() );
+                // alert('amir ishaque');
+                scrollToTop();
+                $('.app-general-alert').html('');
+                if (data['status'] == 200) {
+                    $(".app-general-alert").html('<div class="alert alert-success">'+ data['message'] +'</div>');
+                    //window.location = <?php //echo Wo_SeoLink('index.php?link1=leads'); ?>//;
+                    $('.alert-success').fadeIn('fast', function () {
+                        $(this).delay(2500).slideUp(500, function () {
+                            $(this).remove();
+                        });
+                    });
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 3000)
+                }
+                else if (data['message']) {
+                    $(".app-general-alert").html('<div class="alert alert-danger">' + data['message'] + '</div>');
+                    $('.alert-danger').fadeIn(300);
+                }
+                $('#form-create-lead').find('.add_wow_loader').removeClass('btn-loading');
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,110 @@
+<div class="wo_settings_page sun_sett_page">
+	<h3><?php echo $wo['lang']['general_setting']; ?></h3>
+
+	<form class="setting-general-form form-horizontal" method="post">
+		<div class="setting-general-alert setting-update-alert"></div>
+
+		<div class="setting-panel row">
+			<!-- Text input-->
+			<div class="sun_input col-lg-12">
+				<input name="group_title" id="group_title" type="text" class="form-control input-md" value="<?php echo $wo['setting']['group_title'] ?>" autocomplete="off" placeholder="<?php echo $wo['lang']['group_name']; ?>">
+				<label class="plr15" for="group_title"><?php echo $wo['lang']['group_name']; ?></label>
+			</div>
+
+			<div class="form-group col-lg-12">
+				<label class="col-md-12" for="group_name"><?php echo $wo['lang']['group']; ?> URL</label>
+				<div class="col-md-12 input-group">
+					<span class="input-group-addon"><?php echo $wo['config']['site_url']; ?>/</span>
+					<input id="group_name" name="group_name" type="text" class="form-control input-md" value="<?php echo $wo['setting']['group_name'] ?>" onkeyup="Wo_CheckGroupname(this.value, <?php echo $wo['setting']['id']; ?>);" autocomplete="off">
+				</div>
+				<span class="help-block checking" style="padding: 0px 20px;"></span>
+			</div>
+
+			<!-- Textarea -->
+			<div class="sun_input col-lg-12">
+				<?php $text = br2nl($wo['setting']['about']); ?>
+				<textarea class="form-control" id="about" name="about" cols="20" rows="3" placeholder="<?php echo $wo['lang']['about']; ?>"><?php echo $text; ?></textarea>
+				<label class="plr15" for="about"><?php echo $wo['lang']['about']; ?></label>
+			</div>
+
+			<div class="sun_input col-lg-12">
+				<input name="address" id="address" type="text" class="form-control input-md" value="<?php echo $wo['setting']['address'] ?>" autocomplete="off" placeholder="<?php echo $wo['lang']['location']; ?>">
+				<label class="plr15" for="address"><?php echo $wo['lang']['location']; ?></label>
+			</div>
+		</div>
+
+		<div class="form-group last-sett-btn modal-footer">
+			<div class="ball-pulse">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<button type="submit" class="btn btn-main setting-panel-mdbtn"><?php echo $wo['lang']['save']; ?></button>
+		</div>
+		<input type="hidden" name="group_id" value="<?php echo $wo['setting']['id']; ?>">
+		<input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession(); ?>">
+	</form>
+</div>
+<script type="text/javascript">
+	var pac_input = document.getElementById('address');
+	(function pacSelectFirst(input) {
+		// store the original event binding function
+		var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+
+		function addEventListenerWrapper(type, listener) {
+			// Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+			// and then trigger the original listener.
+			if (type == "keydown") {
+				var orig_listener = listener;
+				listener = function(event) {
+					var suggestion_selected = $(".pac-item-selected").length > 0;
+					if (event.which == 13 && !suggestion_selected) {
+						var simulated_downarrow = $.Event("keydown", {
+							keyCode: 40,
+							which: 40
+						});
+						orig_listener.apply(input, [simulated_downarrow]);
+					}
+					orig_listener.apply(input, [event]);
+				};
+			}
+			// add the modified listener
+			_addEventListener.apply(input, [type, listener]);
+		}
+		if (input.addEventListener)
+			input.addEventListener = addEventListenerWrapper;
+		else if (input.attachEvent)
+			input.attachEvent = addEventListenerWrapper;
+	})(pac_input);
+
+	<?php if ($wo['config']['google_map']) { ?>
+		$(function() {
+			var autocomplete = new google.maps.places.Autocomplete(pac_input);
+		});
+	<?php } ?>
+
+	$(function() {
+		$('form.setting-general-form').ajaxForm({
+			url: Wo_Ajax_Requests_File() + '?f=private_group&s=update_general_settings',
+			beforeSend: function() {
+				$('.wo_settings_page').find('.last-sett-btn .ball-pulse').fadeIn(100);
+			},
+			success: function(data) {
+				scrollToTop();
+				if (data.status == 200) {
+					$('.setting-general-alert').html('<div class="alert alert-success">' + data.message + '</div>');
+					$('.alert-success').fadeIn('fast', function() {
+						$(this).delay(2500).slideUp(500, function() {
+							$(this).remove();
+						});
+					});
+				} else {
+					var errors = data.errors.join("<br>");
+					$('.setting-general-alert').html('<div class="alert alert-danger">' + errors + '</div>');
+					$('.alert-danger').fadeIn(300);
+				}
+				$('.wo_settings_page').find('.last-sett-btn .ball-pulse').fadeOut(100);
+			}
+		});
+	});
+</script>

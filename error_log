@@ -1,0 +1,31 @@
+[11-Aug-2020 06:48:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function Wo_Secure() in /home/indmo4z2/public_html/requests.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/indmo4z2/public_html/requests.php on line 6
+[11-Aug-2020 06:48:46 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 06:48:46 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 06:48:46 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 07:38:24 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 07:38:24 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:16:13 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:16:13 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:16:13 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:16:13 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:16:14 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ']' in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 868
+[11-Aug-2020 08:16:14 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 2612
+[11-Aug-2020 08:16:14 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 2612
+[11-Aug-2020 08:16:14 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 5098
+[11-Aug-2020 08:16:14 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 5098
+[11-Aug-2020 08:16:40 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 5098
+[11-Aug-2020 08:16:40 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 5098
+[11-Aug-2020 08:17:15 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:17:16 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:17:16 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:17:17 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 2612
+[11-Aug-2020 08:17:17 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 5098
+[11-Aug-2020 08:17:17 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 5098
+[11-Aug-2020 08:18:51 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:18:51 UTC] PHP Warning:  mysqli_real_escape_string() expects parameter 1 to be mysqli, null given in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 725
+[11-Aug-2020 08:18:52 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 3917
+[11-Aug-2020 08:18:52 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/indmo4z2/public_html/assets/includes/functions_two.php on line 7150
+[11-Aug-2020 09:26:15 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/indmo4z2/public_html/assets/includes/functions_general.php on line 960

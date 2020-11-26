@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="block-header">
+    <h2>Manage Features > Private Job Category Suggestions</h2>
+  </div>
+  <!-- Vertical Layout -->
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="card">
+        <div class="header">
+          <h2>Manage Job Categories</h2>
+        </div>
+        <div class="body">
+          <div class="table-responsive1">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Group</th>
+                  <th>Category</th>
+                  <th>Suggestion</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (!empty(Wo_GetAllSuggestions())) {
+                  foreach (Wo_GetAllSuggestions() as $suggestion) {
+                    $wo['grouplist']  = Wo_PrivateGroupData($suggestion['group_id']);
+                    $wo['suggestion'] = $suggestion;
+                    echo Wo_LoadAdminPage('private-job-category-suggestions/list');
+                  }
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!-- #END# Vertical Layout -->
+  <div id="delete-modal" class="modal fade" role="dialog" data-id="">
+    <div class="modal-dialog">
+      <div class="modal-content modal-col-red">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">DELETE suggestion</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to continue? this action can't be undo</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" data-type="user" id="delete_suggestion">DELETE</button>
+          <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('.delete-content').on('click', function(event) {
+      event.preventDefault();
+      $('#delete-modal').attr('data-id', $(this).attr('data-id')).modal('show');
+    });
+
+    $(document).on('click', '#delete_suggestion', function(event) {
+      event.preventDefault();
+      id = $('#delete-modal').attr('data-id');
+      $.post(Wo_Ajax_Requests_File() + '?f=admin_setting&s=delete_suggestion', {
+        id: id
+      }, function(data, textStatus, xhr) {
+        if (data.status == 200) {
+          $('#list-' + id).slideUp('slow');
+          setTimeout(function() {
+            $('#list-' + id).remove();
+          }, 2000);
+        }
+      });
+    });
+  </script>

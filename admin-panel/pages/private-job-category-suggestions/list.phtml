@@ -1,0 +1,16 @@
+<tr id="list-<?php echo ($wo['suggestion']['id']) ?>">
+  <td><?php echo $wo['suggestion']['id'] ?></td>
+  <td>
+    <a href="<?php echo $wo['grouplist']['url']; ?>">
+      <img src="<?php echo $wo['grouplist']['avatar']; ?>" class="setting-avatar" alt="<?php echo $wo['grouplist']['avatar'] ?> Page Picture">
+      <?php echo $wo['grouplist']['group_title']; ?>
+    </a>
+  </td>
+
+  <td><?php echo $wo['grouplist']['category'] ?></td>
+  <td><?php echo ($wo['suggestion']['suggestion']) ?></td>
+  <td>
+
+    <button class="btn btn-danger waves-effect waves-light delete-content" data-id="<?php echo ($wo['suggestion']['id']) ?>">DELETE</button>
+  </td>
+</tr>

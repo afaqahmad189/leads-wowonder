@@ -1,0 +1,208 @@
+<div class="wo_settings_page sun_sett_page">
+	<h3><?php echo $wo['lang']['general_setting']; ?></h3>
+
+	<form class="setting-general-form form-horizontal" method="post">
+		<div class="setting-general-alert setting-update-alert"></div>
+
+		<div class="setting-panel row">
+			<!-- Text input-->
+			<div class="sun_input col-lg-12">
+				<input name="group_title" id="group_title" type="text" class="form-control input-md" value="<?php echo $wo['setting']['group_title'] ?>" autocomplete="off" placeholder="<?php echo $wo['lang']['group_name']; ?>">
+				<label class="plr15" for="group_title"><?php echo $wo['lang']['group_name']; ?></label>
+			</div>
+
+			<div class="form-group col-lg-12">
+				<label class="col-md-12" for="group_name"><?php echo $wo['lang']['group']; ?> URL</label>
+				<div class="col-md-12 input-group">
+					<span class="input-group-addon"><?php echo $wo['config']['site_url']; ?>/</span>
+					<input id="group_name" name="group_name" type="text" class="form-control input-md" value="<?php echo $wo['setting']['group_name'] ?>" onkeyup="Wo_CheckGroupname(this.value, <?php echo $wo['setting']['id']; ?>);" autocomplete="off">
+				</div>
+				<span class="help-block checking" style="padding: 0px 20px;"></span>
+			</div>
+
+			<!-- Textarea -->
+			<div class="sun_input col-lg-12">
+				<?php $text = br2nl($wo['setting']['about']); ?>
+				<textarea class="form-control" id="about" name="about" cols="20" rows="3" placeholder="<?php echo $wo['lang']['about']; ?>"><?php echo $text; ?></textarea>
+				<label class="plr15" for="about"><?php echo $wo['lang']['about']; ?></label>
+			</div>
+
+			<div class="sun_input col-lg-12">
+				<input name="address" id="address" type="text" class="form-control input-md" value="<?php echo $wo['setting']['address'] ?>" autocomplete="off" placeholder="<?php echo $wo['lang']['location']; ?>">
+				<label class="plr15" for="address"><?php echo $wo['lang']['location']; ?></label>
+			</div>
+
+			<?php if (Wo_CountPrivateGroupsNotCategories($wo['setting']['id']) > 0) { ?>
+				<div class="sun_input col-lg-12 multiple-select" style="margin-bottom: 20px;">
+					<select name="group_employee_job_category[]" id="group_employee_job_category" multiple>
+						<?php foreach (Wo_GetPrivateGroupsNotCategories($wo['setting']['id']) as $id => $category) { ?>
+							<?php foreach ($category as $jobcategory) { ?>
+								<option value="<?php echo $jobcategory['id'] ?>"><?php echo $jobcategory['lang']; ?></option>
+							<?php } ?>
+						<?php } ?>
+					</select>
+
+					<label class="plr15" for="group_employee_job_category"><?php echo $wo['lang']['employee_category']; ?></label>
+				</div>
+			<?php } ?>
+
+			<div class="form-group col-lg-12 row bank-row" style="display: flex; align-items: center">
+				<div class="col-md-8">
+					<?php echo $wo['lang']['suggest_admin']; ?>
+				</div>
+
+				<div class="col-md-4 text-right">
+					<button type="button" class="btn btn-main setting-panel-mdbtn" onclick="Wo_SuggestBox();" style="margin-right: 0"><?php echo $wo['lang']['suggest']; ?></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group last-sett-btn modal-footer">
+			<div class="ball-pulse">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<button type="submit" class="btn btn-main setting-panel-mdbtn"><?php echo $wo['lang']['save']; ?></button>
+		</div>
+		<input type="hidden" name="group_id" value="<?php echo $wo['setting']['id']; ?>">
+		<input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession(); ?>">
+	</form>
+</div>
+
+<div class="modal fade" id="suggest_categories_modal" role="dialog" data-keyboard="false" style="overflow-y: auto;" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg></span></button>
+				<h4 class="modal-title"><?php echo $wo['lang']['suggest'] ?></h4>
+			</div>
+			<form class="form form-horizontal" method="post" id="suggest_categories_form" action="#">
+				<div class="modal-body dt_bank_trans_modal">
+					<div id="blog-alert"></div>
+
+					<?php echo $wo['config']['suggest_admin']; ?>
+
+					<div class="sun_input" stlye="margin-bottom: 0">
+						<textarea class="form-control" id="suggestions" name="suggestions" cols="20" rows="3" placeholder="<?php echo $wo['lang']['suggest']; ?>"></textarea>
+						<label class="plr15" for="suggestions"><?php echo $wo['lang']['suggest']; ?></label>
+					</div>
+
+					<input name="group_id" type="hidden" value="<?php echo $wo['setting']['id']; ?>" class="hidden">
+					<input name="category_id" type="hidden" value="<?php echo $wo['setting']['category_id']; ?>" class="hidden">
+				</div>
+				<div class="modal-footer last-sett-btn">
+					<div class="ball-pulse">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+					<button type="submit" class="btn btn-main setting-panel-mdbtn"><?php echo $wo['lang']['suggest']; ?></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function Wo_SuggestBox() {
+		$('#suggest_categories_modal').modal({
+			show: true
+		});
+	}
+
+	var pac_input = document.getElementById('address');
+	(function pacSelectFirst(input) {
+		// store the original event binding function
+		var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+
+		function addEventListenerWrapper(type, listener) {
+			// Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+			// and then trigger the original listener.
+			if (type == "keydown") {
+				var orig_listener = listener;
+				listener = function(event) {
+					var suggestion_selected = $(".pac-item-selected").length > 0;
+					if (event.which == 13 && !suggestion_selected) {
+						var simulated_downarrow = $.Event("keydown", {
+							keyCode: 40,
+							which: 40
+						});
+						orig_listener.apply(input, [simulated_downarrow]);
+					}
+					orig_listener.apply(input, [event]);
+				};
+			}
+			// add the modified listener
+			_addEventListener.apply(input, [type, listener]);
+		}
+		if (input.addEventListener)
+			input.addEventListener = addEventListenerWrapper;
+		else if (input.attachEvent)
+			input.attachEvent = addEventListenerWrapper;
+	})(pac_input);
+
+	<?php if ($wo['config']['google_map']) { ?>
+		$(function() {
+			var autocomplete = new google.maps.places.Autocomplete(pac_input);
+		});
+	<?php } ?>
+
+	$(function() {
+		<?php if (Wo_CountPrivateGroupsNotCategories($wo['setting']['id']) > 0) { ?>
+			$('#group_employee_job_category').multipleSelect({
+				selectAll: false
+			});
+		<?php } ?>
+
+		$('#suggest_categories_form').ajaxForm({
+			url: Wo_Ajax_Requests_File() + '?f=private_group&s=suggest_categories',
+			beforeSend: function() {
+				$('#suggest_categories_form').find('.last-sett-btn .ball-pulse').fadeIn(100);
+			},
+			success: function(data) {
+				if (data.status == 200) {
+					$('#blog-alert').html('<div class="alert alert-success">' + data.message + '</div>');
+					setTimeout(function() {
+						$("#blog-alert").html('');
+						$('#suggestions').val('');
+						$('#suggest_categories_modal').modal('hide');
+					}, 2000);
+				} else {
+					$('#blog-alert').html('<div class="alert alert-danger">' + data.message + '</div>');
+					setTimeout(function() {
+						$("#blog-alert").html('');
+					}, 2000);
+				}
+				$('#suggest_categories_form').find('.last-sett-btn .ball-pulse').fadeOut(100);
+			}
+		});
+
+		$('form.setting-general-form').ajaxForm({
+			url: Wo_Ajax_Requests_File() + '?f=private_group&s=update_general_settings',
+			beforeSend: function() {
+				$('.wo_settings_page').find('.last-sett-btn .ball-pulse').fadeIn(100);
+			},
+			success: function(data) {
+				scrollToTop();
+				if (data.status == 200) {
+					$('.setting-general-alert').html('<div class="alert alert-success">' + data.message + '</div>');
+					$('.alert-success').fadeIn('fast', function() {
+						$(this).delay(2500).slideUp(500, function() {
+							$(this).remove();
+							location.reload();
+						});
+					});
+				} else {
+					var errors = data.errors.join("<br>");
+					$('.setting-general-alert').html('<div class="alert alert-danger">' + errors + '</div>');
+					$('.alert-danger').fadeIn(300);
+				}
+				$('.wo_settings_page').find('.last-sett-btn .ball-pulse').fadeOut(100);
+			}
+		});
+	});
+</script>

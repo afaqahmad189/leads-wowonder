@@ -1,0 +1,26 @@
+<tr class="setting-postlist" id="<?php echo $wo['langs']['id'];?>">
+   <td style="text-align: center;"><?php echo $wo['langs']['name'];?></td>
+   <td style="text-align: center;">
+      <a class="pointer black" href="<?php echo Wo_LoadAdminLinkSettings('edit-product-category?id=' . $wo['langs']['id']);?>"><i class="fa fa-pencil-square progress-icon" data-icon="trash-o"></i> Edit</a> |
+      <span class="delete-field pointer black" onclick="Wo_DeleteLang(<?php echo $wo['langs']['id'];?>);"><i class="fa fa-trash-o progress-icon" data-icon="trash-o"></i> Delete</span>
+   </td>
+</tr>
+
+<script>
+
+    // abdul custom start
+    function Wo_DeleteLang(id) {
+        if (id == '') {
+            return false;
+        }
+        if (!confirm('Are you sure you want to delete this language?')) {
+            return false;
+        }
+        $('#' + id).fadeOut(300, function () {
+            $(this).remove();
+        });
+        $.get(Wo_Ajax_Requests_File(), {f: 'admin_setting', s:'delete_product_category', id:id});
+    }
+
+    // end
+</script>

@@ -1,0 +1,25 @@
+<?php $sender = ($wo['ThanksList']['sender']) ? $wo['ThanksList']['sender_data'] : $wo['ThanksList']['receiver_data'];  ?>
+<?php $receiver = ($wo['ThanksList']['sender']) ? $wo['ThanksList']['receiver_data'] : $wo['ThanksList']['sender_data'];  ?>
+<div class="col-xs-12 col-sm-12 nearby_user_wrapper user-data">
+	<div class="d-flex align-items-center justify-content-between">
+		<div class="receiver">
+			<h4><?= ($wo['ThanksList']['sender']) ? 'Receiver' : 'Sender'; ?>: </h4>
+			<div class="avatar">
+				<img src="<?php echo $receiver['avatar']; ?>" alt="<?php echo $receiver['name']; ?> Profile Picture" />
+			</div>
+			<span class="user-popover" data-id="<?php echo $receiver['id']; ?>" data-type="<?php echo $receiver['type']; ?>">
+				<a href="<?php echo $receiver['url']; ?>" data-ajax="?link1=timeline&u=<?php echo $receiver['username']; ?>" class="user_wrapper_link"><?php echo $receiver['name']; ?></a>
+			</span>
+		</div>
+
+		<div class="thanks-data">
+			<p><?php echo 'Appreciation Value: ' .  $wo['ThanksList']['value']; ?></p>
+		</div>
+
+		<div class="thanks-data">
+			<p><?php echo 'Thanks Type: ' .  ucfirst($wo['ThanksList']['thanks_type']); ?></p>
+			<p><?php echo 'Referral Type: ' .  $wo['ThanksList']['referral_type']; ?></p>
+		</div>
+	</div>
+
+</div>

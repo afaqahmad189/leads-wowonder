@@ -1,0 +1,65 @@
+<div style="display: flex; font-family: 'Segoe UI Regular', 'Segoe UI', 'Helvetica Neue Medium', Arial, sans-serif;">
+    <div style="flex: 1; padding: 1em; background: #e5e5e5;">
+        <h1><?php echo $wo['config']['siteName'] ?> Group</h1>
+        <h2>Referral Notice</h2>
+
+        <div style="margin-top: 25px">
+            <b><i>Date Referral Given:</i></b>
+            <p>
+                <?php echo date('d/m/Y'); ?>
+            </p>
+        </div>
+
+        <div style="margin-top: 25px">
+            <b><i>Referral Type:</i></b>
+            <p>
+                <?php echo ucfirst($wo['referral_date']['referral_type']); ?>
+            </p>
+        </div>
+
+        <?php if ($wo['referral_date']['call'] == 1 || $wo['referral_date']['card'] == 1) { ?>
+            <div style="margin-top: 25px">
+                <b><i>Referral Status:</i></b>
+                <?php if ($wo['referral_date']['call'] == 1) { ?>
+                    <p>
+                        Told them you would call
+                    </p>
+                <?php } ?>
+
+                <?php if ($wo['referral_date']['card'] == 1) { ?>
+                    <p>
+                        Given your card
+                    </p>
+                <?php } ?>
+            </div>
+        <?php } ?>
+    </div>
+    <div style="flex: 2; padding: 1em;">
+        <b>Congratulations! You have received a new referral from <?php echo $wo['sender_data']['name']; ?> !</b>
+        <br /><br />
+
+        This referral has been rated a <b><?php echo $wo['rating']; ?></b> on the referral temperature scale. Be sure to follow up on this referral right away!
+        <br />
+        1 is considered tepid and 4 is considered extremely hot.
+        <br /><br />
+
+        <b>Referral Name: </b> <?php echo $wo['referral_date']['referral'] ?><br />
+        <b>Address: </b> <?php echo $wo['referral_date']['address'] ?><br />
+        <b>Phone: </b> <?php echo $wo['referral_date']['telephone'] ?><br />
+
+        <?php if (!empty($wo['referral_data']['comments'])) { ?>
+            <br />
+            <b>Comments: </b> <?php echo $wo['referral_date']['comments'] ?>
+        <?php } ?>
+        <br />
+        For additional information and to follow up with your referral partner, be sure to contact <b><?php echo $wo['sender_data']['name']; ?></b>
+        <br /><br />
+        <?php if (!empty($wo['sender_data']['phone_number'])) { ?>
+            <b>Phone: </b> <?php echo $wo['sender_data']['phone_number'] ?>
+        <?php } ?>
+        <b>Email: </b> <?php echo $wo['sender_data']['email'] ?>
+
+        <br /><br />
+        Happy Connecting!
+    </div>
+</div>

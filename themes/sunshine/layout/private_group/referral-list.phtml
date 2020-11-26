@@ -1,0 +1,28 @@
+<?php $sender = ($wo['ReferralList']['sender']) ? $wo['ReferralList']['sender_data'] : $wo['ReferralList']['receiver_data'];  ?>
+<?php $receiver = ($wo['ReferralList']['sender']) ? $wo['ReferralList']['receiver_data'] : $wo['ReferralList']['sender_data'];  ?>
+
+<div class="col-md-12 profile-style user-data" style="width: 100%">
+   <div class="d-flex align-items-center justify-content-between">
+      <div class="receiver">
+         <h4><?= ($wo['ReferralList']['sender']) ? 'Receiver' : 'Sender'; ?>: </h4>
+         <div class="avatar">
+            <img src="<?php echo $receiver['avatar']; ?>" alt="<?php echo $receiver['name']; ?> Profile Picture" />
+         </div>
+         <span class="user-popover" data-id="<?php echo $receiver['id']; ?>" data-type="<?php echo $receiver['type']; ?>">
+            <a href="<?php echo $receiver['url']; ?>" data-ajax="?link1=timeline&u=<?php echo $receiver['username']; ?>" class="user_wrapper_link"><?php echo $receiver['name']; ?></a>
+         </span>
+      </div>
+
+      <div class="referral-data">
+         <p><?php echo 'Referral Type: ' .  ucfirst($wo['ReferralList']['referral_type']); ?></p>
+         <p><?php echo 'Referral Name: ' .  $wo['ReferralList']['referral']; ?></p>
+      </div>
+
+      <div class="referral-data">
+         <p><?php echo 'Address: ' .  $wo['ReferralList']['address']; ?></p>
+         <p><?php echo 'Phone: ' .  $wo['ReferralList']['telephone']; ?></p>
+         <p><?php echo 'Email: ' .  $wo['ReferralList']['email']; ?></p>
+          <p><?php echo 'Comment: ' . $wo['ReferralList']['comments']; ?></p>
+      </div>
+   </div>
+</div>

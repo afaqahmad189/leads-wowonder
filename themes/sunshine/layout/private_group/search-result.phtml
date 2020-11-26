@@ -1,0 +1,25 @@
+<li>
+	<?php $name = (!empty($wo['result']['first_name']) && !empty($wo['result']['last_name'])) ? $wo['result']['first_name'] . ' ' . $wo['result']['last_name'] : $wo['result']['username']  ?>
+	<a href="javascript: void(0)" onclick="Wo_SelectThis(this, '<?php echo $wo['result']['id']; ?>', '<?php echo $name ?>' )">
+		<span class="user-popover" data-id="<?php echo $wo['result']['id']; ?>" data-type="<?php echo $wo['result']['type']; ?>">
+			<div class="search-user-avatar <?php echo Wo_RightToLeft('pull-left'); ?>">
+				<img src="<?php echo $wo['result']['avatar'] ?>" alt="<?php echo $wo['result']['username'] ?> Profile Picture">
+			</div>
+			<span class="search-user-name">
+				<?php echo $name ?>
+				<?php if ($wo['result']['verified'] == 1) { ?>
+					<span class="verified-color"><i class="fa fa-check-circle" title="<?php echo $wo['lang']['verified_user']; ?>"></i></span>
+				<?php } ?>
+			</span>
+
+			<span class="search_result_badge"><?php echo $wo['result']['group_name']; ?></span>
+		</span>
+
+		<?php if ($wo['config']['user_lastseen'] == 1 && $wo['result']['showlastseen'] != 0) { ?>
+			<div class="user-lastseen">
+				<?php echo Wo_UserStatus($wo['result']['user_id'], $wo['result']['lastseen']); ?>
+			</div>
+		<?php } ?>
+	</a>
+	<div class="clear"></div>
+</li>
