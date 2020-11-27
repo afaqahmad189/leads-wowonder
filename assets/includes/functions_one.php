@@ -1077,6 +1077,39 @@ function Wo_Deletesubadmin($user_id)
     $query_one = mysqli_query($sqlConnect, "DELETE FROM " . T_subadmin . " WHERE `user_id` = {$user_id}");
     return;
 }
+//function Wo_createdlead($user_id)
+//{
+//    global $wo, $sqlConnect, $cache;
+//    $data = array();
+//    $data['test']=array();
+//    $query_one = "SELECT * FROM " . T_LEADS;
+//        $sql = mysqli_query($sqlConnect, $query_one);
+//        while($fetched_data = mysqli_fetch_assoc($sql)){
+//            $data['test']=$fetched_data;
+//        }
+//        return $data['test'];
+//}
+function Wo_createdlead()
+{
+//    global $wo, $sqlConnect;
+//    $data       = array();
+//    $type_table = T_LEADS;
+//    $query_one  = mysqli_query($sqlConnect, "SELECT * FROM {$type_table}");
+//    while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+//        $data[] = Wo_UserData($fetched_data['id']);
+//        $data[] = Wo_UserData($fetched_data['user_id']);
+//        $data[] = Wo_UserData($fetched_data['service_name']);
+//    }
+//    return $data;
+    global $wo, $sqlConnect;
+    $data       = array();
+    $query_one  = mysqli_query($sqlConnect, "SELECT * FROM ". T_LEADS ." A JOIN ". T_USERS ." B 
+                            ON A.user_id=B.user_id");
+    while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+        $data[] = $fetched_data;
+    }
+    return $data;
+}
 
 
 //end of custom function afaq

@@ -19,7 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="" />
+    <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/manage-users/list.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/manage-users/list.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/online-users/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/online-users/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/list.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/list.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/functions_one.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_one.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +93,8 @@
       <workItem from="1606282657409" duration="43000" />
       <workItem from="1606300696245" duration="14203000" />
       <workItem from="1606370681665" duration="145000" />
-      <workItem from="1606390142325" duration="4884000" />
+      <workItem from="1606390142325" duration="10772000" />
+      <workItem from="1606506616997" duration="6073000" />
     </task>
     <servers />
   </component>
@@ -102,12 +111,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606207013819">
+    <state x="568" y="226" key="#Notifications" timestamp="1606397200416">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606207013819" />
+    <state x="568" y="226" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1606397200416" />
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606511319476">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606511319476" />
     <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605791991703">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -124,10 +138,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1603437868907" />
-    <state x="389" y="0" width="643" height="728" key="find.popup" timestamp="1606393259064">
+    <state x="389" y="0" width="643" height="728" key="find.popup" timestamp="1606509535321">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1606393259064" />
+    <state x="389" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1606509535321" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1606305226695">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -136,10 +150,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="324" y="90" width="700" height="530" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1606309543488" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1606392865502">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1606508197897">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1606392865502" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1606508197897" />
     <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1606302258007">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
