@@ -119,7 +119,11 @@ $pages = array(
     //end
 
     //afaq
-    'user-created-lead'
+    'user-created-lead',
+    'normal-leads',
+    'manage-normal-leads',
+    'packages',
+    'manage_packages'
     //end
 
 );
@@ -747,6 +751,22 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             <span>Manage Bank Receipts</span>
                         </a>
                     </li>
+                    <?php if ($is_admin == true) { ?>
+                        <li <?php echo ($page == 'packages') ? 'class="active"' : ''; ?>>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">dns</i>
+                                <span>Packages</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li <?php echo ($page == 'packages' || $pages=='manage_packages') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('packages'); ?>">Create Packages</a>
+                                </li>
+                                <li <?php echo ($page == 'manage_packages') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('manage_packages'); ?>">Manage Packages</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php } ?>
                     <li <?php echo ($page == 'approve-lead') ? 'class="active"' : ''; ?>>
                         <a href="<?php echo Wo_LoadAdminLinkSettings('approve-lead'); ?>">
                             <i class="material-icons">dns</i>
@@ -759,6 +779,26 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             <span>User Created Leads</span>
                         </a>
                     </li>
+
+                    <?php if ($is_admin == true) { ?>
+                        <li <?php echo ($page == 'normal-leads'|| $page=='manage-normal-leads') ? 'class="active"' : ''; ?>>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">dns</i>
+                                <span>Normal Leads</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li <?php echo ($page == 'normal-leads') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('normal-leads'); ?>">Create Normal Leads</a>
+                                </li>
+                                <li <?php echo ($page == 'manage-normal-leads') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('manage-normal-leads'); ?>">Manage Normal Leads</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php } ?>
+
+
+
                     <li <?php echo ($page == 'ads-settings' || $page == 'manage-site-ads' || $page == 'manage-user-ads') ? 'class="active"' : ''; ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">attach_money</i>

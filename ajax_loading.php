@@ -1031,6 +1031,9 @@ else {
         case 'created-lead-details':
             include('sources/leads/created-lead-details.php');
             break;
+        case 'recieved-lead-details':
+            include('sources/leads/recieved-lead-details.php');
+            break;
         // links for private group - START
         case 'private-groups':
             include('sources/private_groups.php');

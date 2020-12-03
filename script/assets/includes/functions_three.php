@@ -7690,3 +7690,20 @@ function Wo_CheckPrivateGroupAdminPassword($password = false, $group_id = false)
     return $match;
 }
 // END
+
+//afaq function
+function Wo_Addnormallead($registration_data = array())
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false || Wo_IsAdmin() == false) {
+        return false;
+    }
+    $fields = '`' . implode('`, `', array_keys($registration_data)) . '`';
+    $data   = '\'' . implode('\', \'', $registration_data) . '\'';
+    $query  = mysqli_query($sqlConnect, "INSERT INTO " . T_normal_lead . " ({$fields}) VALUES ({$data})");
+    if ($query) {
+        return true;
+    }
+    return false;
+}
+//end of afaq function

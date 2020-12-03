@@ -9203,7 +9203,7 @@ function Wo_LeadExists($group_name = '')
 }
 // END
 
-//My CUSTOM FUNCTIONS
+//My CUSTOM FUNCTIONS afaq
 function Wo_Getcreated_lead_data($lead_id){
     global $sqlConnect, $wo,$value;
     if ($wo['loggedin'] == false) {
@@ -9276,4 +9276,145 @@ function Wo_Getcreated_lead_data($lead_id){
     }
     return $data;
 }
-//END of my custom functions
+function Wo_GetReceivedLeads()
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    $data       = array();
+    $data['lead']       = array();
+    $user_id    = Wo_Secure($wo['user']['user_id']);
+    $query_text = "SELECT * FROM " . T_recieved_lead . " WHERE `user_id` = {$user_id}";
+    $query_one  = mysqli_query($sqlConnect, $query_text);
+    if (mysqli_num_rows($query_one) > 0) {
+        while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+            if (is_array($fetched_data)) {
+                $data['type'] = 'self';
+                $data['lead'][] = Wo_ReceivedLeadData($fetched_data['id']);
+            }
+        }
+    }
+//    else {
+//        $query     = " SELECT `Lead_id` FROM " . T_LEADS_MEMBERS . " WHERE `user_id` = {$user_id} AND `active` = '1' ORDER BY `id`";
+//        $sql_query = mysqli_query($sqlConnect, $query);
+//        if (mysqli_num_rows($sql_query) > 0) {
+//            while ($fetched_data = mysqli_fetch_assoc($sql_query)) {
+//                $data['type'] = 'join';
+//                $data['lead'][] = Wo_ReceivedLeadData($fetched_data['Lead_id']);
+//            }
+//        }
+//    }
+    return $data;
+}
+function Wo_ReceivedLeadData($Lead_id = 0)
+{
+    global $wo, $sqlConnect, $cache;
+    if (empty($Lead_id) || !is_numeric($Lead_id) || $Lead_id < 1) {
+        return false;
+    }
+    $data            = array();
+    $received_Lead_id        = Wo_Secure($Lead_id);
+    $query_one       = "SELECT *,A.`id` as recieved_id, B.`id` as lead_id,C.`user_id` as user_id
+                    FROM " . T_recieved_lead . " A JOIN ". T_LEADS." B on 
+        A.`lead_id`=B.`id` join ". T_USERS ." C on 
+        A.`user_id`=C.`user_id`
+        WHERE A.`id` = {$received_Lead_id}";
+    $hashed_Lead_Id = md5($received_Lead_id);
+    if ($wo['config']['cacheSystem'] == 1) {
+        $fetched_data = $cache->read($hashed_Lead_Id . '_LEAD_Data.tmp');
+        if (empty($fetched_data)) {
+            $sql          = mysqli_query($sqlConnect, $query_one);
+            $fetched_data = mysqli_fetch_assoc($sql);
+            $cache->write($hashed_Lead_Id . '_LEAD_Data.tmp', $fetched_data);
+        }
+    }
+    else {
+        $sql          = mysqli_query($sqlConnect, $query_one);
+        $fetched_data = mysqli_fetch_assoc($sql);
+    }
+    if (empty($fetched_data)) {
+        return array();
+    }
+//    $fetched_data['Lead_id']    = $fetched_data['id'];
+//    $fetched_data['name']        = $fetched_data['Lead_title'];
+//    $fetched_data['category_id'] = $fetched_data['category'];
+//    $fetched_data['type']        = 'private-Lead';
+//    $fetched_data['username']    = $fetched_data['Lead_name'];
+//    $fetched_data['category']    = $wo['private_categories'][$fetched_data['category']];
+//    $fetched_data['private_sub_category'] = '';
+    if (!empty($fetched_data['sub_category']) && !empty($wo['private_sub_category'][$fetched_data['category_id']])) {
+        foreach ($wo['private_sub_category'][$fetched_data['category_id']] as $key => $value) {
+            if ($value['id'] == $fetched_data['sub_category']) {
+                $fetched_data['private_sub_category'] = $value['lang'];
+            }
+        }
+    }
+
+    return $fetched_data;
+}
+
+function Wo_Getreceived_lead_data($lead_id){
+    global $sqlConnect, $wo,$value;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    $data= array();
+    $data['lead']= array();
+    $value=$lead_id;
+    $query_text = "SELECT *,A.`id` as recieved_id,
+                            A.`lead_id`,
+                            A.`user_id`,
+                            B.`user_id`,
+                            C.`id` as lead_id
+                    FROM ". T_recieved_lead ." as A JOIN ". T_USERS ." as B
+                     ON A.`user_id` = B.`user_id` 
+                     JOIN ".T_LEADS." as C
+                     ON A.lead_id=C.`id`
+                     where A.`id` = '{$value}'";
+    $query_one  = mysqli_query($sqlConnect, $query_text);
+    if (mysqli_num_rows($query_one) > 0) {
+        $fetched_data = mysqli_fetch_assoc($query_one);
+        if (is_array($fetched_data)) {
+            $data['product_cat'] = $fetched_data['product_category'];
+            $data['Group_cat'] = $fetched_data['group_category'];
+            $data['category_name'] = $fetched_data['job_category'];
+            $data['user_name'] = $fetched_data['username'];
+//            $data['service_name'] = $fetched_data['service_name'];
+            $data['lead']= Wo_PrivateLeadData($fetched_data['lead_id']);
+            //get product lang
+            $query2_text= "SELECT `lang_key`,`english` FROM ".T_LANGS."
+            where id ='{$data['product_cat']}'";
+            $query_two=mysqli_query($sqlConnect , $query2_text);
+            if (mysqli_num_rows($query_two) > 0) {
+                $fetched_data_query_two = mysqli_fetch_assoc($query_two);
+                if (is_array($fetched_data_query_two)) {
+                   var_dump($data['product_cat_lang'] = $fetched_data_query_two['english']);
+                }
+            }
+//            //get job lang
+            $query3_text= "SELECT `lang_key`,`english` FROM ".T_LANGS."
+            where id ='{$data['category_name']}'";
+            $query_three=mysqli_query($sqlConnect , $query3_text);
+            if (mysqli_num_rows($query_three) > 0) {
+                $fetched_data_query_three = mysqli_fetch_assoc($query_three);
+                if (is_array($fetched_data_query_three)) {
+                    $data['job_cat_lang'] = $fetched_data_query_three['english'];
+                }
+            }
+//            //get group lang
+            $query4_text= "SELECT `lang_key`,`english` FROM ".T_LANGS."
+            where id ='{$data['Group_cat']}'";
+            $query_four=mysqli_query($sqlConnect , $query4_text);
+            if (mysqli_num_rows($query_four) > 0) {
+                $fetched_data_query_four = mysqli_fetch_assoc($query_four);
+                if (is_array($fetched_data_query_four)) {
+                    $data['group_cat_lang'] = $fetched_data_query_four['english'];
+                }
+            }
+        }
+    }
+    return $data;
+}
+
+//END of my custom functions afaq

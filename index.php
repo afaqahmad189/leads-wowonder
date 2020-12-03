@@ -488,7 +488,6 @@ if ($wo['config']['membership_system'] == 1) {
                 case 'join-private-lead':
                     include('sources/private_lead/join_private_lead.php');
                     break;
-
                 case 'leads-received-bid':
                     include('sources/private_lead/leads_received_bid.php');
                     break;
@@ -540,6 +539,9 @@ if ($wo['config']['membership_system'] == 1) {
                     break;
                 case 'created-lead-details':
                     include('sources/leads/created-lead-details.php');
+                    break;
+                case 'recieved-lead-details':
+                    include('sources/leads/recieved-lead-details.php');
                     break;
                     // END
             }
@@ -1165,6 +1167,11 @@ if ($wo['config']['membership_system'] == 1) {
         case 'created-lead-details':
             include('sources/leads/created-lead-details.php');
             break;
+        case 'recieved-lead-details':
+            include('sources/leads/recieved-lead-details.php');
+            break;
+
+
 
 
 

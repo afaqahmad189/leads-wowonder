@@ -20,13 +20,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/pages/manage-normal-leads/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/pages/manage_packages/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/pages/normal-leads/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/pages/packages/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sources/leads/recieved-lead-details.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/leads/received-lead-details.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/add_new_normal_lead.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/add_new_package.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/delete-normal-lead.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/delete-package.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/send-lead.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/pages/manage-users/list.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/manage-users/list.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/pages/online-users/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/online-users/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/autoload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/content.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/list.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/list.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajax_loading.php" beforeDir="false" afterPath="$PROJECT_DIR$/ajax_loading.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/includes/functions_one.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_one.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/functions_three.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_three.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/functions_two.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_two.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/tabels.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/tabels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/assets/includes/functions_three.php" beforeDir="false" afterPath="$PROJECT_DIR$/script/assets/includes/functions_three.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/assets/includes/tabels.php" beforeDir="false" afterPath="$PROJECT_DIR$/script/assets/includes/tabels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/leads/create-lead.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/leads/create-lead.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-created.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-created.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/admin_setting.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/admin_setting.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +69,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zeeproject" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -95,6 +115,12 @@
       <workItem from="1606370681665" duration="145000" />
       <workItem from="1606390142325" duration="10772000" />
       <workItem from="1606506616997" duration="6073000" />
+      <workItem from="1606513448146" duration="19000" />
+      <workItem from="1606591505060" duration="12295000" />
+      <workItem from="1606734463974" duration="3735000" />
+      <workItem from="1606805653596" duration="11659000" />
+      <workItem from="1606887560080" duration="18850000" />
+      <workItem from="1606975082876" duration="14477000" />
     </task>
     <servers />
   </component>
@@ -122,14 +148,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606511319476" />
-    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605791991703">
+    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606907839747">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1605791991703" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1606370827783">
+    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1606907839747" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1606993578531">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606370827783" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606993578531" />
     <state x="477" y="265" key="NewPhpFileDialog" timestamp="1603374474934">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -138,10 +164,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1603437868907" />
-    <state x="389" y="0" width="643" height="728" key="find.popup" timestamp="1606509535321">
+    <state x="389" y="0" width="643" height="728" key="find.popup" timestamp="1606605355337">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1606509535321" />
+    <state x="389" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1606605355337" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1606305226695">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -150,24 +176,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="324" y="90" width="700" height="530" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1606309543488" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1606508197897">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1606980882967">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1606508197897" />
-    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1606302258007">
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1606980882967" />
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1606594268759">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606302258007" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/admin-panel/autoload.php</url>
-          <line>756</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606594268759" />
   </component>
 </project>

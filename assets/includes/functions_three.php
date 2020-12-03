@@ -2036,6 +2036,7 @@ function Wo_AddForum($registration_data = array())
     }
     return false;
 }
+
 function Wo_ThreadReply($registration_data = array())
 {
     global $sqlConnect, $wo;
@@ -7953,3 +7954,195 @@ function Wo_CheckPrivateGroupAdminPassword($password = false, $group_id = false)
     return $match;
 }
 // END
+
+//afaq function
+function Wo_Addnormallead($registration_data = array())
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false || Wo_IsAdmin() == false) {
+        return false;
+    }
+    $fields = '`' . implode('`, `', array_keys($registration_data)) . '`';
+    $data   = '\'' . implode('\', \'', $registration_data) . '\'';
+    $query  = mysqli_query($sqlConnect, "INSERT INTO " . T_normal_lead . " ({$fields}) VALUES ({$data})");
+    if ($query) {
+        return true;
+    }
+    return false;
+}
+function Wo_Getnormallead($args = array())
+{
+    global $sqlConnect, $wo;
+    $options   = array(
+        "id" => false,
+        "offset" => 0,
+        "limit" => false,
+        "search" => false,
+        "keyword" => false,
+        "forums" => false,
+        "order_by" => 'ASC'
+    );
+    $args      = array_merge($options, $args);
+    $offset    = Wo_Secure($args['offset']);
+    $id        = Wo_Secure($args['id']);
+    $limit     = Wo_Secure($args['limit']);
+    $search    = Wo_Secure($args['search']);
+    $keyword   = Wo_Secure($args['keyword']);
+    $forums    = Wo_Secure($args['forums']);
+    $order_by  = Wo_Secure($args['order_by']);
+    $query_one = "";
+    if ($offset > 0) {
+        $query_one .= " AND `id` < {$offset} AND `id` <> {$offset} ";
+    }
+    if ($id) {
+        $query_one .= " AND `id` = '$id' ";
+    }
+    if ($order_by) {
+        $query_one .= " ORDER BY `id` $order_by";
+    }
+    if ($limit) {
+        $query_one .= " LIMIT {$limit} ";
+    }
+    $sql_query_one = mysqli_query($sqlConnect, "SELECT * FROM " . wo_normal_lead . " WHERE `id` > 0 {$query_one}");
+    $data          = array();
+    while ($fetched_data = mysqli_fetch_assoc($sql_query_one)) {
+        if ($forums) {
+            $fetched_data['forums'] = Wo_Getnormallead(array(
+                "section" => $fetched_data['id'],
+                "search" => $search,
+                "keyword" => $keyword
+            ));
+            if (count($fetched_data['forums']) > 0) {
+                $data[] = $fetched_data;
+            }
+        } else {
+            $data[] = $fetched_data;
+        }
+    }
+    return $data;
+}
+function Wo_Deletenormallead($id = false)
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false && Wo_IsAdmin() == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $section = Wo_GetForumSec(array(
+        'id' => $id,
+        'forums' => true
+    ));
+    $query_0 = mysqli_query($sqlConnect, "DELETE FROM " . T_normal_lead . " WHERE `id` = '$id'");
+//    if (count($section) > 0) {
+//        foreach ($section[0]['forums'] as $forum) {
+//            Wo_DeleteForum($forum['id']);
+//        }
+//        if ($query_0) {
+//            return true;
+//        }
+//    }
+    if($query_0){
+        return true;
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+function Wo_Packages($registration_data = array())
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false || Wo_IsAdmin() == false) {
+        return false;
+    }
+    $fields = '`' . implode('`, `', array_keys($registration_data)) . '`';
+    $data   = '\'' . implode('\', \'', $registration_data) . '\'';
+    $name=$registration_data['name'];
+    $query_one=mysqli_query($sqlConnect, "SELECT * FROM ". T_PACKAGES ." WHERE `name`='$name'");
+    if(mysqli_num_rows($query_one)>0){
+        return true;
+    }
+    else{
+        $query  = mysqli_query($sqlConnect, "INSERT INTO " . T_PACKAGES . " ({$fields}) VALUES ({$data})");
+        if ($query) {
+            return true;
+        }
+        return false;
+    }
+}
+function Wo_GetPackages($args = array())
+{
+    global $sqlConnect, $wo;
+    $options   = array(
+        "id" => false,
+        "offset" => 0,
+        "limit" => false,
+        "search" => false,
+        "keyword" => false,
+        "forums" => false,
+        "order_by" => 'ASC'
+    );
+    $args      = array_merge($options, $args);
+    $offset    = Wo_Secure($args['offset']);
+    $id        = Wo_Secure($args['id']);
+    $limit     = Wo_Secure($args['limit']);
+    $search    = Wo_Secure($args['search']);
+    $keyword   = Wo_Secure($args['keyword']);
+    $forums    = Wo_Secure($args['forums']);
+    $order_by  = Wo_Secure($args['order_by']);
+    $query_one = "";
+    if ($offset > 0) {
+        $query_one .= " AND `id` < {$offset} AND `id` <> {$offset} ";
+    }
+    if ($id) {
+        $query_one .= " AND `id` = '$id' ";
+    }
+    if ($order_by) {
+        $query_one .= " ORDER BY `id` $order_by";
+    }
+    if ($limit) {
+        $query_one .= " LIMIT {$limit} ";
+    }
+    $sql_query_one = mysqli_query($sqlConnect, "SELECT * FROM " . T_PACKAGES . " WHERE `id` > 0 {$query_one}");
+    $data          = array();
+    while ($fetched_data = mysqli_fetch_assoc($sql_query_one)) {
+        if ($forums) {
+            $fetched_data['forums'] = Wo_GetPackages(array(
+                "section" => $fetched_data['id'],
+                "search" => $search,
+                "keyword" => $keyword
+            ));
+            if (count($fetched_data['forums']) > 0) {
+                $data[] = $fetched_data;
+            }
+        } else {
+            $data[] = $fetched_data;
+        }
+    }
+    return $data;
+}
+function Wo_Deletepackage($id = false)
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false && Wo_IsAdmin() == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $section = Wo_GetForumSec(array(
+        'id' => $id,
+        'forums' => true
+    ));
+    $query_0 = mysqli_query($sqlConnect, "DELETE FROM " . T_PACKAGES . " WHERE `id` = '$id'");
+    if($query_0){
+        return true;
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+//end of afaq function

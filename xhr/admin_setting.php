@@ -2020,6 +2020,14 @@ if ($f == 'admin_setting' and (Wo_IsAdmin() || Wo_IsModerator())) {
         echo json_encode($data);
         exit();
     }
+    if ($s == 'delete_created_lead' && isset($_GET['lead_id']) && Wo_CheckMainSession($hash_id) === true) {
+        if (Wo_DeleteLead($_GET['lead_id']) === true) {
+            $data['status'] = 200;
+        }
+        header("Content-type: application/json");
+        echo json_encode($data);
+        exit();
+    }
 
     //custom function afaq
     if ($s == 'create_subadmin' && isset($_GET['user_id']) && Wo_CheckMainSession($hash_id) === true) {
@@ -2034,6 +2042,61 @@ if ($f == 'admin_setting' and (Wo_IsAdmin() || Wo_IsModerator())) {
     if ($s == 'delete_subadmin' && isset($_GET['user_id']) && Wo_CheckMainSession($hash_id) === true) {
         if (Wo_Deletesubadmin($_GET['user_id']) === true) {
             $data['status'] = 200;
+        }
+        header("Content-type: application/json");
+        echo json_encode($data);
+        exit();
+    }
+    if ($s == 'get_package' && !empty($_POST['package_id'])) {
+        $data['status'] = 400;
+        $html = '';
+        $langs = Wo_GetPackageDetails($_POST['package_id']);
+        if (count($langs) > 0) {
+            foreach ($langs as $test) {
+            }
+            $data['status'] = 200;
+            $data['package'] = $test;
+            $data['html'] = $html;
+        }
+        header("Content-type: application/json");
+        echo json_encode($data);
+        exit();
+    }
+    if ($s == 'edit_lead' && !empty($_POST['lead_id'])) {
+        $data['status'] = 400;
+        $html = '';
+        $langs = Wo_GetLeadDetails($_POST['lead_id']);
+        if (count($langs) > 0) {
+            foreach ($langs as $test) {
+            }
+            $data['status'] = 200;
+            $data['package'] = $test;
+            $data['html'] = $html;
+        }
+        header("Content-type: application/json");
+        echo json_encode($data);
+        exit();
+    }
+    if ($s == 'update_package' && !empty($_POST['package_id']) && !empty($_POST['package_name'])&& !empty($_POST['package_limit'])&& !empty($_POST['package_pricing'])) {
+        $data['status'] = 400;
+//        $html = '';
+        $langs = Wo_UpdatePackage($_POST['package_id'],$_POST['package_name'],$_POST['package_limit'],$_POST['package_pricing']);
+        if ($data['status'] = 200) {
+//            foreach ($langs as $test) {
+//            }
+//            $data['status'] = 200;
+//            $data['package'] = $test;
+//            $data['html'] = $html;
+        }
+        header("Content-type: application/json");
+        echo json_encode($data);
+        exit();
+    }
+    if ($s == 'update_lead' && !empty($_POST['lead_id']) && !empty($_POST['service_name'])&& !empty($_POST['tags'])&& !empty($_POST['budget']) && !empty($_POST['location'])) {
+        $data['status'] = 400;
+        $langs = Wo_UpdateLead($_POST['lead_id'],$_POST['service_name'],$_POST['tags'],$_POST['budget'],$_POST['location']);
+
+        if ($data['status'] = 200) {
         }
         header("Content-type: application/json");
         echo json_encode($data);

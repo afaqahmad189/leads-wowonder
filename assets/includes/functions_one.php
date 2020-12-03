@@ -1077,30 +1077,8 @@ function Wo_Deletesubadmin($user_id)
     $query_one = mysqli_query($sqlConnect, "DELETE FROM " . T_subadmin . " WHERE `user_id` = {$user_id}");
     return;
 }
-//function Wo_createdlead($user_id)
-//{
-//    global $wo, $sqlConnect, $cache;
-//    $data = array();
-//    $data['test']=array();
-//    $query_one = "SELECT * FROM " . T_LEADS;
-//        $sql = mysqli_query($sqlConnect, $query_one);
-//        while($fetched_data = mysqli_fetch_assoc($sql)){
-//            $data['test']=$fetched_data;
-//        }
-//        return $data['test'];
-//}
 function Wo_createdlead()
 {
-//    global $wo, $sqlConnect;
-//    $data       = array();
-//    $type_table = T_LEADS;
-//    $query_one  = mysqli_query($sqlConnect, "SELECT * FROM {$type_table}");
-//    while ($fetched_data = mysqli_fetch_assoc($query_one)) {
-//        $data[] = Wo_UserData($fetched_data['id']);
-//        $data[] = Wo_UserData($fetched_data['user_id']);
-//        $data[] = Wo_UserData($fetched_data['service_name']);
-//    }
-//    return $data;
     global $wo, $sqlConnect;
     $data       = array();
     $query_one  = mysqli_query($sqlConnect, "SELECT * FROM ". T_LEADS ." A JOIN ". T_USERS ." B 
@@ -1110,7 +1088,118 @@ function Wo_createdlead()
     }
     return $data;
 }
+function getusers_send_lead(){
+    global $wo, $sqlConnect;
+    $data       = array();
 
+
+    $query_one  = mysqli_query($sqlConnect, "SELECT * FROM ".T_USERS." A
+                    WHERE A.`user_id` IN (SELECT B.`user_id` FROM ".T_PRIVATE_GROUPS." B)
+                    OR
+                        A.`user_id` IN (SELECT C.`user_id` FROM ".T_PRIVATE_MEMBERS." C WHERE C.`active`=1)");
+    if($query_one){
+        while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+            $data[] = $fetched_data;
+        }
+        return $data;
+    }
+    else{
+        echo"no";
+    }
+
+
+}
+function insert_recieved_lead($lead_id,$user_id){
+    global $sqlConnect,$i;
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM  ". T_recieved_lead." where lead_id=$lead_id
+                    and user_id=$user_id");
+    if(mysqli_num_rows($query_one)>0){
+        return;
+    }
+    else {
+        $query_two = ("INSERT INTO " . T_recieved_lead . " (lead_id,user_id) VALUES ($lead_id,$user_id)");
+        mysqli_query($sqlConnect, $query_two);
+        return;
+    }
+}
+function Wo_DeleteLead($lead_id)
+{
+    global $sqlConnect,$query_one,$query_two;
+    $query_one = mysqli_query($sqlConnect, "DELETE FROM " . T_LEADS . " WHERE `id` = {$lead_id}");
+    if($query_one){
+        $query_two = mysqli_query($sqlConnect, "DELETE FROM " . T_recieved_lead . " WHERE `lead_id` = {$lead_id}");
+        return;
+    }
+    else{
+    return false;
+        }
+}
+function Wo_GetPackageDetails($package_id = '')
+{
+    global $sqlConnect, $wo;
+    if (empty($package_id)) {
+        return false;
+    }
+    $package_id = Wo_Secure($package_id);
+    $data = array();
+    $query = mysqli_query($sqlConnect, "SELECT * FROM " . T_PACKAGES . " WHERE `id` = '{$package_id}'");
+    while ($fetched_data = mysqli_fetch_assoc($query)) {
+       $data[] = $fetched_data;
+    }
+    return $data;
+}
+function Wo_UpdatePackage($package_id,$package_name,$package_limit,$package_pricing)
+{
+    global $sqlConnect, $wo;
+    if (empty($package_id && $package_name && $package_limit && $package_pricing)) {
+        return false;
+    }
+    $package_id = Wo_Secure($package_id);
+    $package_name = Wo_Secure($package_name);
+    $package_limit = Wo_Secure($package_limit);
+    $package_pricing = Wo_Secure($package_pricing);
+     $query=mysqli_query($sqlConnect, "UPDATE " . T_PACKAGES . " SET `name` = ' $package_name ' ,`send_limit` = ' $package_limit' ,`pricing` = ' $package_pricing ' WHERE `id` = {$package_id}");
+    if($query){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+function Wo_GetLeadDetails($lead_id = '')
+{
+    global $sqlConnect, $wo;
+    if (empty($lead_id)) {
+        return false;
+    }
+    $lead_id = Wo_Secure($lead_id);
+    $data = array();
+    $query = mysqli_query($sqlConnect, "SELECT * FROM " . T_LEADS . " WHERE `id` = '{$lead_id}'");
+    while ($fetched_data = mysqli_fetch_assoc($query)) {
+        $data[] = $fetched_data;
+    }
+    return $data;
+}
+function Wo_UpdateLead($lead_id,$service_name,$tags,$budget,$location)
+{
+    global $sqlConnect, $wo;
+    if (empty($lead_id && $service_name && $tags && $budget && $location)) {
+        return false;
+    }
+     $lead_id = Wo_Secure($lead_id);
+     $service_name = Wo_Secure($service_name);
+     $tags = Wo_Secure($tags);
+     $budget = Wo_Secure($budget);
+     $location = Wo_Secure($location);
+    $query=mysqli_query($sqlConnect, "UPDATE " . T_LEADS . " SET `service_name` = ' $service_name ' ,`tag_keyword` = ' $tags ' ,`budget` = ' $budget ' ,`service_location` = ' $location ' WHERE `id` = {$lead_id}");
+    if($query){
+        return true;
+    }
+    else{
+        echo"no";
+        return false;
+    }
+}
 
 //end of custom function afaq
 
