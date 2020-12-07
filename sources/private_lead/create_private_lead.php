@@ -18,4 +18,4 @@ $wo['description'] = $wo['config']['siteDesc'];
 $wo['keywords']    = $wo['config']['siteKeywords'];
 $wo['page']        = 'create_group';
 $wo['title']       = $wo['lang']['create_new_group'];
-$wo['content']     = Wo_LoadPage('private_lead/create-group');
+$wo['content']     = Wo_LoadPage('lead/created-lead-details');

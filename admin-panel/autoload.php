@@ -123,7 +123,8 @@ $pages = array(
     'normal-leads',
     'manage-normal-leads',
     'packages',
-    'manage_packages'
+    'manage_packages',
+    'manage-pro-users'
     //end
 
 );
@@ -763,6 +764,19 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                                 </li>
                                 <li <?php echo ($page == 'manage_packages') ? 'class="active"' : ''; ?>>
                                     <a href="<?php echo Wo_LoadAdminLinkSettings('manage_packages'); ?>">Manage Packages</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php } ?>
+                    <?php if ($is_admin == true) { ?>
+                        <li <?php echo ($pages=='manage-pro-users') ? 'class="active"' : ''; ?>>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">dns</i>
+                                <span>Pro Users</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li <?php echo ($page == 'manage-pro-users') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('manage-pro-users'); ?>">Manage Pro Users</a>
                                 </li>
                             </ul>
                         </li>

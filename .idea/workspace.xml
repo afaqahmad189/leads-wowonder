@@ -20,33 +20,89 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/admin-panel/pages/manage-normal-leads/content.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-panel/pages/manage_packages/content.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-panel/pages/normal-leads/content.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin-panel/pages/packages/content.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sources/leads/recieved-lead-details.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/leads/received-lead-details.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/add_new_normal_lead.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/add_new_package.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/delete-normal-lead.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/delete-package.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/send-lead.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/pages/manage-pro-users/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sources/leads/responsed_lead_detail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/create-lead.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/created-lead-details.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/edit-lead.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/includes/delete-event.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/includes/events-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/includes/footer.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/includes/header.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/includes/invitation-users-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/includes/sidebar-events-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/includes/users-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/lead-details.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/leads-going.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/leads-interested.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/leads-invited.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/leads-past.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/leads-upcomming.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/my-events.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/received-lead-details.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/leads/responsed_lead_detail.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/add-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/brows-hot-leads.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/brows-normal-leads.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/create-group.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/group-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/groups.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/join-private-group.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/leads-created.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/leads-packages.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/leads-received-bid.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/referral-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/search-result.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/thanks-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/analytics.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/avatar-setting.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/delete-group.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/general-setting.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/group-members.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/group-setting-sidebar.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/members-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead_setting/privileges.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/leads/responsed_lead_detail.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/modals/pay-go-pro-packages.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/modals/pay-private-pakage.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/accept-lead.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/approve_user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/bank_transfer_package.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/bank_transfer_packages.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/disapprove_user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/get_payment_method_packages.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/reject-lead.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/update_requote_price.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin-panel/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/content.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/list.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/user-created-lead/list.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/manage-normal-leads/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/manage-normal-leads/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/manage_packages/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/manage_packages/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/packages/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/packages/content.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ajax_loading.php" beforeDir="false" afterPath="$PROJECT_DIR$/ajax_loading.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/includes/functions_one.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_one.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/includes/functions_three.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_three.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/includes/functions_two.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_two.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/includes/tabels.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/tabels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/sidebar-30.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/sidebar-31.tpl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/assets/includes/functions_three.php" beforeDir="false" afterPath="$PROJECT_DIR$/script/assets/includes/functions_three.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/assets/includes/tabels.php" beforeDir="false" afterPath="$PROJECT_DIR$/script/assets/includes/tabels.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/leads/create-lead.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/leads/create-lead.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-created.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-created.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/leads/created-lead-details.php" beforeDir="false" afterPath="$PROJECT_DIR$/sources/leads/created-lead-details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/private_lead/create_private_lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/sources/private_lead/create_private_lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/private_lead/leads_created.php" beforeDir="false" afterPath="$PROJECT_DIR$/sources/private_lead/leads_created.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/sunshine/layout/sidebar/left-sidebar.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/sunshine/layout/sidebar/left-sidebar.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/go-pro/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/go-pro/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/brows-normal-leads.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/brows-normal-leads.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-packages.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-packages.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/stylesheet/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/stylesheet/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/add_new_package.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/add_new_package.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xhr/admin_setting.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/admin_setting.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/bank_transfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/bank_transfer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,18 +125,26 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zeeproject" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/sunshine/layout" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\leads\admin-panel\pages" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\leads\themes\sunshine\layout" />
       <recent name="C:\wamp64\www\leads\themes\wowonder\layout\private_lead" />
       <recent name="C:\wamp64\www\leads\sources\private_lead" />
       <recent name="C:\wamp64\www\leads\themes\wowonder\layout" />
       <recent name="C:\wamp64\www\leads\admin-panel\pages" />
-      <recent name="C:\xampp\htdocs\backupWW\sources\leads" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="afaq" />
+    </option>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
@@ -121,6 +185,12 @@
       <workItem from="1606805653596" duration="11659000" />
       <workItem from="1606887560080" duration="18850000" />
       <workItem from="1606975082876" duration="14477000" />
+      <workItem from="1607062258970" duration="16422000" />
+      <workItem from="1607148928881" duration="22165000" />
+      <workItem from="1607181615732" duration="4547000" />
+      <workItem from="1607236222118" duration="6371000" />
+      <workItem from="1607253455840" duration="1650000" />
+      <workItem from="1607323235523" duration="26700000" />
     </task>
     <servers />
   </component>
@@ -144,18 +214,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="568" y="226" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1606397200416" />
-    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606511319476">
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607325086833">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606511319476" />
-    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606907839747">
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1607325086833" />
+    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607236657410">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1606907839747" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1606993578531">
+    <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1607236657410" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1607086708178">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606993578531" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1607086708178" />
     <state x="477" y="265" key="NewPhpFileDialog" timestamp="1603374474934">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -164,10 +234,18 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1603437868907" />
-    <state x="389" y="0" width="643" height="728" key="find.popup" timestamp="1606605355337">
+    <state width="502" height="446" key="SwitcherDM" timestamp="1607065872074">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1606605355337" />
+    <state width="502" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1607065872074" />
+    <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607341625873">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1607341625873" />
+    <state x="390" y="0" width="643" height="728" key="find.popup" timestamp="1607351971828">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1607351971828" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1606305226695">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -176,13 +254,37 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="324" y="90" width="700" height="530" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1606309543488" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1606980882967">
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1607348167674">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1606980882967" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1607348167674" />
     <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1606594268759">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606594268759" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/assets/includes/functions_two.php</url>
+          <line>9403</line>
+          <properties>
+            <option name="className" value="" />
+            <option name="methodName" value="\Wo_GetResponsed_received_data" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/assets/includes/functions_two.php</url>
+          <line>8460</line>
+          <properties>
+            <option name="className" value="" />
+            <option name="methodName" value="\Wo_GetMyPrivateLeads" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

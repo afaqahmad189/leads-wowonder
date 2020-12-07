@@ -543,6 +543,9 @@ if ($wo['config']['membership_system'] == 1) {
                 case 'recieved-lead-details':
                     include('sources/leads/recieved-lead-details.php');
                     break;
+                case 'resonsed_lead_detail':
+                    include('sources/leads/resonsed_lead_detail.php');
+                    break;
                     // END
             }
         } else {
@@ -1169,6 +1172,9 @@ if ($wo['config']['membership_system'] == 1) {
             break;
         case 'recieved-lead-details':
             include('sources/leads/recieved-lead-details.php');
+            break;
+        case 'resonsed_lead_detail':
+            include('sources/leads/resonsed_lead_detail.php');
             break;
 
 

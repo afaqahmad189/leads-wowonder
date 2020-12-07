@@ -1,0 +1,277 @@
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-2 leftcol"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+		<div class="col-md-7 profile-lists singlecol">
+			<div class="page-margin wow_content mt-0">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_innr big_size">
+						<span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+								<path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path>
+							</svg>
+						</span>
+
+						<?php echo 'Leads'; ?>
+					</div>
+				</div>
+			</div>
+
+			<?php $groupData = Wo_GetMyPrivateGroups(); ?>
+			<div class="page-margin wow_content">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_menu">
+						<ul class="list-unstyled">
+                            <li class=""><a href="<?php echo Wo_SeoLink('index.php?link1=private-groups'); ?>" data-ajax="?link1=private-leads"><?php echo $wo['lang']['lead_home'] ?></a></li>
+                            <li class=""><a href="<?php echo Wo_SeoLink('index.php?link1=leads-received-bid'); ?>" data-ajax="?link1=leads-received-bid"><?php echo $wo['lang']['lead_mylead']; ?>	</a></li>
+                            <li class=""><a href="<?php echo Wo_SeoLink('index.php?link1=brows-normal-leads'); ?>" data-ajax="?link1=brows-normal-leads"><?php echo $wo['lang']['lead_browslead']; ?></a></li>
+                            <li class="active"><a href="<?php echo Wo_SeoLink('index.php?link1=leads-packages'); ?>" data-ajax="?link1=leads-packages"><?php echo $wo['lang']['lead_packages']; ?></a></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+<?php
+$packagedata = Wo_PackagesData();
+if (count($packagedata) > 0) {
+?>
+<div class="row">
+<?php
+foreach ($packagedata['package'] as $data){
+?>
+<div class="col-lg-3">
+    <div class="cardd">
+        <img src="./../upload/photos/d-avatar.jpg" alt="Avatar" style="width:100%">
+        <div class="centerr">
+            <h4><b>$<?php echo $data['pricing']?></b></h4>
+            <h4>Limit of Bids<?php echo $data['send_limit']?>
+            </h4>
+            <?php
+            if($data['year'] != 0)
+            {
+            ?>
+                <label>Valid for <b><?php echo $data['year']?></b>Year</label>
+                <?php
+                }
+                else{
+
+                ?>
+                <label>Valid for <b><?php echo $data['month']?></b>Month</label>
+                <?php
+                }
+                ?>
+<button id="card-btn" onclick="Wo_GetPackageLink(1)">BUY</button>
+</div>
+</div>
+</div><?php
+
+}
+}?>
+</div>
+
+<?php if ($show) { ?>
+<div id="pay-modal"></div>
+<div class="modal fade" id="bank_transfer_modal" role="dialog" data-keyboard="false" style="overflow-y: auto;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+								<line x1="18" y1="6" x2="6" y2="18"></line>
+								<line x1="6" y1="6" x2="18" y2="18"></line>
+							</svg></span></button>
+					<h4 class="modal-title"><?php echo $wo['lang']['bank_transfer'] ?></h4>
+				</div>
+				<form class="form form-horizontal" method="post" id="bank_transfer_form" action="#">
+					<div class="modal-body dt_bank_trans_modal">
+						<div id="blog-alert"></div>
+
+<?php echo $wo['config']['bank_description']; ?>
+
+<?php if (!empty($wo['config']['bank_transfer_note'])) { ?>
+    <div class="dt_user_profile hide_alert_info_bank_trans">
+        <span class="valign-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path>
+            </svg> Note:
+        </span>
+        <ul class="dt_prof_vrfy">
+            <li><?php echo $wo['config']['bank_transfer_note']; ?></li>
+        </ul>
+    </div>
+<?php } ?>
+<p class="dt_bank_trans_upl_rec"><a href="javascript:void(0);" onclick="$('#bank_transfer_modal').addClass('up_rec_active'); return false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13.5,16V19H10.5V16H8L12,12L16,16H13.5M13,9V3.5L18.5,9H13Z"></path>
+        </svg> <?php echo $wo['lang']['upload'] ?></a></p>
+						<div class="upload_bank_receipts">
+							<div onclick="document.getElementById('thumbnail').click(); return false">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13.5,16V19H10.5V16H8L12,12L16,16H13.5M13,9V3.5L18.5,9H13Z"></path>
+								</svg>
+								<p><?php echo $wo['lang']['browse_to_upload']; ?></p>
+								<img id="receipt_img_preview" src="">
+							</div>
+						</div>
+						<input type="file" class="hidden" id="thumbnail" name="thumbnail" accept="image/*">
+						<input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession(); ?>">
+						<input name="image" type="file" id="upload" class="hidden">
+						<input name="type" type="hidden" id="bank_transfer_type" class="hidden">
+						<input type="reset" id="configreset" value="Reset" class="hidden">
+					</div>
+					<div class="modal-footer">
+						<div class="ball-pulse">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<button type="submit" class="btn btn-main btn-mat"><?php echo $wo['lang']['publish']; ?></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+<?php } ?>
+
+<br>
+
+<div class="row">
+				<?php if (count($groupData) > 0) {
+					$wo['group']['Wo_GroupSug'] = ($groupData['type'] == 'join') ? true : false;
+					$wo['group'] = $groupData['group'];
+					echo Wo_LoadPage('private_group/group-list');
+				} else {
+					echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path></svg>' . $wo['lang']['no_groups_found'] . '</div>';
+				} ?>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<!-- .row -->
+</div>
+
+<script>
+                function Wo_GetPackageLink(type) {
+	$.get(Wo_Ajax_Requests_File() + '?f=get_payment_method_packages&type=' + type, function (data) {
+        if (data.status == 200) {
+          	$('#pay-modal').html(data.html);
+          	$('#pay-go-pro-packages').modal({
+             show: true
+            });
+
+        }
+    });
+}
+
+function Wo_CheckOutCardpackage(type, description, amount, payment_type) {
+	// if (payment_type == 'bitcoin') {
+	// 	$('.btn-bitcoin').attr('disabled', true).text("<?php echo $wo["lang"]["please_wait"]?>");
+	// }
+	// else if (payment_type == 'credit_card') {
+	// 	$('.btn-cart').attr('disabled', true).text("<?php echo $wo["lang"]["please_wait"]?>");
+	// }
+	// else if (payment_type == 'alipay') {
+	// 	$('.btn-alipay').attr('disabled', true).text("<?php echo $wo["lang"]["please_wait"]?>");
+	// }
+	var img = 'star';
+	if (type == 1) {
+		img = 'star';
+	}
+	// else if (type == 2) {
+	// 	img = 'hot';
+	// } else if (type == 3) {
+	// 	img = 'ultima';
+	// } else if (type == 4) {
+	// 	img = 'vip';
+	// }
+	if (payment_type != 'bank_payment') {
+		var handler = StripeCheckout.configure({
+	        key: "<?php echo $wo['config']['stripe_id'];?>",
+	        locale: 'english',
+	        image: '<?php echo $wo['config']['theme_url']?>/img/' + img + '.png',
+	        token: function(token) {
+	          $('.modal-body').html('<i class="fa fa-spin fa-spinner"></i> <?php echo $wo['lang']['c_payment'] ?>');
+	          $('#pay-go-pro').modal({
+	             show: true
+	            });
+	          $.post(Wo_Ajax_Requests_File() + '?f=stripe_payment&pro_type=' + type, {stripeToken:token.id, amount:amount}, function (data) {
+	          	 if (data.status == 200) {
+	          	 	window.location.href = data.location;
+	          	 } else {
+	          	 	$('.modal-body').html('<i class="fa fa-spin fa-spinner"></i> <?php echo $wo['lang']['payment_declined'] ?>');
+	          	 }
+	          });
+	        }
+	    });
+	}
+    // if (payment_type == 'bitcoin') {
+	// 	$.get(Wo_Ajax_Requests_File() + '?f=paypro_with_bitcoin&amount=' + (amount/100) + '&desc=' + description + '&usertype=' + type  , function (data) {
+	// 		if (data.status == 200) {
+	// 			$(data.html).appendTo('body').submit();
+	// 		}
+	// 	});
+
+    	// handler.open({
+        //    name: "<?php echo $wo['config']['siteName']?>",
+        //    description: description,
+        //    amount: amount,
+        //    currency: '<?php echo $wo['config']['currency']?>',
+        //    bitcoin: true,
+        //    opened: function () {
+        //    	  $('#pay-go-pro').modal('hide');
+        //    	  $('.btn-bitcoin').attr('disabled', false).html("<i class='fa fa-bitcoin'></i> <?php echo $wo['lang']['bitcoin'] ?>");
+        //    }
+        // });
+    // }
+    // else if (payment_type == 'credit_card') {
+    // 	handler.open({
+    //        name: "<?php echo $wo['config']['siteName']?>",
+    //        description: description,
+    //        amount: amount,
+    //        currency: '<?php echo $wo['config']['stripe_currency']?>',
+    //        opened: function () {
+    //        	  $('#pay-go-pro').modal('hide');
+    //        	  $('.btn-cart').attr('disabled', false).html("<i class='fa fa-credit-card'></i> <?php echo $wo['lang']['credit_card'] ?>");
+    //        }
+    //     });
+    // } else if (payment_type == 'alipay') {
+    // 	handler.open({
+    //        name: "<?php echo $wo['config']['siteName']?>",
+    //        description: description,
+    //        amount: amount,
+    //        alipay: true,
+    //        currency: '<?php echo $wo['config']['stripe_currency']?>',
+    //        opened: function () {
+    //        	  $('#pay-go-pro').modal('hide');
+    //        	  $('.btn-alipay').attr('disabled', false).html("<i class='fa fa-credit-card'></i> Alipay");
+    //        }
+    //     });
+    // }
+    if (payment_type == 'bank_payment') {
+    	$('#configreset').click();
+    	$(".prv-img").html('<div class="thumbnail-rendderer"><div><h4 class="bold"><?php echo $wo['lang']['drop_img_here']; ?></h4><div class="error-text-renderer"></div><div><span><?php echo $wo['lang']['or']; ?></span><p><?php echo $wo['lang']['browse_to_upload']; ?></p></div></div> </div>');
+		$("#blog-alert").html('');
+    	$('#bank_transfer_des').val(description);
+    	$('#bank_transfer_type').val(type);
+    	$('#pay-go-pro').modal('hide');
+    	$('#bank_transfer_modal').modal({
+             show: true
+            });
+
+
+	}
+    // else if (payment_type == 'checkout') {
+	// 	$("#2checkout_alert").html('');
+	// 	$('#pay-go-pro').modal('hide');
+	// 	$('#2checkout_type').val(type);
+    // 	$('#2checkout_modal').modal({
+    //         show: true
+    //     });
+	// }
+    $(window).on('popstate', function() {
+       handler.close();
+    });
+}
+</script>

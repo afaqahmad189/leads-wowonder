@@ -1,0 +1,129 @@
+<?php
+$lead_id=Wo_GetPostIdFromUrl($_GET['group']);
+$data=Wo_Getreceived_lead_data($lead_id);
+$data['product_cat_lang'];
+$data['Group_cat'];
+$data['user_name'];
+$service_name=$data['lead']['service_name'];
+$tag_name=$data['lead']['tag_keyword'];
+$group_category=$data['lead']['group_category'];
+$job_category=$data['category_name'];
+$product_category=$data['lead']['product_category'];
+$budget=$data['lead']['budget'];
+$service_location=$data['lead']['service_location'];
+$details=$data['lead']['details'];
+?>
+
+<div class="page-margin">
+    <div class="row">
+        <div class="col-md-2 leftcol"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+        <div class="col-md-7 middlecol">
+            <div class="page-margin wow_content mt-0">
+                <div class="wo_page_hdng pag_neg_padd pag_alone">
+                    <div class="wo_page_hdng_innr">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path
+                                    fill="currentColor"
+                                    d="M19 19V8H5V19H19M16 1H18V3H19C20.11 3 21 3.9 21 5V19C21 20.11 20.11 21 19 21H5C3.89 21 3 20.1 3 19V5C3 3.89 3.89 3 5 3H6V1H8V3H16V1M11 9.5H13V12.5H16V14.5H13V17.5H11V14.5H8V12.5H11V9.5Z"></path></svg></span> <?php echo $wo['lang']['lead_details_title']; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-margin wow_content wow_sett_content">
+                <form class="form-horizontal wow_form_fields" method="post" id="insert-event">
+
+                    <div class="form-group">
+
+                        <label class=" control-label col-sm-4"
+                               for="event-name"><?php echo $wo['lang']['lead_details_userviewed']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly id="event-name" value="<?php echo $data['user_name'];?>" name="event-name" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"
+                               for="event-name"><?php echo $wo['lang']['lead_details_product']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly id="event-name" value="<?php echo $service_name?>" name="event-name" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"
+                               for="event-tag-keyword"><?php echo $wo['lang']['tag_key']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly id="event-tag-keyword" value="<?php echo $tag_name?>" name="event-tag-keyword"
+                                   type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!--						<label for="event-start">-->
+                        <?php //echo $wo['lang']['group_category']; ?><!--</label>-->
+                        <label class=" control-label col-sm-4"
+                               for="event-start"><?php echo $wo['lang']['group_category']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly type="text" value="<?php echo $data['group_cat_lang'];?>" class="" id="event-start"
+                                   name="event-start-date">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"
+                               for="event-start"><?php echo $wo['lang']['job_category']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly type="text" value="<?php echo $data['job_cat_lang']?>" id="event-start-time" class=""
+                                   name="event-start-time">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!--						<label for="event-end-date">-->
+                        <?php //echo $wo['lang']['product_category']; ?><!--</label>-->
+                        <label class=" control-label col-sm-4"
+                               for="event-start"><?php echo $wo['lang']['product_category']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly type="text" class="" value="<?php echo $data['product_cat_lang'];?>" name="event-end-date" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"
+                               for="event-start"><?php echo $wo['lang']['lead_budget']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly type="text" id="" value="<?php echo $budget?>"class="" name="event-end-time">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"
+                               for="event-locat"><?php echo $wo['lang']['service_location']; ?></label>
+                        <div class="col-sm-8">
+                            <input readonly id="event-locat" name="event-locat" type="text" value="<?php echo $service_location?>">
+                        </div>
+                    </div>
+                    <?php if ($wo['config']['google_map'] == 1) { ?>
+                        <div id="review-location">
+                            <div id="place"></div>
+                        </div>
+                    <?php } ?>
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"
+                               for="event-description"><?php echo $wo['lang']['lead_details']; ?></label>
+                        <div class="col-sm-8">
+                            <textarea readonly name="event-description" id="event-description" rows="5"><?php echo $details?></textarea>
+                        </div>
+                    </div>
+                    <a class="btn btn-mat" href="<?php echo Wo_SeoLink('index.php?link1=leads-received-bid'); ?>"
+                       data-ajax="?link1=leads-received-bid">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+                        </svg> <?php echo $wo['lang']['go_back']; ?>
+                    </a>
+                </form>
+            </div>
+        </div>
+        <!-- .col-md-8 -->
+        <?php echo Wo_LoadPage('sidebar/content'); ?>
+    </div>
+</div>

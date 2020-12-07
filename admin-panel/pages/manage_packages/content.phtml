@@ -15,8 +15,10 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Package Name</th>
-                                <th>Limit</th>
+                                <th>No.of Bids</th>
                                 <th>Pricing</th>
+                                <th>Exp.Year</th>
+                                <th>Exp.Month</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -28,6 +30,8 @@
                                     <td><?php echo $section['name']; ?></td>
                                     <td><?php echo $section['send_limit']; ?></td>
                                     <td><?php echo $section['pricing']; ?></td>
+                                    <td><?php echo $section['year']; ?></td>
+                                    <td><?php echo $section['month']; ?></td>
                                     <td>
                                         <button class="btn btn-danger delete-section waves-effect waves-light" id="<?php echo $section['id'];?>">
                                             DELETE
@@ -80,10 +84,15 @@
                         <input class="form-control" type="hidden" id="id" name="id" value="">
                         <label>Package Name</label>
                         <input class="form-control" type="text"id="name" name="name"  value="">
-                        <label>Limit</label>
+                        <label>No.of Bids</label>
                         <input class="form-control" type="text"id="limit" name="limit" value="">
                         <label>Pricing Plan</label>
                      <input class="form-control" type="text" id="pricing" name="pricing"  value="">
+
+                      <label>Exp.Year</label>
+                        <input class="form-control" type="text"id="year" name="year" value="">
+                        <label>Exp.Month</label>
+                     <input class="form-control" type="text" id="month" name="month"  value="">
 
                     <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
                     <input type="hidden" name="id_of_key" id="id_of_key" value="">
@@ -136,6 +145,8 @@
                 $('#name').val(data.package['name']);
                 $('#limit').val(data.package['send_limit']);
                 $('#pricing').val(data.package['pricing']);
+                $('#year').val(data.package['year']);
+                $('#month').val(data.package['month']);
                 $('#editcategoryModal').modal();
             }
         });
@@ -146,9 +157,12 @@
         let package_name=$('#name').val();
         let package_limit=$('#limit').val();
         let package_pricing=$('#pricing').val();
+        let year=$('#year').val();
+        let month=$('#month').val();
 
         $.post(Wo_Ajax_Requests_File() + '?f=admin_setting&s=update_package',
-        {package_id: package_id,package_name:package_name,package_limit:package_limit,package_pricing:package_pricing},
+        {package_id: package_id,package_name:package_name,package_limit:package_limit,package_pricing:package_pricing,
+        year:year,month:month},
          function(data, textStatus, xhr) {
             setTimeout(function(){// wait for 5 secs(2)
            location.reload(); // then reload the page.(3)

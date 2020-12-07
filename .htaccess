@@ -120,8 +120,8 @@ RewriteRule ^private-lead-setting/([A-Za-z0-9_]+)/([A-Za-z0-9_-]+)$  index.php?l
 RewriteRule ^join-private-lead/([A-Za-z0-9_]+)/([A-Za-z0-9_-]+)$ index.php?link1=join-private-lead&token=$1&ref=$2 [QSA,L]
 
 RewriteRule ^leads-received-bid(/?|)$ index.php?link1=leads-received-bid [QSA]
-RewriteRule ^(/?|)$ index.php?link1=leads-created [QSA]
-RewriteRule ^(/?|)$ index.php?link1=created-lead-details [QSA]
+RewriteRule ^leads-created(/?|)$ index.php?link1=leads-created [QSA]
+RewriteRule ^created-lead-details(/?|)$ index.php?link1=created-lead-details [QSA]
 RewriteRule ^brows-normal-leads(/?|)$ index.php?link1=brows-normal-leads [QSA]
 RewriteRule ^brows-hot-leads(/?|)$ index.php?link1=brows-hot-leads [QSA]
 RewriteRule ^leads-packages(/?|)$ index.php?link1=leads-packages [QSA]

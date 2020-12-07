@@ -1091,10 +1091,9 @@ function Wo_createdlead()
 function getusers_send_lead(){
     global $wo, $sqlConnect;
     $data       = array();
-
-
     $query_one  = mysqli_query($sqlConnect, "SELECT * FROM ".T_USERS." A
-                    WHERE A.`user_id` IN (SELECT B.`user_id` FROM ".T_PRIVATE_GROUPS." B)
+                    JOIN ". T_USER_PACKAGES ." C ON A.`user_id`=C.`user_id`     
+                    WHERE  C.`status`='APPROVED' and C.`bid_limit`>0 and A.`user_id` IN (SELECT B.`user_id` FROM ".T_PRIVATE_GROUPS." B)
                     OR
                         A.`user_id` IN (SELECT C.`user_id` FROM ".T_PRIVATE_MEMBERS." C WHERE C.`active`=1)");
     if($query_one){
@@ -1117,9 +1116,18 @@ function insert_recieved_lead($lead_id,$user_id){
         return;
     }
     else {
-        $query_two = ("INSERT INTO " . T_recieved_lead . " (lead_id,user_id) VALUES ($lead_id,$user_id)");
-        mysqli_query($sqlConnect, $query_two);
-        return;
+        $query_two=mysqli_query($sqlConnect,"SELECT * FROM  ". T_LEADS." where id=$lead_id");
+        if(mysqli_num_rows($query_two)>0){
+            $data_query_two=mysqli_fetch_assoc($query_two);
+            $lead_budget=$data_query_two['budget'];
+            $query_three = ("INSERT INTO " . T_recieved_lead . " (lead_id,user_id,price) VALUES ($lead_id,$user_id,$lead_budget)");
+            mysqli_query($sqlConnect, $query_three);
+            return;
+        }
+
+
+
+
     }
 }
 function Wo_DeleteLead($lead_id)
@@ -1148,7 +1156,7 @@ function Wo_GetPackageDetails($package_id = '')
     }
     return $data;
 }
-function Wo_UpdatePackage($package_id,$package_name,$package_limit,$package_pricing)
+function Wo_UpdatePackage($package_id,$package_name,$package_limit,$package_pricing,$year,$month)
 {
     global $sqlConnect, $wo;
     if (empty($package_id && $package_name && $package_limit && $package_pricing)) {
@@ -1158,7 +1166,9 @@ function Wo_UpdatePackage($package_id,$package_name,$package_limit,$package_pric
     $package_name = Wo_Secure($package_name);
     $package_limit = Wo_Secure($package_limit);
     $package_pricing = Wo_Secure($package_pricing);
-     $query=mysqli_query($sqlConnect, "UPDATE " . T_PACKAGES . " SET `name` = ' $package_name ' ,`send_limit` = ' $package_limit' ,`pricing` = ' $package_pricing ' WHERE `id` = {$package_id}");
+    $year = Wo_Secure($year);
+    $month = Wo_Secure($month);
+     $query=mysqli_query($sqlConnect, "UPDATE " . T_PACKAGES . " SET `name` = ' $package_name ' ,`send_limit` = ' $package_limit' ,`pricing` = ' $package_pricing ' ,`year`=' $year ',`month` =' $month ' WHERE `id` = {$package_id}");
     if($query){
         return true;
     }

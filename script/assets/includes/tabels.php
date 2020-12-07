@@ -8,6 +8,7 @@
 // | WoWonder - The Ultimate Social Networking Platform
 // | Copyright (c) 2016 WoWonder. All rights reserved.
 // +------------------------------------------------------------------------+
+define('T_USER_PACKAGES','Wo_users_packages');
 define('T_PACKAGES','wo_packages');
 define('T_normal_lead','wo_normal_lead');
 define('T_recieved_lead','recieved_lead');

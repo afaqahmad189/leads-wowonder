@@ -9212,7 +9212,7 @@ function Wo_Getcreated_lead_data($lead_id){
     $data= array();
     $data['lead']= array();
     $value=$lead_id;
-    $query_text = "SELECT *,A.`id` as leadId,
+   echo  $query_text = "SELECT *,A.`id` as leadId,
                             A.`job_category`,
                             A.`user_id`,
                             A.`group_category`,
@@ -9285,7 +9285,7 @@ function Wo_GetReceivedLeads()
     $data       = array();
     $data['lead']       = array();
     $user_id    = Wo_Secure($wo['user']['user_id']);
-    $query_text = "SELECT * FROM " . T_recieved_lead . " WHERE `user_id` = {$user_id}";
+    $query_text = "SELECT * FROM " . T_recieved_lead . " WHERE `user_id` = {$user_id} and status='PENDING'";
     $query_one  = mysqli_query($sqlConnect, $query_text);
     if (mysqli_num_rows($query_one) > 0) {
         while ($fetched_data = mysqli_fetch_assoc($query_one)) {
@@ -9295,16 +9295,6 @@ function Wo_GetReceivedLeads()
             }
         }
     }
-//    else {
-//        $query     = " SELECT `Lead_id` FROM " . T_LEADS_MEMBERS . " WHERE `user_id` = {$user_id} AND `active` = '1' ORDER BY `id`";
-//        $sql_query = mysqli_query($sqlConnect, $query);
-//        if (mysqli_num_rows($sql_query) > 0) {
-//            while ($fetched_data = mysqli_fetch_assoc($sql_query)) {
-//                $data['type'] = 'join';
-//                $data['lead'][] = Wo_ReceivedLeadData($fetched_data['Lead_id']);
-//            }
-//        }
-//    }
     return $data;
 }
 function Wo_ReceivedLeadData($Lead_id = 0)
@@ -9316,7 +9306,7 @@ function Wo_ReceivedLeadData($Lead_id = 0)
     $data            = array();
     $received_Lead_id        = Wo_Secure($Lead_id);
     $query_one       = "SELECT *,A.`id` as recieved_id, B.`id` as lead_id,C.`user_id` as user_id
-                    FROM " . T_recieved_lead . " A JOIN ". T_LEADS." B on 
+                    FROM " . T_recieved_lead . " A JOIN ". T_LEADS ." B on 
         A.`lead_id`=B.`id` join ". T_USERS ." C on 
         A.`user_id`=C.`user_id`
         WHERE A.`id` = {$received_Lead_id}";
@@ -9336,13 +9326,6 @@ function Wo_ReceivedLeadData($Lead_id = 0)
     if (empty($fetched_data)) {
         return array();
     }
-//    $fetched_data['Lead_id']    = $fetched_data['id'];
-//    $fetched_data['name']        = $fetched_data['Lead_title'];
-//    $fetched_data['category_id'] = $fetched_data['category'];
-//    $fetched_data['type']        = 'private-Lead';
-//    $fetched_data['username']    = $fetched_data['Lead_name'];
-//    $fetched_data['category']    = $wo['private_categories'][$fetched_data['category']];
-//    $fetched_data['private_sub_category'] = '';
     if (!empty($fetched_data['sub_category']) && !empty($wo['private_sub_category'][$fetched_data['category_id']])) {
         foreach ($wo['private_sub_category'][$fetched_data['category_id']] as $key => $value) {
             if ($value['id'] == $fetched_data['sub_category']) {
@@ -9389,7 +9372,7 @@ function Wo_Getreceived_lead_data($lead_id){
             if (mysqli_num_rows($query_two) > 0) {
                 $fetched_data_query_two = mysqli_fetch_assoc($query_two);
                 if (is_array($fetched_data_query_two)) {
-                   var_dump($data['product_cat_lang'] = $fetched_data_query_two['english']);
+                   $data['product_cat_lang'] = $fetched_data_query_two['english'];
                 }
             }
 //            //get job lang
@@ -9411,6 +9394,129 @@ function Wo_Getreceived_lead_data($lead_id){
                 if (is_array($fetched_data_query_four)) {
                     $data['group_cat_lang'] = $fetched_data_query_four['english'];
                 }
+            }
+        }
+    }
+    return $data;
+}
+
+
+function Wo_GetResponsed_received_data($lead_id){
+    global $sqlConnect, $wo,$value;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    $data= array();
+    $data['lead']= array();
+    $query_text = "SELECT *,A.`id` as lead_id,
+                            A.`user_id`,
+                            B.`lead_id` as received_id,
+                            B.`id` as r_id ,
+                            C.`id` as  group_id,
+                            C.`lang_key` as group_lang,
+                            D.`id` as  job_id,
+                            D.`lang_key` as job_lang,
+                            E.`lang_key` as product_cat,
+                            E.`id` as product_id                                                    
+                    FROM ". T_LEADS ." as A JOIN ". T_recieved_lead ." as B
+                     ON A.`id`=B.`lead_id`
+                      JOIN ". T_GROUPS_CATEGORY." as C 
+                          ON A.`group_category`=C.`id` 
+                          JOIN ". T_JOB_CATEGORY ." as D
+                          ON A.`job_category`=D.`id`
+                          JOIN ". T_PRODUCTS_CATEGORY." as E
+                          ON  A.`product_category`=E.`id`
+                      where B.`id`=$lead_id";
+//    $value=$lead_id;
+    $query_one  = mysqli_query($sqlConnect, $query_text);
+    if (mysqli_num_rows($query_one) > 0) {
+        $fetched_data = mysqli_fetch_assoc($query_one);
+        if (is_array($fetched_data)) {
+            $data['product_cat'] = $fetched_data['product_category'];
+            $data['product_name']=$fetched_data['product_cat'];
+            $data['Group_cat'] = $fetched_data['group_category'];
+            $data['Group_lang'] = $fetched_data['group_lang'];
+            $data['category_name'] = $fetched_data['job_category'];
+            $data['job_name'] = $fetched_data['job_lang'];
+            $data['service_name'] = $fetched_data['service_name'];
+            $data['lead']= Wo_PrivateLeadData($fetched_data['lead_id']);
+            //get product lang
+            $query2_text= "SELECT `lang_key`,`english` FROM ".T_LANGS."
+            where lang_key ='{$data['product_name']}'";
+            $query_two=mysqli_query($sqlConnect , $query2_text);
+            if (mysqli_num_rows($query_two) > 0) {
+                $fetched_data_query_two = mysqli_fetch_assoc($query_two);
+                if (is_array($fetched_data_query_two)) {
+                    $data['product_cat_lang'] = $fetched_data_query_two['english'];
+                }
+            }
+//            //get job lang
+            $query3_text= "SELECT `lang_key`,`english` FROM ".T_LANGS."
+            where lang_key ='{$data['job_name']}'";
+            $query_three=mysqli_query($sqlConnect , $query3_text);
+            if (mysqli_num_rows($query_three) > 0) {
+                $fetched_data_query_three = mysqli_fetch_assoc($query_three);
+                if (is_array($fetched_data_query_three)) {
+                    $data['job_cat_lang'] = $fetched_data_query_three['english'];
+                }
+            }
+//            //get group lang
+            $query4_text= "SELECT `lang_key`,`english` FROM ".T_LANGS."
+            where lang_key ='{$data['Group_lang']}'";
+            $query_four=mysqli_query($sqlConnect , $query4_text);
+            if (mysqli_num_rows($query_four) > 0) {
+                $fetched_data_query_four = mysqli_fetch_assoc($query_four);
+                if (is_array($fetched_data_query_four)) {
+                    $data['group_cat_lang'] = $fetched_data_query_four['english'];
+                }
+            }
+             $data;
+        return $data;}
+    }
+//    return $data;
+}
+
+
+function Wo_ReceiveResponse_lead()
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    $data       = array();
+    $data['lead']       = array();
+     $user_id    = Wo_Secure($wo['user']['user_id']);
+     $query_text = "SELECT *,U.user_id as user,L.user_id as user_lead,R.user_id as recived_lead FROM " . T_USERS . " U JOIN
+                    ". T_LEADS ." L ON U.`user_id`=L.`user_id`
+                    JOIN ". T_recieved_lead ." R ON L.`id`=R.`lead_id`
+                    WHERE R.`status` !='PENDING' and U.`user_id`=$user_id";
+    $query_one  = mysqli_query($sqlConnect, $query_text);
+    if (mysqli_num_rows($query_one) > 0) {
+        while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+            if (is_array($fetched_data)) {
+                $data['type'] = 'self';
+                $data['lead'][] = $fetched_data;
+            }
+        }
+    }
+    return $data;
+}
+
+function Wo_PackagesData()
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    $data       = array();
+    $data['package']       = array();
+    $query_text = "SELECT * FROM " . T_PACKAGES;
+    $query_one  = mysqli_query($sqlConnect, $query_text);
+    if (mysqli_num_rows($query_one) > 0) {
+        while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+            if (is_array($fetched_data)) {
+                $data['type'] = 'self';
+                $data['package'][] = $fetched_data;
             }
         }
     }

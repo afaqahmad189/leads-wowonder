@@ -7,7 +7,9 @@ if ($f == "add_new_package" && Wo_IsAdmin() == true && Wo_CheckSession($hash_id)
         $registration_data = array(
             'name' => Wo_Secure($_POST['name']),
             'send_limit' => Wo_Secure($_POST['limit']),
-            'pricing' => Wo_Secure($_POST['pricing'])
+            'pricing' => Wo_Secure($_POST['pricing']),
+            'year' => Wo_Secure($_POST['year']),
+            'month' => Wo_Secure($_POST['month'])
         );
         if (Wo_Packages($registration_data))
         {

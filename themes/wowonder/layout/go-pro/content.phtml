@@ -740,6 +740,7 @@ function pay_using_cashfree(type) {
         show: true
     });
 }
+
 function SignatureCashfree() {
 	$('#cashfree_btn').html("<?php echo($wo['lang']['please_wait']) ?>");
 	$('#cashfree_btn').attr('disabled','true');
@@ -968,10 +969,6 @@ jQuery(document).ready(function($) {
 	    $('#bank_transfer_form').find('.ball-pulse').fadeOut(100);
 	}});
 });
-
-
-
-
 // Called when token created successfully.
 var successCallback = function(data) {
 	console.log(data);
@@ -992,7 +989,6 @@ var successCallback = function(data) {
     	/*optional stuff to do after success */
     });
 };
-
 // Called when token creation fails.
 var errorCallback = function(data) {
 	$('#2checkout_btn').html("<?php echo($wo['lang']['pay']) ?>");
@@ -1007,7 +1003,6 @@ var errorCallback = function(data) {
 		},3000);
     }
 };
-
 var tokenRequest = function() {
 	$('#card_number').val($('#_number_').val());
 	$('#2checkout_btn').html("<?php echo($wo['lang']['please_wait']) ?>");

@@ -6714,6 +6714,34 @@ function Wo_InsertBankTrnsfer($inserted_data)
     }
     return false;
 }
+function Wo_InsertUserPackage($inserted_data)
+{
+    $user_id=$inserted_data['user_id'];
+    $package_id=$inserted_data['package_id'];
+    global $wo, $sqlConnect;
+    if (empty($inserted_data)) {
+        return false;
+    }
+    $fields = '`' . implode('`, `', array_keys($inserted_data)) . '`';
+    $data   = '\'' . implode('\', \'', $inserted_data) . '\'';
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_USER_PACKAGES ." WHERE user_id=$user_id");
+    if(mysqli_num_rows($query_one)>0){
+        $already_exist="already exist";
+        return $already_exist;
+    }
+    else {
+        $query_two=mysqli_query($sqlConnect,"SELECT * FROM ". T_PACKAGES ." where id=$package_id");
+         $packge_id=mysqli_fetch_assoc($query_two);
+         $p_limit=$packge_id['send_limit'];
+
+        $query = mysqli_query($sqlConnect, "INSERT INTO " . T_USER_PACKAGES . " ({$fields},bid_limit) VALUES ({$data},$p_limit)");
+        if ($query) {
+            return mysqli_insert_id($sqlConnect);
+        }
+        return false;
+    }
+
+}
 
 function Wo_GetPageJobs($page_id)
 {
@@ -7954,7 +7982,6 @@ function Wo_CheckPrivateGroupAdminPassword($password = false, $group_id = false)
     return $match;
 }
 // END
-
 //afaq function
 function Wo_Addnormallead($registration_data = array())
 {
@@ -8123,6 +8150,62 @@ function Wo_GetPackages($args = array())
     }
     return $data;
 }
+
+function Wo_GetProUsers($args = array())
+{
+    global $sqlConnect, $wo;
+    $options   = array(
+        "id" => false,
+        "offset" => 0,
+        "limit" => false,
+        "search" => false,
+        "keyword" => false,
+        "forums" => false,
+        "order_by" => 'ASC'
+    );
+    $args      = array_merge($options, $args);
+    $offset    = Wo_Secure($args['offset']);
+    $id        = Wo_Secure($args['id']);
+    $limit     = Wo_Secure($args['limit']);
+    $search    = Wo_Secure($args['search']);
+    $keyword   = Wo_Secure($args['keyword']);
+    $forums    = Wo_Secure($args['forums']);
+    $order_by  = Wo_Secure($args['order_by']);
+    $query_one = "";
+    if ($offset > 0) {
+        $query_one .= " AND `id` < {$offset} AND `id` <> {$offset} ";
+    }
+    if ($id) {
+        $query_one .= " AND `id` = '$id' ";
+    }
+    if ($order_by) {
+        $query_one .= " ORDER BY `id` $order_by";
+    }
+    if ($limit) {
+        $query_one .= " LIMIT {$limit} ";
+    }
+    $sql_query_one = mysqli_query($sqlConnect, "SELECT *,A.`id` as user_package_id ,A.`status` as user_status
+                    FROM " . T_USER_PACKAGES . " as A 
+                    JOIN " . T_USERS . " as B ON A.`user_id`=B.`user_id` 
+                    JOIN " . T_PACKAGES . " as C ON A.`package_id`=C.`id`
+     ");
+    $data          = array();
+    while ($fetched_data = mysqli_fetch_assoc($sql_query_one)) {
+        if ($forums) {
+            $fetched_data['forums'] = Wo_GetPackages(array(
+                "section" => $fetched_data['id'],
+                "search" => $search,
+                "keyword" => $keyword
+            ));
+            if (count($fetched_data['forums']) > 0) {
+                $data[] = $fetched_data;
+            }
+        } else {
+            $data[] = $fetched_data;
+        }
+    }
+    return $data;
+}
 function Wo_Deletepackage($id = false)
 {
     global $sqlConnect, $wo;
@@ -8144,5 +8227,130 @@ function Wo_Deletepackage($id = false)
         return false;
     }
     return false;
+}
+
+function Wo_ApproveUser($id = false)
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false && Wo_IsAdmin() == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $section = Wo_GetForumSec(array(
+        'id' => $id,
+        'forums' => true
+    ));
+    $query_0 = mysqli_query($sqlConnect, "UPDATE  " . T_USER_PACKAGES . " set `status`='APPROVED' WHERE `id` = '$id'");
+    if($query_0){
+        return true;
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+function Wo_DisApproveUser($id = false)
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false && Wo_IsAdmin() == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $section = Wo_GetForumSec(array(
+        'id' => $id,
+        'forums' => true
+    ));
+    $query_0 = mysqli_query($sqlConnect, "UPDATE  " . T_USER_PACKAGES . " set `status`='DISAPPROVED' WHERE `id` = '$id'");
+    if($query_0){
+        return true;
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+function Wo_Acceptlead($id = false)
+{
+
+    global $sqlConnect, $wo;
+    $user_id= $wo['user']['id'];
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_USER_PACKAGES." 
+                where user_id=$user_id and status='APPROVED' and bid_limit > 0 ");
+    if(mysqli_num_rows($query_one)>0){
+        $query_0 = mysqli_query($sqlConnect, "UPDATE ". T_recieved_lead. " SET status='ACCEPT'  WHERE `id` = '$id'");
+        if($query_0){
+            $query_two=mysqli_query($sqlConnect,"UPDATE ". T_USER_PACKAGES ." SET `bid_limit`=`bid_limit`-1 where user_id=$user_id");
+            if($query_two){
+            return true;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+
+
+
+}
+function Wo_Rejectlead($id = false)
+{
+    global $sqlConnect, $wo;
+    $user_id= $wo['user']['id'];
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_USER_PACKAGES." 
+                where user_id=$user_id and status='APPROVED' and bid_limit > 0 ");
+    if(mysqli_num_rows($query_one)>0) {
+        $query_0 = mysqli_query($sqlConnect, "UPDATE " . T_recieved_lead . " SET status='REJECT'  WHERE `id` = '$id'");
+        if ($query_0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}
+function Wo_UpdateRequotePrice($id,$requote_price)
+{
+    global $sqlConnect, $wo;
+    $user_id= $wo['user']['id'];
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)&& !$requote_price || !is_numeric($requote_price)) {
+        return false;
+    }
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_USER_PACKAGES." 
+                where user_id=$user_id and status='APPROVED' and bid_limit > 0 ");
+    if(mysqli_num_rows($query_one)>0) {
+        $query_0 = mysqli_query($sqlConnect, "UPDATE " . T_recieved_lead . " SET status='REQUOTE' , price= $requote_price  WHERE `id` = '$id'");
+        if ($query_0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
 }
 //end of afaq function

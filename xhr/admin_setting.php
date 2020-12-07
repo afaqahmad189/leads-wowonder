@@ -2080,7 +2080,7 @@ if ($f == 'admin_setting' and (Wo_IsAdmin() || Wo_IsModerator())) {
     if ($s == 'update_package' && !empty($_POST['package_id']) && !empty($_POST['package_name'])&& !empty($_POST['package_limit'])&& !empty($_POST['package_pricing'])) {
         $data['status'] = 400;
 //        $html = '';
-        $langs = Wo_UpdatePackage($_POST['package_id'],$_POST['package_name'],$_POST['package_limit'],$_POST['package_pricing']);
+        $langs = Wo_UpdatePackage($_POST['package_id'],$_POST['package_name'],$_POST['package_limit'],$_POST['package_pricing'],$_POST['year'],$_POST['month']);
         if ($data['status'] = 200) {
 //            foreach ($langs as $test) {
 //            }

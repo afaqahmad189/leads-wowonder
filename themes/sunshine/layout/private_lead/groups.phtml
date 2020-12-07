@@ -1,0 +1,137 @@
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-2 leftcol"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+		<div class="col-md-7 profile-lists singlecol">
+			<div class="page-margin wow_content mt-0">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_innr big_size">
+						<span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+								<path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path>
+							</svg>
+						</span>
+
+						<?php echo 'Leads'; ?>
+					</div>
+				</div>
+			</div>
+
+			<?php $groupData = Wo_GetMyPrivateGroups(); ?>
+			<div class="page-margin wow_content">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_menu">
+						<ul class="list-unstyled">
+                            <li class="active"><a href="<?php echo Wo_SeoLink('index.php?link1=private-groups'); ?>" data-ajax="?link1=private-leads"><?php echo $wo['lang']['lead_home'] ?></a></li>
+                            <li class=""><a href="<?php echo Wo_SeoLink('index.php?link1=leads-received-bid'); ?>" data-ajax="?link1=leads-received-bid"><?php echo $wo['lang']['lead_mylead']; ?>	</a></li>
+                            <li class=""><a href="<?php echo Wo_SeoLink('index.php?link1=brows-normal-leads'); ?>" data-ajax="?link1=brows-normal-leads"><?php echo $wo['lang']['lead_browslead']; ?></a></li>
+                            <li class=""><a href="<?php echo Wo_SeoLink('index.php?link1=leads-packages'); ?>" data-ajax="?link1=leads-packages"><?php echo $wo['lang']['lead_packages']; ?></a></li>
+						</ul>
+<!--						--><?php //if (count($groupData) == 0 && !empty($wo['private_categories'])) { ?>
+							<a class="btn btn-main btn-mat btn-mat-raised" href="<?php echo Wo_SeoLink('index.php?link1=create-private-lead'); ?>" data-ajax="?link1=create-private-lead"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"></path>
+								</svg> <?php echo $wo['lang']['create'] ?>
+							</a>
+<!--						--><?php //} ?>
+					</div>
+				</div>
+			</div>
+
+
+            <div class="col-lg-12">
+                <div id="card-btn" class="card">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 24 24">>
+                                <path d="M12.443,9.672c0.203-0.496,0.329-1.052,0.329-1.652c0-1.969-1.241-3.565-2.772-3.565S7.228,6.051,7.228,8.02c0,0.599,0.126,1.156,0.33,1.652c-1.379,0.555-2.31,1.553-2.31,2.704c0,1.75,2.128,3.169,4.753,3.169c2.624,0,4.753-1.419,4.753-3.169C14.753,11.225,13.821,10.227,12.443,9.672z M10,5.247c1.094,0,1.98,1.242,1.98,2.773c0,1.531-0.887,2.772-1.98,2.772S8.02,9.551,8.02,8.02C8.02,6.489,8.906,5.247,10,5.247z M10,14.753c-2.187,0-3.96-1.063-3.96-2.377c0-0.854,0.757-1.596,1.885-2.015c0.508,0.745,1.245,1.224,2.076,1.224s1.567-0.479,2.076-1.224c1.127,0.418,1.885,1.162,1.885,2.015C13.961,13.689,12.188,14.753,10,14.753z M10,0.891c-5.031,0-9.109,4.079-9.109,9.109c0,5.031,4.079,9.109,9.109,9.109c5.031,0,9.109-4.078,9.109-9.109C19.109,4.969,15.031,0.891,10,0.891z M10,18.317c-4.593,0-8.317-3.725-8.317-8.317c0-4.593,3.724-8.317,8.317-8.317c4.593,0,8.317,3.724,8.317,8.317C18.317,14.593,14.593,18.317,10,18.317z"></path>                    </svg>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label>11237762873612 Credits</label>
+                            <Button class="btn-danger"><?php echo $wo['lang']['lead_home_btn'] ?></Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12 icon-padding">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 24 24">>
+                                    <path  d="M10,0.562c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.195,0,9.406-4.211,9.406-9.406C19.406,4.774,15.195,0.562,10,0.562 M10,18.521c-4.723,0-8.551-3.829-8.551-8.552S5.277,1.418,10,1.418s8.552,3.828,8.552,8.551S14.723,18.521,10,18.521"></path>                        </svg>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <h3><?php echo $wo['lang']['lead_home_total_leads'] ?></h3>
+                                <p>5000</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12 icon-padding ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 24 24">>
+                                    <path  d="M10,0.562c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.195,0,9.406-4.211,9.406-9.406C19.406,4.774,15.195,0.562,10,0.562 M10,18.521c-4.723,0-8.551-3.829-8.551-8.552S5.277,1.418,10,1.418s8.552,3.828,8.552,8.551S14.723,18.521,10,18.521"></path>                        </svg>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <h3><?php echo $wo['lang']['lead_home_lead_points'] ?></h3>
+                                <p>5000</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12 icon-padding">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 24 24">>
+                                    <path d="M10,0.562c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.195,0,9.406-4.211,9.406-9.406C19.406,4.774,15.195,0.562,10,0.562 M10,18.521c-4.723,0-8.551-3.829-8.551-8.552S5.277,1.418,10,1.418s8.552,3.828,8.552,8.551S14.723,18.521,10,18.521"></path>                        </svg>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <h3><?php echo $wo['lang']['lead_home_total_bids'] ?></h3>
+                                <p>10000</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12 icon-padding">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 24 24">>
+                                    <path d="M14.38,3.467l0.232-0.633c0.086-0.226-0.031-0.477-0.264-0.559c-0.229-0.081-0.48,0.033-0.562,0.262l-0.234,0.631C10.695,2.38,7.648,3.89,6.616,6.689l-1.447,3.93l-2.664,1.227c-0.354,0.166-0.337,0.672,0.035,0.805l4.811,1.729c-0.19,1.119,0.445,2.25,1.561,2.65c1.119,0.402,2.341-0.059,2.923-1.039l4.811,1.73c0,0.002,0.002,0.002,0.002,0.002c0.23,0.082,0.484-0.033,0.568-0.262c0.049-0.129,0.029-0.266-0.041-0.377l-1.219-2.586l1.447-3.932C18.435,7.768,17.085,4.676,14.38,3.467 M9.215,16.211c-0.658-0.234-1.054-0.869-1.014-1.523l2.784,0.998C10.588,16.215,9.871,16.447,9.215,16.211 M16.573,10.27l-1.51,4.1c-0.041,0.107-0.037,0.227,0.012,0.33l0.871,1.844l-4.184-1.506l-3.734-1.342l-4.185-1.504l1.864-0.857c0.104-0.049,0.188-0.139,0.229-0.248l1.51-4.098c0.916-2.487,3.708-3.773,6.222-2.868C16.187,5.024,17.489,7.783,16.573,10.27"></path>
+                                </svg>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <h3><?php echo $wo['lang']['lead_home_notification'] ?></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="row">
+				<?php if (count($groupData) > 0) {
+					$wo['group']['Wo_GroupSug'] = ($groupData['type'] == 'join') ? true : false;
+					$wo['group'] = $groupData['group'];
+					echo Wo_LoadPage('private_group/group-list');
+				} else {
+					echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path></svg>' . $wo['lang']['no_groups_found'] . '</div>';
+				} ?>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<!-- .row -->
+</div>

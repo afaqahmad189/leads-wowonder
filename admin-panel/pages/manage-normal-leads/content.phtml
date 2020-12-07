@@ -76,7 +76,8 @@
     function Wo_Delnormallead(id) {
         if (!id) {
             return false;
-        } else {
+        }
+        else {
             $("#delete-section").modal("hide");
             $("[data-rmd-section-ident='" + id + "']").slideUp(function() {
                 $(this).remove()
