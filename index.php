@@ -1099,8 +1099,6 @@ if ($wo['config']['membership_system'] == 1) {
 //        case 'join-private-group':
 //            include('sources/join_private_group.php');
 //            break;
-
-
 //                    abdul custom start
         case 'private-leads':
             include('sources/private_lead/private_leads.php');

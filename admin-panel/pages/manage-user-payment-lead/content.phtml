@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="block-header">
-        <h2>Pro Users > Manage Pro Users </h2>
+        <h2>Leads > Manage Users Leads </h2>
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="header">
-                    <h2>Pro Users</h2>
+                    <h2>Manage Users Leads</h2>
                 </div>
                 <div class="body">
                     <div class="table-responsive1">
@@ -15,25 +15,26 @@
                             <tr>
                                 <th>ID</th>
                                 <th>User Name</th>
-                                <th>Package</th>
+                                <th>Image</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-<?php $sections = Wo_GetProUsers(array('forums'=>false, 'limit'=>500000, 'order_by' => 'DESC')) ?>
+<?php $sections = Wo_GetReceived_lead_pro(array('forums'=>false, 'limit'=>500000, 'order_by' => 'DESC')) ?>
 <?php foreach ($sections as $section): ?>
-    <tr data-rmd-section-ident="<?php echo $section['user_package_id']; ?>">
-        <td><?php echo $section['user_package_id']; ?></td>
+    <tr data-rmd-section-ident="<?php echo $section['r_id']; ?>">
+        <td><?php echo $section['r_id']; ?></td>
         <td><?php echo $section['username']; ?></td>
-        <td><?php echo $section['name']; ?></td>
-        <td><?php echo $section['user_status']; ?></td>
+        <td><?php echo $section['image']; ?></td>
+        <td><?php echo $section['r_status']; ?></td>
+
         <td>
-            <button class="btn btn-success delete-section waves-effect waves-light" id="<?php echo $section['user_package_id'];?>">
+            <button class="btn btn-success delete-section waves-effect waves-light" id="<?php echo $section['r_id'];?>">
                 Approve
             </button>
-            <button class="btn btn-danger disaprove-section waves-effect waves-light" id="<?php echo $section['user_package_id'];?>">
-                Dis-Approve
+            <button class="btn btn-danger waves-effect waves-light disapprove" id="<?php echo $section['r_id'];?>">
+                DisApprove
             </button>
         </td>
     </tr>
@@ -52,35 +53,39 @@
 <div class="modal-dialog">
 <div class="modal-content modal-col-red">
 <div class="modal-header">
-<h4 class="modal-title"><i class="fa fa-exclamation-circle"></i> Approve User</h4>
+<h4 class="modal-title"><i class="fa fa-exclamation-circle"></i> Approve Payment</h4>
 </div>
 <div class="modal-body">
-<p>Are you sure you want to Approve the User?</p>
+<p>Are you sure you want to Approve Paymnet for this Lead?</p>
 </div>
 <div class="modal-footer">
-<button  type="button" onclick="Wo_ApproveUser($('#delete-section').attr('data-section-ident'))" class="btn btn-link">Approve</button>
+<button  type="button" onclick="Wo_Approve_payment_lead($('#delete-section').attr('data-section-ident'))" class="btn btn-link">Approve</button>
 <button  type="button" class="btn btn-link" data-dismiss="modal">CLOSE</button>
 </div>
 </div>
 </div>
 </div>
-<!-- #END# Vertical Layout -->
-<div class="modal fade" id="disaprove-section">
+
+<!-- disapprove section-->
+<div class="modal fade" id="disapprove">
 <div class="modal-dialog">
 <div class="modal-content modal-col-red">
 <div class="modal-header">
-<h4 class="modal-title"><i class="fa fa-exclamation-circle"></i> Dis-Approve User</h4>
+<h4 class="modal-title"><i class="fa fa-exclamation-circle"></i> DisApprove Payment</h4>
 </div>
 <div class="modal-body">
-<p>Are you sure you want to Dis-Approve the User?</p>
+<p>Are you sure you want to DisApprove Paymnet for this Lead?</p>
 </div>
 <div class="modal-footer">
-<button  type="button" onclick="Wo_DisApproveUser($('#disaprove-section').attr('data-section-ident'))" class="btn btn-link">Dis-Approve</button>
+<button  type="button" onclick="Wo_DisApprove_payment_lead($('#disapprove').attr('data-section-ident'))" class="btn btn-link">DisApprove</button>
 <button  type="button" class="btn btn-link" data-dismiss="modal">CLOSE</button>
 </div>
 </div>
 </div>
 </div>
+
+
+
 <script>
 $(function () {
 $('table').DataTable();
@@ -90,14 +95,11 @@ event.preventDefault();
 $("#delete-section").attr('data-section-ident', $(this).attr('id')).modal('show');
 });
 
-$(document).on('click', ".disaprove-section", function(event) {
-event.preventDefault();
-$("#disaprove-section").attr('data-section-ident', $(this).attr('id')).modal('show');
-});
-function Wo_ApproveUser(id) {
+function Wo_Approve_payment_lead(id) {
 if (!id) {
 return false;
-} else {
+}
+else {
 $("#delete-section").modal("hide");
 $("[data-rmd-section-ident='" + id + "']").slideUp(function() {
 $(this).remove()
@@ -107,18 +109,25 @@ type: "GET",
 url: Wo_Ajax_Requests_File(),
 data: {
 id: id,
-f: 'approve_user'
+f: 'approve_payment_lead'
 },
 dataType: 'json'
 });
 }
 }
 
-function Wo_DisApproveUser(id) {
+
+$(document).on('click', ".disapprove", function(event) {
+event.preventDefault();
+$("#disapprove").attr('data-section-ident', $(this).attr('id')).modal('show');
+});
+
+function Wo_DisApprove_payment_lead(id) {
 if (!id) {
 return false;
-} else {
-$("#disaprove-section").modal("hide");
+}
+else {
+$("#disapprove").modal("hide");
 $("[data-rmd-section-ident='" + id + "']").slideUp(function() {
 $(this).remove()
 });
@@ -127,11 +136,10 @@ type: "GET",
 url: Wo_Ajax_Requests_File(),
 data: {
 id: id,
-f: 'disapprove_user'
+f: 'disapprove_payment_lead'
 },
 dataType: 'json'
 });
 }
 }
 </script>
-

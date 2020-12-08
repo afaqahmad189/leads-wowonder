@@ -50,7 +50,7 @@ if ($f == "lead") {
             $query     = $db->get(T_LEADS);
             if ($query) {
                 foreach ($query->result() as $row){
-                    echo'kjbkjb';
+//                    echo'kjbkjb';
                 }
                  $data['status'] = 200;
 //                $data['message'] = $success_icon . $wo['lang']['lead_create_success'];

@@ -9212,7 +9212,7 @@ function Wo_Getcreated_lead_data($lead_id){
     $data= array();
     $data['lead']= array();
     $value=$lead_id;
-   echo  $query_text = "SELECT *,A.`id` as leadId,
+     $query_text = "SELECT *,A.`id` as leadId,
                             A.`job_category`,
                             A.`user_id`,
                             A.`group_category`,
@@ -9475,7 +9475,28 @@ function Wo_GetResponsed_received_data($lead_id){
     }
 //    return $data;
 }
-
+function Total_Leads(){
+    global $sqlConnect, $wo;
+    $user_id=$wo['user']['user_id'];
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_LEADS ." where user_id=$user_id");
+    if($data=mysqli_num_rows($query_one)){
+        echo $data;
+    }
+    else{
+        echo "0";
+    }
+}
+function Total_Bids(){
+    global $sqlConnect, $wo;
+    $user_id=$wo['user']['user_id'];
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_recieved_lead ." where user_id=$user_id");
+    if($data=mysqli_num_rows($query_one)){
+        echo $data;
+    }
+    else{
+        echo "0";
+    }
+}
 
 function Wo_ReceiveResponse_lead()
 {
@@ -9508,9 +9529,10 @@ function Wo_PackagesData()
     if ($wo['loggedin'] == false) {
         return false;
     }
+    $user_id=$wo['user']['user_id'];
     $data       = array();
     $data['package']       = array();
-    $query_text = "SELECT * FROM " . T_PACKAGES;
+    $query_text ="SELECT A.*,B.package_id,B.user_id FROM ". T_PACKAGES ." A left join ". T_USER_PACKAGES ." B on A.`id` = B.`package_id` and B.`user_id` = $user_id";
     $query_one  = mysqli_query($sqlConnect, $query_text);
     if (mysqli_num_rows($query_one) > 0) {
         while ($fetched_data = mysqli_fetch_assoc($query_one)) {
@@ -9522,5 +9544,27 @@ function Wo_PackagesData()
     }
     return $data;
 }
+function Total_Lead()
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    $data       = array();
+    $data['package']       = array();
+    $query_text = "SELECT COUNT(*) FROM " . T_LEADS;
+    $query_one  = mysqli_query($sqlConnect, $query_text);
+//    echo $query_one;
+//    if (mysqli_num_rows($query_one) > 0) {
+//        while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+//            if (is_array($fetched_data)) {
+//                $data['type'] = 'self';
+//                $data['package'][] = $fetched_data;
+//            }
+//        }
+//    }
+    return $query_one;
+}
+
 
 //END of my custom functions afaq

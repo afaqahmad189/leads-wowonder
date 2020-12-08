@@ -69,10 +69,6 @@ $leadreceiveddata = Wo_GetReceivedLeads();
 if (count($leadreceiveddata) > 0) {
 foreach ($leadreceiveddata['lead'] as $lead){ ?>
 <tr>
-<!--                    <td><?php echo $lead['recieved_id']; ?></td>-->
-<!--                    <td>-->
-<!--                        <span><?php echo $lead['username']; ?></span>-->
-<!--                    </td>-->
     <td>
         <span><?php echo $lead['service_name']; ?></span>
     </td>

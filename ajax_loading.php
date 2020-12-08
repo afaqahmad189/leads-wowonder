@@ -431,6 +431,9 @@ if ($wo['config']['membership_system'] == 1) {
                     break;
                 case 'join-private-group':
                     include('sources/join_private_group.php');
+                case 'create-private-lead':
+                    include('sources/private_lead/create_private_lead.php');
+                    break;
                     // END
             }
         } else {
@@ -1052,6 +1055,9 @@ else {
             break;
         case 'join-private-group':
             include('sources/join_private_group.php');
+        case 'create-private-lead':
+            include('sources/private_lead/create_private_lead.php');
+            break;
             // END
 //                    abdul custom start
         case 'private-leads':
@@ -1060,9 +1066,9 @@ else {
         case 'private-lead':
             include('sources/private_lead/private_lead.php');
             break;
-        case 'created-lead-details':
-            include('sources/private_lead/create_private_lead.php');
-            break;
+//        case 'created-lead-details':
+//            include('sources/private_lead/create_private_lead.php');
+//            break;
         case 'private-lead-setting':
             include('sources/private_lead/private_lead_setting.php');
             break;

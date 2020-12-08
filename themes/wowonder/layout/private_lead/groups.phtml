@@ -1,3 +1,4 @@
+
 <div class="page-margin">
 	<div class="row">
 		<div class="col-md-2 leftcol"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
@@ -63,7 +64,11 @@
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <h3><?php echo $wo['lang']['lead_home_total_leads'] ?></h3>
-                                <p>5000</p>
+                                <p>
+                                <?php
+                                Total_Leads();
+                               ?>
+                               </p>
                             </div>
                         </div>
 
@@ -97,7 +102,9 @@
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <h3><?php echo $wo['lang']['lead_home_total_bids'] ?></h3>
-                                <p>10000</p>
+                                <p><?php
+                                Total_Bids();
+                                ?></p>
                             </div>
                         </div>
 
@@ -113,7 +120,9 @@
                                 </svg>
                             </div>
                             <div class="col-lg-6 col-sm-12">
-                                <h3><?php echo $wo['lang']['lead_home_notification'] ?></h3>
+                                <h3><?php echo $wo['lang']['lead_home_notification'] ?>
+
+                                </h3>
                             </div>
                         </div>
                     </div>

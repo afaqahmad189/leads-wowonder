@@ -6724,20 +6724,51 @@ function Wo_InsertUserPackage($inserted_data)
     }
     $fields = '`' . implode('`, `', array_keys($inserted_data)) . '`';
     $data   = '\'' . implode('\', \'', $inserted_data) . '\'';
+
+
+    $query_two=mysqli_query($sqlConnect,"SELECT * FROM ". T_PACKAGES ." where id=$package_id");
+    $packge_id=mysqli_fetch_assoc($query_two);
+    $p_limit=$packge_id['send_limit'];
+
     $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_USER_PACKAGES ." WHERE user_id=$user_id");
     if(mysqli_num_rows($query_one)>0){
-        $already_exist="already exist";
-        return $already_exist;
+        $query_three=mysqli_query($sqlConnect,"UPDATE ". T_USER_PACKAGES ." set `package_id`=$package_id ,`bid_limit`=$p_limit ,status='PENDING' where user_id=$user_id");
+        if($query_three){
+            return true;
+        }
+        else {
+            $message = "Some Isuues";
+            throw new Exception($message);
+        }
     }
     else {
-        $query_two=mysqli_query($sqlConnect,"SELECT * FROM ". T_PACKAGES ." where id=$package_id");
-         $packge_id=mysqli_fetch_assoc($query_two);
-         $p_limit=$packge_id['send_limit'];
-
         $query = mysqli_query($sqlConnect, "INSERT INTO " . T_USER_PACKAGES . " ({$fields},bid_limit) VALUES ({$data},$p_limit)");
         if ($query) {
             return mysqli_insert_id($sqlConnect);
         }
+        return false;
+    }
+
+}
+
+function Wo_UpdateReceived_lead_payment($received_id,$image)
+{
+    $r_id=$received_id;
+    $image=$image;
+    global $wo, $sqlConnect;
+    if (empty($r_id || $image )) {
+        return false;
+    }
+//    $fields = '`' . implode('`, `', array_keys($inserted_data)) . '`';
+//    $data   = '\'' . implode('\', \'', $inserted_data) . '\'';
+    $query_one=mysqli_query($sqlConnect,"UPDATE " . T_recieved_lead . " set `image`='$image',`status`='INPROGRESS' 
+                        WHERE id='$r_id'");
+    if($query_one){
+//        echo"query run";
+        return "query run";
+    }
+    else {
+        echo"not run";
         return false;
     }
 
@@ -8048,6 +8079,60 @@ function Wo_Getnormallead($args = array())
     }
     return $data;
 }
+
+function Wo_GetReceived_lead_pro($args = array())
+{
+    global $sqlConnect, $wo;
+    $options   = array(
+        "id" => false,
+        "offset" => 0,
+        "limit" => false,
+        "search" => false,
+        "keyword" => false,
+        "forums" => false,
+        "order_by" => 'ASC'
+    );
+    $args      = array_merge($options, $args);
+    $offset    = Wo_Secure($args['offset']);
+    $id        = Wo_Secure($args['id']);
+    $limit     = Wo_Secure($args['limit']);
+    $search    = Wo_Secure($args['search']);
+    $keyword   = Wo_Secure($args['keyword']);
+    $forums    = Wo_Secure($args['forums']);
+    $order_by  = Wo_Secure($args['order_by']);
+    $query_one = "";
+    if ($offset > 0) {
+        $query_one .= " AND `id` < {$offset} AND `id` <> {$offset} ";
+    }
+    if ($id) {
+        $query_one .= " AND `id` = '$id' ";
+    }
+    if ($order_by) {
+        $query_one .= " ORDER BY `id` $order_by";
+    }
+    if ($limit) {
+        $query_one .= " LIMIT {$limit} ";
+    }
+     $sql_query_one = mysqli_query($sqlConnect, "SELECT *,A.`id` as r_id,A.`status` as r_status  FROM " . T_recieved_lead . " as A
+        JOIN ". T_USERS ." as C ON A.`user_id`=C.`user_id`
+        WHERE A.`status`='INPROGRESS' and A.`id` > 0 {$query_one}");
+    $data          = array();
+    while ($fetched_data = mysqli_fetch_assoc($sql_query_one)) {
+        if ($forums) {
+            $fetched_data['forums'] = Wo_GetReceived_lead_pro(array(
+                "section" => $fetched_data['id'],
+                "search" => $search,
+                "keyword" => $keyword
+            ));
+            if (count($fetched_data['forums']) > 0) {
+                $data[] = $fetched_data;
+            }
+        } else {
+            $data[] = $fetched_data;
+        }
+    }
+    return $data;
+}
 function Wo_Deletenormallead($id = false)
 {
     global $sqlConnect, $wo;
@@ -8070,6 +8155,50 @@ function Wo_Deletenormallead($id = false)
 //            return true;
 //        }
 //    }
+    if($query_0){
+        return true;
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+function Wo_ApprovePaymentlead($id = false)
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false && Wo_IsAdmin() == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $section = Wo_GetForumSec(array(
+        'id' => $id,
+        'forums' => true
+    ));
+    $query_0 = mysqli_query($sqlConnect, "UPDATE " . T_recieved_lead . " set `status`='PAID' WHERE `id` = '$id'");
+    if($query_0){
+        return true;
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+function Wo_DisApprovePaymentlead($id = false)
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false && Wo_IsAdmin() == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $section = Wo_GetForumSec(array(
+        'id' => $id,
+        'forums' => true
+    ));
+    $query_0 = mysqli_query($sqlConnect, "UPDATE " . T_recieved_lead . " set `status`='FAKE' WHERE `id` = '$id'");
     if($query_0){
         return true;
     }

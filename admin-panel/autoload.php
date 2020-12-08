@@ -124,7 +124,8 @@ $pages = array(
     'manage-normal-leads',
     'packages',
     'manage_packages',
-    'manage-pro-users'
+    'manage-pro-users',
+    'manage-user-payment-lead'
     //end
 
 );
@@ -768,6 +769,29 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             </ul>
                         </li>
                     <?php } ?>
+
+                    <?php if ($is_admin == true) { ?>
+                        <li <?php echo ($page == 'user-created-lead'|| $page=='manage-user-payment-lead') ? 'class="active"' : ''; ?>>
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">dns</i>
+                                <span>Leads</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li <?php echo ($page == 'user-created-lead') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('user-created-lead'); ?>">
+                                       User Created Leads
+                                    </a>
+                                </li>
+                                <li <?php echo ($page == 'manage-user-payment-lead') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('manage-user-payment-lead'); ?>">
+                                        Approve Leads
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    <?php } ?>
                     <?php if ($is_admin == true) { ?>
                         <li <?php echo ($pages=='manage-pro-users') ? 'class="active"' : ''; ?>>
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -787,12 +811,12 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             <span>Manage Leads</span><span style="padding-left: 8px;padding-right: 8px;text-align: center;margin-right: 27px !important;margin-left: auto !important;float: right !important;color: #fff !important;background-color: #2196F3 !important;"><?php echo $lead_new_count; ?></span>
                         </a>
                     </li>
-                    <li <?php echo ($page == 'user-created-lead') ? 'class="active"' : ''; ?>>
-                        <a href="<?php echo Wo_LoadAdminLinkSettings('user-created-lead'); ?>">
-                            <i class="material-icons">dns</i>
-                            <span>User Created Leads</span>
-                        </a>
-                    </li>
+<!--                    <li --><?php //echo ($page == 'user-created-lead') ? 'class="active"' : ''; ?><!--
+                       <a href="--><?php //echo Wo_LoadAdminLinkSettings('user-created-lead'); ?><!--">-->
+<!--                            <i class="material-icons">dns</i>-->
+<!--                            <span>User Created Leads</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
 
                     <?php if ($is_admin == true) { ?>
                         <li <?php echo ($page == 'normal-leads'|| $page=='manage-normal-leads') ? 'class="active"' : ''; ?>>

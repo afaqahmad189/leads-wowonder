@@ -1,10 +1,10 @@
 <?php
-if ($f == "bank_transfer_package") {
+if ($f == "bank_transfer_received_lead") {
     if (Wo_CheckSession($hash_id) === true) {
         $request   = array();
         $request[] = (empty($_FILES["thumbnail"]));
 //        print_r($request);
-        if (in_array(true, $request) || empty($_POST['type'])) {
+        if (in_array(true, $request) || empty($_POST['received_id'])) {
             $error = $error_icon . $wo['lang']['please_check_details'];
         }
         if (empty($error)) {
@@ -19,33 +19,17 @@ if ($f == "bank_transfer_package") {
             );
             $media = Wo_ShareFile($fileInfo);
             $mediaFilename = $media['filename'];
-            try {
-                if (!empty($mediaFilename)) {
-                    $insert_id = Wo_InsertUserPackage(array(
-                        'user_id' => $wo['user']['id'],
-                        'package_id' => Wo_Secure($_POST['type']),
-                        'image' => $mediaFilename
-                    ));
-                    if (!empty($insert_id)) {
-//                        echo $insert_id;
-                        $data = array(
-                            'message' => $success_icon . $wo['lang']['package_send'],
-                            'status' => 200
-                        );
-                    }
-                }
-                else {
-                    $error = $error_icon . $wo['lang']['file_not_supported'];
+            if (!empty($mediaFilename)) {
+                $insert_id = Wo_UpdateReceived_lead_payment(Wo_Secure($_POST['received_id']),$mediaFilename);
+                if (!empty($insert_id)) {
                     $data = array(
-                        'status' => 500,
-                        'message' => $error
+                        'message' => $success_icon . $wo['lang']['package_send'],
+                        'status' => 200
                     );
                 }
             }
-            catch (Exception $exp){
-//                echo $exp->getMessage();
-
-                $error = $error_icon . $wo['lang'][$exp->getMessage()];
+            else{
+                $error = $error_icon . $wo['lang']['file_not_supported'];
                 $data = array(
                     'status' => 500,
                     'message' => $error
