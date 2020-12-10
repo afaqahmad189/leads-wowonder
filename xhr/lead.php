@@ -18,6 +18,7 @@ if ($f == "lead") {
             );
             $query     = $db->insert(T_LEADS, $data_array);
             if ($query) {
+                Notification($data_array['user_id'],"You Created Lead Successfully");
                 $data['status'] = 200;
                 $data['message'] = $success_icon . $wo['lang']['lead_create_success'];
             }

@@ -58,7 +58,7 @@
 <p>Are you sure you want to Approve the User?</p>
 </div>
 <div class="modal-footer">
-<button  type="button" onclick="Wo_ApproveUser($('#delete-section').attr('data-section-ident'))" class="btn btn-link">Approve</button>
+<button  type="button" onclick="Wo_ApproveUser($('#delete-section').attr('data-section-ident'),<?php echo $section['user_id']?>)" class="btn btn-link">Approve</button>
 <button  type="button" class="btn btn-link" data-dismiss="modal">CLOSE</button>
 </div>
 </div>
@@ -75,7 +75,7 @@
 <p>Are you sure you want to Dis-Approve the User?</p>
 </div>
 <div class="modal-footer">
-<button  type="button" onclick="Wo_DisApproveUser($('#disaprove-section').attr('data-section-ident'))" class="btn btn-link">Dis-Approve</button>
+<button  type="button" onclick="Wo_DisApproveUser($('#disaprove-section').attr('data-section-ident'),<?php echo $section['user_id']?>)" class="btn btn-link">Dis-Approve</button>
 <button  type="button" class="btn btn-link" data-dismiss="modal">CLOSE</button>
 </div>
 </div>
@@ -94,7 +94,8 @@ $(document).on('click', ".disaprove-section", function(event) {
 event.preventDefault();
 $("#disaprove-section").attr('data-section-ident', $(this).attr('id')).modal('show');
 });
-function Wo_ApproveUser(id) {
+function Wo_ApproveUser(id,user_id) {
+
 if (!id) {
 return false;
 } else {
@@ -107,6 +108,7 @@ type: "GET",
 url: Wo_Ajax_Requests_File(),
 data: {
 id: id,
+user_id:user_id,
 f: 'approve_user'
 },
 dataType: 'json'
@@ -114,7 +116,7 @@ dataType: 'json'
 }
 }
 
-function Wo_DisApproveUser(id) {
+function Wo_DisApproveUser(id,user_id) {
 if (!id) {
 return false;
 } else {
@@ -127,6 +129,7 @@ type: "GET",
 url: Wo_Ajax_Requests_File(),
 data: {
 id: id,
+user_id:user_id,
 f: 'disapprove_user'
 },
 dataType: 'json'

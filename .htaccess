@@ -123,6 +123,7 @@ RewriteRule ^leads-received-bid(/?|)$ index.php?link1=leads-received-bid [QSA]
 RewriteRule ^leads-created(/?|)$ index.php?link1=leads-created [QSA]
 RewriteRule ^created-lead-details(/?|)$ index.php?link1=created-lead-details [QSA]
 RewriteRule ^brows-normal-leads(/?|)$ index.php?link1=brows-normal-leads [QSA]
+RewriteRule ^leads-notification(/?|)$ index.php?link1=leads-notification [QSA]
 RewriteRule ^brows-hot-leads(/?|)$ index.php?link1=brows-hot-leads [QSA]
 RewriteRule ^leads-packages(/?|)$ index.php?link1=leads-packages [QSA]
 # **** FORUM ****

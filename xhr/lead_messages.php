@@ -1,5 +1,5 @@
 <?php
-if ($f == 'messages') {
+if ($f == 'lead_messages') {
     if ($s == 'get_user_messages') {
         if (!empty($_GET['user_id']) AND is_numeric($_GET['user_id']) AND $_GET['user_id'] > 0 && Wo_CheckMainSession($hash_id) === true) {
             $html       = '';

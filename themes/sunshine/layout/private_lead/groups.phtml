@@ -1,3 +1,4 @@
+
 <div class="page-margin">
 	<div class="row">
 		<div class="col-md-2 leftcol"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
@@ -45,8 +46,11 @@
                                 <path d="M12.443,9.672c0.203-0.496,0.329-1.052,0.329-1.652c0-1.969-1.241-3.565-2.772-3.565S7.228,6.051,7.228,8.02c0,0.599,0.126,1.156,0.33,1.652c-1.379,0.555-2.31,1.553-2.31,2.704c0,1.75,2.128,3.169,4.753,3.169c2.624,0,4.753-1.419,4.753-3.169C14.753,11.225,13.821,10.227,12.443,9.672z M10,5.247c1.094,0,1.98,1.242,1.98,2.773c0,1.531-0.887,2.772-1.98,2.772S8.02,9.551,8.02,8.02C8.02,6.489,8.906,5.247,10,5.247z M10,14.753c-2.187,0-3.96-1.063-3.96-2.377c0-0.854,0.757-1.596,1.885-2.015c0.508,0.745,1.245,1.224,2.076,1.224s1.567-0.479,2.076-1.224c1.127,0.418,1.885,1.162,1.885,2.015C13.961,13.689,12.188,14.753,10,14.753z M10,0.891c-5.031,0-9.109,4.079-9.109,9.109c0,5.031,4.079,9.109,9.109,9.109c5.031,0,9.109-4.078,9.109-9.109C19.109,4.969,15.031,0.891,10,0.891z M10,18.317c-4.593,0-8.317-3.725-8.317-8.317c0-4.593,3.724-8.317,8.317-8.317c4.593,0,8.317,3.724,8.317,8.317C18.317,14.593,14.593,18.317,10,18.317z"></path>                    </svg>
                         </div>
                         <div class="col-lg-6 col-sm-12">
-                            <label>11237762873612 Credits</label>
-                            <Button class="btn-danger"><?php echo $wo['lang']['lead_home_btn'] ?></Button>
+                        <?php
+                        ActivePackage();
+                        ?>
+                         <label> Credits</label>
+                            <a href="<?php echo Wo_SeoLink('index.php?link1=leads-packages'); ?>" data-ajax="?link1=leads-packages"> <Button class="btn-danger"><?php echo $wo['lang']['lead_home_btn'] ?></Button></a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +67,11 @@
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <h3><?php echo $wo['lang']['lead_home_total_leads'] ?></h3>
-                                <p>5000</p>
+                                <p>
+                                <?php
+                                Total_Leads();
+                               ?>
+                               </p>
                             </div>
                         </div>
 
@@ -79,7 +87,9 @@
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <h3><?php echo $wo['lang']['lead_home_lead_points'] ?></h3>
-                                <p>5000</p>
+                                <?php
+                                Lead_Points()
+                                ?>
                             </div>
                         </div>
 
@@ -97,7 +107,9 @@
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <h3><?php echo $wo['lang']['lead_home_total_bids'] ?></h3>
-                                <p>10000</p>
+                                <p><?php
+                                Total_Bids();
+                                ?></p>
                             </div>
                         </div>
 
@@ -113,24 +125,13 @@
                                 </svg>
                             </div>
                             <div class="col-lg-6 col-sm-12">
-                                <h3><?php echo $wo['lang']['lead_home_notification'] ?></h3>
+                                <h3><?php echo $wo['lang']['lead_home_notification'] ?>
+                                </h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-			<div class="row">
-				<?php if (count($groupData) > 0) {
-					$wo['group']['Wo_GroupSug'] = ($groupData['type'] == 'join') ? true : false;
-					$wo['group'] = $groupData['group'];
-					echo Wo_LoadPage('private_group/group-list');
-				} else {
-					echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path></svg>' . $wo['lang']['no_groups_found'] . '</div>';
-				} ?>
-
-				<div class="clear"></div>
-			</div>
 		</div>
 	</div>
 	<!-- .row -->

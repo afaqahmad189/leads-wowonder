@@ -39,7 +39,7 @@ if (!Wo_IsPrivateGroupOnwer($wo['group_profile']['id'])) {
 
 			<div class="side_panel">
 				<div class="box-inner" style="background-image: url(<?php echo $wo['group_profile']['cover'] ?>)"></div>
-				<div class="sp_innrr">
+				<div>
 					<div class="user-avatar flip">
 						<div class="user-avatar-uploading-container">
 							<div class="user-avatar-uploading-progress">
@@ -74,7 +74,7 @@ if (!Wo_IsPrivateGroupOnwer($wo['group_profile']['id'])) {
 								<?php echo $wo['group_profile']['name']; ?>
 							</a>
 						</div>
-						<span style="display: block;"><?php echo Wo_CountPrivateGroupMembers($wo['group_profile']['id']); ?> <?php echo $wo['lang']['members']; ?></span>
+						<span style="margin-top:5px;display: block;"><?php echo Wo_CountPrivateGroupMembers($wo['group_profile']['id']); ?> <?php echo $wo['lang']['members']; ?></span>
 					</div>
 					<div class="options-buttons">
 						<span class="user-follow-button group-join-btn">
@@ -98,27 +98,16 @@ if (!Wo_IsPrivateGroupOnwer($wo['group_profile']['id'])) {
 				if ($show_list == true) {
 					# code...
 		?>
-
+					<div class="page-margin wow_content mt-0">
+						<div class="wo_page_hdng pag_neg_padd pag_alone">
+							<div class="wo_page_hdng_innr">
+								<span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+										<path fill="currentColor" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"></path>
+									</svg></span> <?php echo $wo['lang']['members']; ?>
+							</div>
+						</div>
+					</div>
 					<div class="list-group profile-lists">
-						<div class="list-group-item">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
-								<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-								<circle cx="9" cy="7" r="4"></circle>
-								<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-								<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-							</svg>
-<?php echo $wo['lang']['members']; ?>
-</div>
-<!--<div class="page-margin wow_content mt-0">-->
-<!--<div class="wo_page_hdng pag_neg_padd pag_alone">-->
-<!--<div class="wo_page_hdng_innr">-->
-<!--    <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">-->
-<!--            <path fill="currentColor" d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"></path>-->
-<!--        </svg></span> <?php echo $wo['lang']['members']; ?>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="list-group profile-lists">-->
 						<div class="row" style="margin: 0;">
 							<?php
 							if (Wo_CountPrivateGroupMembers($wo['group_profile']['id']) == 0) {
@@ -132,43 +121,15 @@ if (!Wo_IsPrivateGroupOnwer($wo['group_profile']['id'])) {
 							?>
 						</div>
 						<div class="clear"></div>
-<!--					</div>-->
+					</div>
 				<?php }
 			} else if ($_GET['type'] == 'invite_members') { ?>
-
-			<!--private group-->
-			<div class="list-group profile-lists">
-					<div class="list-group-item">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus">
-							<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-							<circle cx="8.5" cy="7" r="4"></circle>
-							<line x1="20" y1="8" x2="20" y2="14"></line>
-							<line x1="23" y1="11" x2="17" y2="11"></line>
-						</svg>
-<?php echo $wo['lang']['invite_your_friends']; ?>
-</div>
-<div class="row" style="margin: 0;">
-<?php
-if (Wo_CountPrivateGroupsNotMember($wo['group_profile']['id']) == 0) {
-    echo '<h5 class="search-filter-center-text empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>' . $wo['lang']['invited_all_friends'] . '</h5>';
-} else {
-							foreach (Wo_GetPrivateGroupsNotMember($wo['group_profile']['id']) as $wo['UsersList']) {
-								$wo['group_invited'] = Wo_isUserInvited($wo['UsersList']['user_id'], $wo['group_profile']['id']);
-								echo Wo_LoadPage('private_group/add-list');
-							}
-						}
-						?>
-</div>
-<div class="clear"></div>
-</div>
-
-<!--private lead-->
-<div class="list-group profile-lists">
-<div class="wo_page_hdng pag_neg_padd pag_alone">
-<div class="wo_page_hdng_innr">
-    <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M13,13C11,13 7,14 7,16V18H19V16C19,14 15,13 13,13M19.62,13.16C20.45,13.88 21,14.82 21,16V18H24V16C24,14.46 21.63,13.5 19.62,13.16M13,11A3,3 0 0,0 16,8A3,3 0 0,0 13,5A3,3 0 0,0 10,8A3,3 0 0,0 13,11M18,11A3,3 0 0,0 21,8A3,3 0 0,0 18,5C17.68,5 17.37,5.05 17.08,5.14C17.65,5.95 18,6.94 18,8C18,9.06 17.65,10.04 17.08,10.85C17.37,10.95 17.68,11 18,11M8,10H5V7H3V10H0V12H3V15H5V12H8V10Z"></path>
-        </svg></span> <?php echo $wo['lang']['invite_your_friends']; ?>
+				<div class="page-margin wow_content mt-0">
+					<div class="wo_page_hdng pag_neg_padd pag_alone">
+						<div class="wo_page_hdng_innr">
+							<span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+									<path fill="currentColor" d="M13,13C11,13 7,14 7,16V18H19V16C19,14 15,13 13,13M19.62,13.16C20.45,13.88 21,14.82 21,16V18H24V16C24,14.46 21.63,13.5 19.62,13.16M13,11A3,3 0 0,0 16,8A3,3 0 0,0 13,5A3,3 0 0,0 10,8A3,3 0 0,0 13,11M18,11A3,3 0 0,0 21,8A3,3 0 0,0 18,5C17.68,5 17.37,5.05 17.08,5.14C17.65,5.95 18,6.94 18,8C18,9.06 17.65,10.04 17.08,10.85C17.37,10.95 17.68,11 18,11M8,10H5V7H3V10H0V12H3V15H5V12H8V10Z"></path>
+								</svg></span> <?php echo $wo['lang']['invite_your_friends']; ?>
 						</div>
 					</div>
 				</div>

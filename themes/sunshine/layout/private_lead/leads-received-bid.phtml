@@ -10,7 +10,6 @@
 								<path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path>
 							</svg>
 						</span>
-
 <?php echo 'Leads'; ?>
 </div>
 </div>
@@ -92,18 +91,42 @@ foreach ($leadreceiveddata['lead'] as $lead){ ?>
 if($lead['status']=='ACCEPT'){
 ?>
 <a href="javascript:void(0)" ><i class="fa fa-check-circle" title="Accepted" style="color: green;font-size: 20px;margin-right: 5px" aria-hidden="true"></i></a>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14.781,14.347h1.738c0.24,0,0.436-0.194,0.436-0.435v-1.739c0-0.239-0.195-0.435-0.436-0.435h-1.738c-0.239,0-0.435,0.195-0.435,0.435v1.739C14.347,14.152,14.542,14.347,14.781,14.347 M18.693,3.045H1.307c-0.48,0-0.869,0.39-0.869,0.869v12.17c0,0.479,0.389,0.869,0.869,0.869h17.387c0.479,0,0.869-0.39,0.869-0.869V3.915C19.562,3.435,19.173,3.045,18.693,3.045 M18.693,16.085H1.307V9.13h17.387V16.085z M18.693,5.653H1.307V3.915h17.387V5.653zM3.48,12.608h7.824c0.24,0,0.435-0.195,0.435-0.436c0-0.239-0.194-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.195-0.435,0.435C3.045,12.413,3.24,12.608,3.48,12.608 M3.48,14.347h6.085c0.24,0,0.435-0.194,0.435-0.435s-0.195-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.194-0.435,0.435S3.24,14.347,3.48,14.347"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" onclick="Wo_GetLeadLink(<?php echo $lead['id']?>)">
+<path   d="M14.781,14.347h1.738c0.24,0,0.436-0.194,0.436-0.435v-1.739c0-0.239-0.195-0.435-0.436-0.435h-1.738c-0.239,0-0.435,0.195-0.435,0.435v1.739C14.347,14.152,14.542,14.347,14.781,14.347 M18.693,3.045H1.307c-0.48,0-0.869,0.39-0.869,0.869v12.17c0,0.479,0.389,0.869,0.869,0.869h17.387c0.479,0,0.869-0.39,0.869-0.869V3.915C19.562,3.435,19.173,3.045,18.693,3.045 M18.693,16.085H1.307V9.13h17.387V16.085z M18.693,5.653H1.307V3.915h17.387V5.653zM3.48,12.608h7.824c0.24,0,0.435-0.195,0.435-0.436c0-0.239-0.194-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.195-0.435,0.435C3.045,12.413,3.24,12.608,3.48,12.608 M3.48,14.347h6.085c0.24,0,0.435-0.194,0.435-0.435s-0.195-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.194-0.435,0.435S3.24,14.347,3.48,14.347"></path>
+</svg>
 <?php
 }
 elseif($lead['status']=='REQUOTE'){
 ?>
 <a href="javascript:void(0)"><i class="fa fa-info-circle" title="Requoted" style="color: orange;font-size: 20px;margin-right: 5px" aria-hidden="true"></i></a>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14.781,14.347h1.738c0.24,0,0.436-0.194,0.436-0.435v-1.739c0-0.239-0.195-0.435-0.436-0.435h-1.738c-0.239,0-0.435,0.195-0.435,0.435v1.739C14.347,14.152,14.542,14.347,14.781,14.347 M18.693,3.045H1.307c-0.48,0-0.869,0.39-0.869,0.869v12.17c0,0.479,0.389,0.869,0.869,0.869h17.387c0.479,0,0.869-0.39,0.869-0.869V3.915C19.562,3.435,19.173,3.045,18.693,3.045 M18.693,16.085H1.307V9.13h17.387V16.085z M18.693,5.653H1.307V3.915h17.387V5.653zM3.48,12.608h7.824c0.24,0,0.435-0.195,0.435-0.436c0-0.239-0.194-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.195-0.435,0.435C3.045,12.413,3.24,12.608,3.48,12.608 M3.48,14.347h6.085c0.24,0,0.435-0.194,0.435-0.435s-0.195-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.194-0.435,0.435S3.24,14.347,3.48,14.347"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" onclick="Wo_GetLeadLink(<?php echo $lead['id']?>)">
+<path d="M14.781,14.347h1.738c0.24,0,0.436-0.194,0.436-0.435v-1.739c0-0.239-0.195-0.435-0.436-0.435h-1.738c-0.239,0-0.435,0.195-0.435,0.435v1.739C14.347,14.152,14.542,14.347,14.781,14.347 M18.693,3.045H1.307c-0.48,0-0.869,0.39-0.869,0.869v12.17c0,0.479,0.389,0.869,0.869,0.869h17.387c0.479,0,0.869-0.39,0.869-0.869V3.915C19.562,3.435,19.173,3.045,18.693,3.045 M18.693,16.085H1.307V9.13h17.387V16.085z M18.693,5.653H1.307V3.915h17.387V5.653zM3.48,12.608h7.824c0.24,0,0.435-0.195,0.435-0.436c0-0.239-0.194-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.195-0.435,0.435C3.045,12.413,3.24,12.608,3.48,12.608 M3.48,14.347h6.085c0.24,0,0.435-0.194,0.435-0.435s-0.195-0.435-0.435-0.435H3.48c-0.24,0-0.435,0.194-0.435,0.435S3.24,14.347,3.48,14.347"></path>
+</svg>
 <?php
 }
-else{
+elseif($lead['status']=='REJECT'){
 ?>
 <a href="javascript:void(0)"><i class="fa fa-times-circle"title="Rejected" style="color: red;font-size: 20px" aria-hidden="true"></i></a>
+<?php
+}
+elseif($lead['status']=='INPROGRESS'){
+?>
+<a href="javascript:void(0)"><i class="fa fa-spinner"title="Inprogress" style="color: orange;font-size: 20px" aria-hidden="true"></i></a>
+<?php
+}
+elseif($lead['status']=='FAKE'){
+?>
+<a href="javascript:void(0)"><i class="fa fa-ban"title="DisApprove" style="color: red;font-size: 20px" aria-hidden="true"></i></a>
+<?php
+}
+elseif($lead['status']=='PAID'){
+?>
+<a href="javascript:void(0)"><i class="fa fa-comment"title="Chat" style="font-size: 20px" aria-hidden="true" onclick="Wo_OpenChatTabLead(<?php echo $wo['user']['user_id']. ','. $lead['user_id']?>)" ></i></a>
+<?php
+}
+elseif($lead['status']=='COMPLETED'){
+?>
+<a href="javascript:void(0)"><i class="fa fa-tasks"title="Chat" style="color:green;font-size: 20px" aria-hidden="true" onclick="Wo_OpenChatTabLead(<?php echo $wo['user']['user_id']. ','. $lead['user_id']?>)" ></i></a>
 <?php
 }
 ?>
@@ -119,19 +142,248 @@ else{
 </div>
 <br>
 
-
-<div class="row">
-<?php if (count($groupData) > 0) {
-    $wo['group']['Wo_GroupSug'] = ($groupData['type'] == 'join') ? true : false;
-    $wo['group'] = $groupData['group'];
-    echo Wo_LoadPage('private_group/group-list');
-} else {
-    echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path></svg>' . $wo['lang']['no_groups_found'] . '</div>';
-} ?>
-
-<div class="clear"></div>
-</div>
 </div>
 </div>
 <!-- .row -->
 </div>
+<div id="pay-modal"></div>
+<script>
+function Wo_GetLeadLink(received_id) {
+	$.get(Wo_Ajax_Requests_File() + '?f=get_payment_received_lead&received_id=' + received_id, function (data) {
+        if (data.status == 200) {
+          	$('#pay-modal').html(data.html);
+          	$('#pay-go-pro-received-lead').modal({
+             show: true
+            });
+        }
+    });
+}
+function Wo_CheckOutReceivedLead(received_lead, payment_type) {
+    if (payment_type == 'bank_payment') {
+    	$('#configreset').click();
+    	$(".prv-img").html('<div class="thumbnail-rendderer"><div><h4 class="bold"><?php echo $wo['lang']['drop_img_here']; ?></h4><div class="error-text-renderer"></div><div><span><?php echo $wo['lang']['or']; ?></span><p><?php echo $wo['lang']['browse_to_upload']; ?></p></div></div> </div>');
+		$("#blog-alert").html('');
+    	$('#received_lead').val(received_lead);
+    	$('#pay-go-pro-packages').modal('hide');
+    	$('#bank_transfer_modal').modal({
+             show: true
+            });
+	}
+    $(window).on('popstate', function() {
+       handler.close();
+    });
+}
+$(document).on('click', '#select-img', function(event) {
+	$("#thumbnail").click()
+});
+$(document).on('change', '#thumbnail', function(event) {
+	let imgPath = $(this)[0].files[0].name;
+    if (typeof(FileReader) != "undefined") {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+			$('#receipt_img_preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    }
+	$('#bank_transfer_modal').addClass('up_rec_img_ready');
+});
+jQuery(document).ready(function($) {
+	$('#bank_transfer_form').ajaxForm({
+	  url: Wo_Ajax_Requests_File() + '?f=bank_transfer_received_lead',
+	  beforeSend: function() {
+	    $('#bank_transfer_form').find('.ball-pulse').fadeIn(100);
+	  },
+	  success: function(data) {
+	    if (data['status'] == 200) {
+	    	$("#blog-alert").html('<div class="alert alert-success">'+ data['message'] +'</div>');
+	    	setTimeout(function () {
+	    		window.location = "<?php echo $wo['config']['site_url'];?>";
+	    		$(".prv-img").html('<div class="thumbnail-rendderer"><div><h4 class="bold"><?php echo $wo['lang']['drop_img_here']; ?></h4><div class="error-text-renderer"></div><div><span><?php echo $wo['lang']['or']; ?></span><p><?php echo $wo['lang']['browse_to_upload']; ?></p></div></div> </div>');
+	    		$("#blog-alert").html('');
+	    		$('#configreset').click();
+
+	    	},3000)
+	    }
+	    else if (data['message']) {
+	      $("#blog-alert").html('<div class="alert alert-danger">' + data['message'] + '</div>');
+	    }
+	    $('#bank_transfer_form').find('.ball-pulse').fadeOut(100);
+	}});
+});
+</script>
+<div class="modal fade" id="bank_transfer_modal" role="dialog" data-keyboard="false" style="overflow-y: auto;">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+<h4 class="modal-title"><?php echo $wo['lang']['bank_transfer'] ?></h4>
+</div>
+<form class="form form-horizontal" method="post" id="bank_transfer_form" action="#">
+<div class="modal-body dt_bank_trans_modal">
+<div id="blog-alert"></div>
+
+<?php echo $wo['config']['bank_description'];?>
+
+<?php if (!empty($wo['config']['bank_transfer_note'])) { ?>
+    <div class="dt_user_profile hide_alert_info_bank_trans">
+        <span class="valign-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> Note:
+        </span>
+        <ul class="dt_prof_vrfy">
+            <li><?php echo $wo['config']['bank_transfer_note'];?></li>
+        </ul>
+    </div>
+<?php } ?>
+<p class="dt_bank_trans_upl_rec"><a href="javascript:void(0);" onclick="$('#bank_transfer_modal').addClass('up_rec_active'); return false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13.5,16V19H10.5V16H8L12,12L16,16H13.5M13,9V3.5L18.5,9H13Z"></path></svg> <?php echo $wo['lang']['upload'] ?></a></p>
+					<div class="upload_bank_receipts">
+						<div onclick="document.getElementById('thumbnail').click(); return false">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13.5,16V19H10.5V16H8L12,12L16,16H13.5M13,9V3.5L18.5,9H13Z"></path></svg>
+							<p><?php echo $wo['lang']['browse_to_upload']; ?></p>
+							<img id="receipt_img_preview" src="">
+						</div>
+					</div>
+					<input type="file" class="hidden" id="thumbnail" name="thumbnail" accept="image/*">
+					<input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
+					<input name="image" type="file" id="upload" class="hidden">
+					<input name="received_id" type="hidden" id="received_lead" class="hidden">
+					<input type="reset" id="configreset" value="Reset" class="hidden">
+				</div>
+				<div class="modal-footer">
+					<div class="ball-pulse"><div></div><div></div><div></div></div>
+					<button type="submit" class="btn btn-main btn-mat"><?php echo $wo['lang']['publish']; ?></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<script>
+//afaq function
+function Wo_OpenChatTabLead(user_id, group_id, product_id = 0, page_id = 0, page_user_id = 0) {
+    if ($(".chat_" + user_id).length > 0) {
+        return false;
+    }
+    if (group_id != 0) {
+        $("#group_tab_" + group_id).find('.group-lastseen').empty();
+    }
+    if (group_id == null) {
+        group_id = 0;
+    }
+    $.get(Wo_Ajax_Requests_File(), {
+        f: 'lead_chat',
+        s: 'is_chat_on',
+        recipient_id: user_id,
+        group_id: group_id
+    }, function(data) {
+        length = 0;
+        if ($('body').attr('chat-off')) {
+            length = $('body').attr('chat-off').length;
+        }
+        if (current_width < 720 || length > 0) {
+            if (page_id > 0) {
+                document.location = websiteUrl + "/messages/" + page_user_id + "&page=" + page_id;
+            } else {
+                document.location = data.url;
+            }
+            return false;
+        }
+        if (data.chat != 1 && group_id === 0) {
+            // document.location = data.url;
+            return false;
+        }
+    });
+    if (current_width < 720) {
+        $.get(Wo_Ajax_Requests_File(), {
+            f: 'lead_chat',
+            s: 'close',
+            recipient_id: user_id
+        }, function(data) {
+            console.log(data);
+            //document.location = data.url;
+        });
+        //return false;
+    }
+    placement = 1;
+    if ($('.chat-wrapper').length == 1) {
+        placement = 2;
+    } else if ($('.chat-wrapper').length == 2) {
+        placement = 3;
+    }
+    var loading_icon = '<svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="11" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg>';
+    $('#online_' + user_id).find('.new-message-alert').hide();
+    if (group_id) {
+        var loading_div = $('.chat-container').find('#group_tab_' + group_id).find('.chat-loading-icon');
+    } else {
+        var loading_div = $('.chat-container').find('#online_' + user_id).find('.chat-loading-icon');
+    }
+
+    loading_div.html(loading_icon);
+    chat_container = $('.chat-container');
+    $(document.body).attr('data-chat-recipient-' + user_id, user_id);
+    $('.chat-wrapper').show();
+    /* var data_html = '<div class="chat-wrapper" id="chat_"><div class="online-toggle pointer" onclick="javascript:$(\'.chat-tab-container\').slideToggle(100);"><a style="color:#fff;" href=""><span class="chat-tab-status">......</span></a></div><div class="chat-tab-container"><div class="chat-messages-wrapper"><div class="chat-messages"></div><div class="clear"></div></div><div class="chat-textarea btn-group"><div class="emo-container"></div><form action="#" method="post" class="chat-sending-form"><textarea name="textSendMessage" disabled id="sendMessage" class="form-control" cols="10" rows="5" placeholder=""  onkeydown="Wo_SubmitChatForm(event);" onfocus="Wo_SubmitChatForm(event);" dir="auto"></textarea><input type="hidden" id="user-id" name="user_id" value="" /></form></div></div></div>';
+    $('.chat-tab').append('<span class="chat_main chat_main_"></span>');
+    $('.chat_main_').append(data_html); */
+    $.get(Wo_Ajax_Requests_File(), {
+        f: 'lead_chat',
+        s: 'load_chat_tab',
+        recipient_id: user_id,
+        placement: placement,
+        group_id: group_id,
+        page_id: page_id,
+        page_user_id: page_user_id
+    },
+    function(data) {
+        if (data.status == 200) {
+            if ($('.chat-wrapper').length == 3) {
+                if ($('.chat_main_' + user_id).length == 0) {
+                    $('.chat_main:first-child').remove();
+                    $('.chat-tab').append('<span class="chat_main chat_main_' + user_id + '"></span>');
+                } else {
+                    $('.chat_main_' + user_id).remove();
+                }
+                    $('.chat_main_' + user_id).html(data.html);
+            } else {
+                if ($('.chat_main_' + user_id).length > 0) {
+                    $('.chat_main_' + user_id).html(data.html);
+                } else {
+                    $('.chat-tab').append('<span class="chat_main chat_main_' + user_id + '"></span>');
+                    $('.chat_main_' + user_id).append(data.html);
+                }
+            }
+            if (page_id > 0) {
+                setTimeout(function() {
+
+                    $('.page-messages-wrapper-' + page_id).scrollTop($('.page-messages-wrapper-' + page_id)[0].scrollHeight);
+
+                }, 1000);
+
+            }
+            $('.chat-wrapper').show();
+            loading_div.empty();
+            $('.chat-textarea textarea').keyup();
+            if (group_id == 0 && page_id == 0) {
+                $.get(Wo_Ajax_Requests_File(), {
+                    f: 'lead_chat',
+                    s: 'load_chat_messages',
+                    recipient_id: user_id,
+                    product_id: product_id
+                }, function(data) {
+                    if (data.messages.length > 0) {
+                        $('.chat-tab').find('.chat_' + user_id).find('.chat-messages').html(data.messages);
+                    } else {
+                        $('.chat_' + user_id).find('.chat-user-desc').addClass('chat-user-desc-show');
+                    }
+                    setTimeout(function() {
+                        $('.chat-messages-wrapper').scrollTop($('.chat-messages-wrapper')[0].scrollHeight);
+                    }, 1000);
+                });
+            }
+        }
+    });
+}
+
+// end of afaq function
+
+</script>
