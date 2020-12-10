@@ -8,49 +8,26 @@
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:client" type="e8cecc67:BranchNodeDescriptor" />
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:feature/sunshine-frontend" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/admin-panel/pages/manage-user-payment-lead/content.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/modals/pay-go-pro-received-lead.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/create-lead.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/approve_payment_lead.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/bank_transfer_received_lead.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/disapprove_payment_lead.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/get_payment_received_lead.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/lead_chat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xhr/lead_messages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/pages/manage-pro-users/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/manage-pro-users/content.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax_loading.php" beforeDir="false" afterPath="$PROJECT_DIR$/ajax_loading.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/includes/functions_three.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_three.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/includes/functions_two.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_two.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sources/private_lead/create_private_lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/sources/private_lead/create_private_lead.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/leads/create-lead.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/leads/create-lead.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/brows-normal-leads.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/brows-normal-leads.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/groups.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/groups.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-packages.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-packages.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xhr/bank_transfer_package.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/bank_transfer_package.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xhr/lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/lead.php" afterDir="false" />
-    </list>
+    <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
