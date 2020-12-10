@@ -125,7 +125,9 @@ $pages = array(
     'packages',
     'manage_packages',
     'manage-pro-users',
-    'manage-user-payment-lead'
+    'all-lead',
+    'manage-user-payment-lead',
+    'manage-user-paid-lead'
     //end
 
 );
@@ -771,7 +773,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                     <?php } ?>
 
                     <?php if ($is_admin == true) { ?>
-                        <li <?php echo ($page == 'user-created-lead'|| $page=='manage-user-payment-lead') ? 'class="active"' : ''; ?>>
+                        <li <?php echo ($page=='all-lead'||$page == 'user-created-lead'|| $page=='manage-user-payment-lead' || $page=='manage-user-paid-lead') ? 'class="active"' : ''; ?>>
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">dns</i>
                                 <span>Leads</span>
@@ -785,6 +787,11 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                                 <li <?php echo ($page == 'manage-user-payment-lead') ? 'class="active"' : ''; ?>>
                                     <a href="<?php echo Wo_LoadAdminLinkSettings('manage-user-payment-lead'); ?>">
                                         Approve Leads
+                                    </a>
+                                </li>
+                                <li <?php echo ($page == 'manage-user-paid-lead') ? 'class="active"' : ''; ?>>
+                                    <a href="<?php echo Wo_LoadAdminLinkSettings('manage-user-paid-lead'); ?>">
+                                        Manage Completed Leads
                                     </a>
                                 </li>
 

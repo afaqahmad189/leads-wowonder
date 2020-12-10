@@ -6734,6 +6734,7 @@ function Wo_InsertUserPackage($inserted_data)
     if(mysqli_num_rows($query_one)>0){
         $query_three=mysqli_query($sqlConnect,"UPDATE ". T_USER_PACKAGES ." set `package_id`=$package_id ,`bid_limit`=$p_limit ,status='PENDING' where user_id=$user_id");
         if($query_three){
+            Notification($user_id,"You Successfully Upgrade your Package");
             return true;
         }
         else {
@@ -6744,6 +6745,7 @@ function Wo_InsertUserPackage($inserted_data)
     else {
         $query = mysqli_query($sqlConnect, "INSERT INTO " . T_USER_PACKAGES . " ({$fields},bid_limit) VALUES ({$data},$p_limit)");
         if ($query) {
+            Notification($user_id,"You Successfully Purchase your Package.Please Wait For Approval");
             return mysqli_insert_id($sqlConnect);
         }
         return false;
@@ -8133,6 +8135,60 @@ function Wo_GetReceived_lead_pro($args = array())
     }
     return $data;
 }
+
+function Wo_GetPaid_lead_pro($args = array())
+{
+    global $sqlConnect, $wo;
+    $options   = array(
+        "id" => false,
+        "offset" => 0,
+        "limit" => false,
+        "search" => false,
+        "keyword" => false,
+        "forums" => false,
+        "order_by" => 'ASC'
+    );
+    $args      = array_merge($options, $args);
+    $offset    = Wo_Secure($args['offset']);
+    $id        = Wo_Secure($args['id']);
+    $limit     = Wo_Secure($args['limit']);
+    $search    = Wo_Secure($args['search']);
+    $keyword   = Wo_Secure($args['keyword']);
+    $forums    = Wo_Secure($args['forums']);
+    $order_by  = Wo_Secure($args['order_by']);
+    $query_one = "";
+    if ($offset > 0) {
+        $query_one .= " AND `id` < {$offset} AND `id` <> {$offset} ";
+    }
+    if ($id) {
+        $query_one .= " AND `id` = '$id' ";
+    }
+    if ($order_by) {
+        $query_one .= " ORDER BY `id` $order_by";
+    }
+    if ($limit) {
+        $query_one .= " LIMIT {$limit} ";
+    }
+    $sql_query_one = mysqli_query($sqlConnect, "SELECT *,A.`id` as r_id,A.`status` as r_status  FROM " . T_recieved_lead . " as A
+        JOIN ". T_USERS ." as C ON A.`user_id`=C.`user_id`
+        WHERE A.`status`='PAID' and A.`id` > 0 {$query_one}");
+    $data          = array();
+    while ($fetched_data = mysqli_fetch_assoc($sql_query_one)) {
+        if ($forums) {
+            $fetched_data['forums'] = Wo_GetPaid_lead_pro(array(
+                "section" => $fetched_data['id'],
+                "search" => $search,
+                "keyword" => $keyword
+            ));
+            if (count($fetched_data['forums']) > 0) {
+                $data[] = $fetched_data;
+            }
+        } else {
+            $data[] = $fetched_data;
+        }
+    }
+    return $data;
+}
 function Wo_Deletenormallead($id = false)
 {
     global $sqlConnect, $wo;
@@ -8177,6 +8233,29 @@ function Wo_ApprovePaymentlead($id = false)
         'forums' => true
     ));
     $query_0 = mysqli_query($sqlConnect, "UPDATE " . T_recieved_lead . " set `status`='PAID' WHERE `id` = '$id'");
+    if($query_0){
+        return true;
+    }
+    else {
+        return false;
+    }
+    return false;
+}
+function Wo_Completelead($id = false)
+{
+    global $sqlConnect, $wo,$point;
+    $point=100;
+    if ($wo['loggedin'] == false && Wo_IsAdmin() == false) {
+        return false;
+    }
+    if (!$id || !is_numeric($id)) {
+        return false;
+    }
+    $section = Wo_GetForumSec(array(
+        'id' => $id,
+        'forums' => true
+    ));
+    $query_0 = mysqli_query($sqlConnect, "UPDATE " . T_recieved_lead . " set  status = 'COMPLETED' , points = $point WHERE `id` = '$id'");
     if($query_0){
         return true;
     }

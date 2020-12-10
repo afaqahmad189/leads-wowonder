@@ -11,23 +11,56 @@
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:client" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:feature/sunshine-frontend" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="" />
+    <list default="true" id="70d2181d-90c9-4bf2-a65c-323d62572a1c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/admin-panel/pages/all-lead/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/pages/manage-user-Paid-lead/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sources/lead_messages.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sources/private_lead/leads_notification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/create-lead.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/chat/lead-chat-list.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/chat/lead-chat-tab.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/chat/lead-group-tab.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/chat/lead-page-tab.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/lead-messages/content.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/notification-lead.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xhr/complete_approve_lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/pages/manage-pro-users/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/pages/manage-pro-users/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajax_loading.php" beforeDir="false" afterPath="$PROJECT_DIR$/ajax_loading.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/functions_one.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_one.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/functions_three.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_three.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/functions_two.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/functions_two.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/includes/tabels.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/includes/tabels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/assets/includes/tabels.php" beforeDir="false" afterPath="$PROJECT_DIR$/script/assets/includes/tabels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/themes/wowonder/javascript/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/themes/wowonder/javascript/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/brows-normal-leads.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/brows-normal-leads.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/groups.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/groups.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/leads-packages.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/leads-packages.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/leads-received-bid.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/sunshine/layout/private_lead/leads-received-bid.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/messages/content.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/messages/content.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/brows-normal-leads.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/brows-normal-leads.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/groups.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/groups.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-packages.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-packages.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/wowonder/layout/private_lead/leads-received-bid.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/approve_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/approve_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/disapprove_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/disapprove_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/lead.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/lead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/lead_chat.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/lead_chat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhr/lead_messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/xhr/lead_messages.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +83,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../playtubethree" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/sunshine/layout" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -118,6 +151,9 @@
       <workItem from="1607323235523" duration="26700000" />
       <workItem from="1607361164241" duration="7137000" />
       <workItem from="1607408055324" duration="25190000" />
+      <workItem from="1607494261406" duration="19554000" />
+      <workItem from="1607524132926" duration="11000" />
+      <workItem from="1607580965495" duration="17247000" />
     </task>
     <servers />
   </component>
@@ -130,15 +166,9 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="FILTERS">
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
                 <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
+                  <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
             </State>
@@ -161,10 +191,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="415" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1607413639700" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1607433846762">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1607524142013">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1607433846762" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1607524142013" />
     <state x="477" y="265" key="NewPhpFileDialog" timestamp="1603374474934">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -181,10 +211,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1607374801576" />
-    <state x="390" y="0" width="643" height="728" key="find.popup" timestamp="1607432244114">
+    <state x="390" y="0" width="643" height="728" key="find.popup" timestamp="1607592275170">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="390" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1607432244114" />
+    <state x="390" y="0" width="643" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1607592275170" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1606305226695">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -193,10 +223,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="324" y="90" width="700" height="530" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1606309543488" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1607423958926">
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1607598743289">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1607423958926" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1607598743289" />
     <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1606594268759">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

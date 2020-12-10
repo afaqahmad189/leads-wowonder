@@ -3443,7 +3443,8 @@ function Wo_GetMessages($data = array(), $limit = 50)
     $query_one = " SELECT * FROM " . T_MESSAGES;
     if (isset($data['new']) && $data['new'] == true) {
         $query_one .= " WHERE `seen` = 0 AND `from_id` = {$user_id} AND `to_id` = {$logged_user_id} AND `deleted_two` = '0'";
-    } else {
+    }
+    else {
         $query_one .= " WHERE ((`from_id` = {$user_id} AND `to_id` = {$logged_user_id} AND `deleted_two` = '0') OR (`from_id` = {$logged_user_id} AND `to_id` = {$user_id} AND `deleted_one` = '0'))";
     }
     if (!empty($data['message_id'])) {

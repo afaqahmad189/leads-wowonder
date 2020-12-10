@@ -1818,6 +1818,7 @@ function Wo_OpenChatTab(recipient_id, group_id, product_id = 0, page_id = 0, pag
     });
 }
 
+
 function Wo_OpenChatUsersTab() {
 
     $('.chat-container').toggleClass('full');

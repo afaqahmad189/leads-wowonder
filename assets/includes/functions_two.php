@@ -9297,6 +9297,30 @@ function Wo_GetReceivedLeads()
     }
     return $data;
 }
+
+function Wo_GetLeadsNotification()
+{
+    global $sqlConnect, $wo;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+//    $data       = array();
+    $data       = array();
+    $user_id    = Wo_Secure($wo['user']['user_id']);
+    $query_text = "SELECT * FROM " . T_Lead_Notification . " WHERE `user_id` = {$user_id} order by created_time desc";
+    $query_one  = mysqli_query($sqlConnect, $query_text);
+    if (mysqli_num_rows($query_one) > 0) {
+        $count=0;
+        while ($fetched_data = mysqli_fetch_assoc($query_one)) {
+            if (is_array($fetched_data)) {
+                $data[$count]['id'] = $fetched_data['id'];
+                $data[$count]['message'] = $fetched_data['message'];
+                $data[$count++]['created_time'] = $fetched_data['created_time'];
+            }
+        }
+    }
+    return $data;
+}
 function Wo_ReceivedLeadData($Lead_id = 0)
 {
     global $wo, $sqlConnect, $cache;
@@ -9481,6 +9505,41 @@ function Total_Leads(){
     $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_LEADS ." where user_id=$user_id");
     if($data=mysqli_num_rows($query_one)){
         echo $data;
+    }
+    else{
+        echo "0";
+    }
+}
+function Notification($user_id,$message){
+    global $sqlConnect, $wo;
+    $query_one=mysqli_query($sqlConnect,"INSERT INTO " . T_Lead_Notification . " (`user_id`,`message`) VALUES ($user_id,'$message')");
+}
+function Lead_Points(){
+    global $sqlConnect, $wo;
+    $user_id=$wo['user']['user_id'];
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_LEADS ."  as A join ". T_recieved_lead ." as B
+                    on A.id=B.lead_id  where A.user_id=$user_id and B.status='COMPLETED'");
+    if($data=mysqli_num_rows($query_one)){
+        $points=0;
+        while($row=mysqli_fetch_assoc($query_one)){
+            $point=$row['points'];
+            $points=$point+$points;
+        }
+        echo $points;
+    }
+    else{
+        echo "0";
+    }
+}
+function ActivePackage(){
+    global $sqlConnect, $wo;
+    $user_id=$wo['user']['user_id'];
+    $query_one=mysqli_query($sqlConnect,"SELECT * FROM ". T_USER_PACKAGES ." A JOIN
+                        ". T_PACKAGES ." B on A.package_id=B.id where A.user_id=$user_id");
+    if(mysqli_num_rows($query_one)){
+        $row=mysqli_fetch_assoc($query_one);
+        $pricing=$row['pricing'];
+        echo $pricing;
     }
     else{
         echo "0";
