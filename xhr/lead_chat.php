@@ -1,5 +1,5 @@
 <?php
-if ($f == 'chat') {
+if ($f == 'lead_chat') {
     if ($s == 'get_group_info') {
         $group_id  = Wo_Secure($_GET['group_id']);
         $group_tab = Wo_GroupTabData($group_id);
@@ -317,13 +317,14 @@ if ($f == 'chat') {
                     if ($_GET['recipient_id'] != 0) {
                         $recipient_id = Wo_Secure($_GET['recipient_id']);
                         $recipient    = Wo_UserData($recipient_id);
+
                         if ($recipient['message_privacy'] != 2) {
                             if (isset($recipient['user_id'])) {
                                 $wo['chat']['recipient'] = $recipient;
                                 $wo['chat']['color']     = Wo_GetChatColor($wo['user']['user_id'], $recipient['user_id']);
                                 $data                    = array(
                                     'status' => 200,
-                                    'html' => Wo_LoadPage('chat/chat-tab')
+                                    'html' => Wo_LoadPage('chat/lead-chat-tab')
                                 );
                                 if (isset($_SESSION['chat_id'])) {
                                     if (strpos($_SESSION['chat_id'], ',') !== false) {
@@ -362,12 +363,13 @@ if ($f == 'chat') {
                         $wo['chat']['group']  = $group_tab;
                         $data                 = array(
                             'status' => 200,
-                            'html' => Wo_LoadPage('chat/group-tab')
+                            'html' => Wo_LoadPage('chat/lead-group-tab')
                         );
                         $_SESSION['group_id'] = $group_id;
                     }
                 }
-            } else if (isset($_GET['page_id']) && is_numeric($_GET['page_id']) && $_GET['page_id'] > 0) {
+            }
+            else if (isset($_GET['page_id']) && is_numeric($_GET['page_id']) && $_GET['page_id'] > 0) {
                 $page_id  = Wo_Secure($_GET['page_id']);
                 $page_tab = Wo_PageData($page_id);
                 if (!empty($page_tab) && is_array($page_tab)) {
@@ -425,7 +427,7 @@ if ($f == 'chat') {
             ));
             $wo['chat']['color'] = Wo_GetChatColor($wo['user']['user_id'], $recipient_id);
             foreach ($messages as $wo['chatMessage']) {
-                $html .= Wo_LoadPage('chat/chat-list');
+                $html .= Wo_LoadPage('chat/lead-chat-list');
             }
             $data = array(
                 'status' => 200,
@@ -448,12 +450,14 @@ if ($f == 'chat') {
         }
     }
     if ($s == 'send_message') {
+        echo 'here';
         if ($wo['config']['who_upload'] == 'pro' && $wo['user']['is_pro'] == 0 && !Wo_IsAdmin() && (!empty($_FILES['sendMessageFile']) || !empty($_POST['message-record']))) {
             $data['status']       = 500;
             $data['invalid_file'] = 3;
+            echo 'here1';
         }
         else{
-
+            echo 'here2';
             if ($wo['user']['message_privacy'] != 2) {
                 if (!empty($_POST['user_id']) && Wo_CheckMainSession($hash_id) === true) {
                     $html          = '';
@@ -847,12 +851,12 @@ if ($f == 'chat') {
     }
     if ($s == 'is_chat_on') {
         $data = array(
-            'url' => Wo_SeoLink('index.php?link1=messages'),
+            'url' => Wo_SeoLink('index.php?link1=lead_messages'),
             'chat' => $wo['config']['chatSystem']
         );
         if (!empty($_GET['recipient_id'])) {
             $data = array(
-                'url' => Wo_SeoLink('index.php?link1=messages&user=' . $_GET['recipient_id']),
+                'url' => Wo_SeoLink('index.php?link1=lead_messages&user=' . $_GET['recipient_id'].'&group_id='.$_GET['group_id']),
                 'chat' => $wo['config']['chatSystem']
             );
         }

@@ -33,7 +33,7 @@ if (!empty($_GET['user']) && empty($_GET['page'])) {
                 </div>
 				<ul class="nav nav-tabs wo_msg_tabs">
 					<li class="active pointer"><a data-toggle="tab" data-target="#users-message" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.5,15C8.63,15 9.82,15.26 11.09,15.77C12.35,16.29 13,16.95 13,17.77V20H2V17.77C2,16.95 2.65,16.29 3.91,15.77C5.18,15.26 6.38,15 7.5,15M13,13H22V15H13V13M13,9H22V11H13V9M13,5H22V7H13V5M7.5,8A2.5,2.5 0 0,1 10,10.5A2.5,2.5 0 0,1 7.5,13A2.5,2.5 0 0,1 5,10.5A2.5,2.5 0 0,1 7.5,8Z" /></svg> <?php echo $wo['lang']['users'];?></a></li>
-					<li class="pointer"><a data-toggle="tab" data-target="#groups-message" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,5A3.5,3.5 0 0,0 8.5,8.5A3.5,3.5 0 0,0 12,12A3.5,3.5 0 0,0 15.5,8.5A3.5,3.5 0 0,0 12,5M12,7A1.5,1.5 0 0,1 13.5,8.5A1.5,1.5 0 0,1 12,10A1.5,1.5 0 0,1 10.5,8.5A1.5,1.5 0 0,1 12,7M5.5,8A2.5,2.5 0 0,0 3,10.5C3,11.44 3.53,12.25 4.29,12.68C4.65,12.88 5.06,13 5.5,13C5.94,13 6.35,12.88 6.71,12.68C7.08,12.47 7.39,12.17 7.62,11.81C6.89,10.86 6.5,9.7 6.5,8.5C6.5,8.41 6.5,8.31 6.5,8.22C6.2,8.08 5.86,8 5.5,8M18.5,8C18.14,8 17.8,8.08 17.5,8.22C17.5,8.31 17.5,8.41 17.5,8.5C17.5,9.7 17.11,10.86 16.38,11.81C16.5,12 16.63,12.15 16.78,12.3C16.94,12.45 17.1,12.58 17.29,12.68C17.65,12.88 18.06,13 18.5,13C18.94,13 19.35,12.88 19.71,12.68C20.47,12.25 21,11.44 21,10.5A2.5,2.5 0 0,0 18.5,8M12,14C9.66,14 5,15.17 5,17.5V19H19V17.5C19,15.17 14.34,14 12,14M4.71,14.55C2.78,14.78 0,15.76 0,17.5V19H3V17.07C3,16.06 3.69,15.22 4.71,14.55M19.29,14.55C20.31,15.22 21,16.06 21,17.07V19H24V17.5C24,15.76 21.22,14.78 19.29,14.55M12,16C13.53,16 15.24,16.5 16.23,17H7.77C8.76,16.5 10.47,16 12,16Z" /></svg> <?php echo $wo['lang']['groups'];?></a></li>				
+					<li class="pointer"><a data-toggle="tab" data-target="#groups-message" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,5A3.5,3.5 0 0,0 8.5,8.5A3.5,3.5 0 0,0 12,12A3.5,3.5 0 0,0 15.5,8.5A3.5,3.5 0 0,0 12,5M12,7A1.5,1.5 0 0,1 13.5,8.5A1.5,1.5 0 0,1 12,10A1.5,1.5 0 0,1 10.5,8.5A1.5,1.5 0 0,1 12,7M5.5,8A2.5,2.5 0 0,0 3,10.5C3,11.44 3.53,12.25 4.29,12.68C4.65,12.88 5.06,13 5.5,13C5.94,13 6.35,12.88 6.71,12.68C7.08,12.47 7.39,12.17 7.62,11.81C6.89,10.86 6.5,9.7 6.5,8.5C6.5,8.41 6.5,8.31 6.5,8.22C6.2,8.08 5.86,8 5.5,8M18.5,8C18.14,8 17.8,8.08 17.5,8.22C17.5,8.31 17.5,8.41 17.5,8.5C17.5,9.7 17.11,10.86 16.38,11.81C16.5,12 16.63,12.15 16.78,12.3C16.94,12.45 17.1,12.58 17.29,12.68C17.65,12.88 18.06,13 18.5,13C18.94,13 19.35,12.88 19.71,12.68C20.47,12.25 21,11.44 21,10.5A2.5,2.5 0 0,0 18.5,8M12,14C9.66,14 5,15.17 5,17.5V19H19V17.5C19,15.17 14.34,14 12,14M4.71,14.55C2.78,14.78 0,15.76 0,17.5V19H3V17.07C3,16.06 3.69,15.22 4.71,14.55M19.29,14.55C20.31,15.22 21,16.06 21,17.07V19H24V17.5C24,15.76 21.22,14.78 19.29,14.55M12,16C13.53,16 15.24,16.5 16.23,17H7.77C8.76,16.5 10.47,16 12,16Z" /></svg> <?php echo $wo['lang']['groups'];?></a></li>
 				</ul>
 				<div class="tab-content messages-users-list">
 					<div id="users-message" class="messages-chat-list tab-pane fade in active">
@@ -59,7 +59,7 @@ if (!empty($_GET['user']) && empty($_GET['page'])) {
 	                                                'limit_type' => 1
 	                                            ));
 				                        $wo['page_message']['message'] = $message[0];
-				                        
+
 				                        echo Wo_LoadPage('messages/messages-page-list');
 				                    }
 				                    else{
@@ -67,18 +67,18 @@ if (!empty($_GET['user']) && empty($_GET['page'])) {
 				                    }
 								}
 							}
-						?> 
+						?>
 					</div>
 					<div id="groups-message" class="messages-group-list tab-pane fade" >
-						<?php 
+						<?php
 							$chat_groups = Wo_GetChatGroups();
 							if (count($chat_groups) == 0) {
 								echo '<span class="no-online-users center-text empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>' . $wo['lang']['no_groups_found'] . '</span>';
-							} 
+							}
 							else {
 								foreach ($chat_groups as $wo['group']) {
 									echo Wo_LoadPage('messages/messages-group-list');
-                    
+
 								}
 							}
 						?>
@@ -86,7 +86,7 @@ if (!empty($_GET['user']) && empty($_GET['page'])) {
 				</div>
 			</form>
 		</div>
-   
+
 		<div class="mobileleftpane" id="wo_msg_right_prt">
 			<ul class="list-group text-sender-container">
 				<li class="list-group-item msg_usr_info_top_list text-muted" contenteditable="false">
@@ -140,11 +140,11 @@ if (!empty($_GET['user']) && empty($_GET['page'])) {
 											</span>
 										</a>
 										<div class="emo-message-container dropdown-menu mobileemojisnd dropdown-menu-right" role="menu" style="width: 100px">
-											<?php  
+											<?php
 												foreach ($wo['emo'] as $code => $name) {
 												$code   = $code;
-												echo  '<span style="float: left" onclick="Wo_AddEmoToMessageInput(\'' . $code . '\');"><i class="pointer twa-lg twa twa-' . $name . '"></i></span>'; 
-												} 
+												echo  '<span style="float: left" onclick="Wo_AddEmoToMessageInput(\'' . $code . '\');"><i class="pointer twa-lg twa twa-' . $name . '"></i></span>';
+												}
 											?>
 										</div>
 									</div>
@@ -158,7 +158,7 @@ if (!empty($_GET['user']) && empty($_GET['page'])) {
 											<li>
 												<div class="w100" id="chat-box-stickers">
 													<div id="chat-box-stickers-cont">
-														<?php 
+														<?php
 															$stickers_system = Wo_GetAllStickers(50000);
 															if( count( $stickers_system ) > 0 ){
 																foreach ($stickers_system as $wo['stickerlist']) {
@@ -223,12 +223,14 @@ if (!empty($_GET['user']) && empty($_GET['page'])) {
 </div>
 
 <script type="text/javascript">
+debugger;
+debugger;
 var hash = $('.main_session').val();
-$.ajaxSetup({ 
+$.ajaxSetup({
 data: {
     hash: hash
 },
-cache: false 
+cache: false
 });
 function MarkAsReadAll() {
 	$.post(Wo_Ajax_Requests_File() + '?f=mark_as_read', function(data, textStatus, xhr) {
@@ -318,7 +320,7 @@ $(function () {
         $('#chatStickerMessage').val('');
         Wo_CleanRecordNodes();
         Wo_StopLocalStream();
-        
+
         if($('.messages-container').length == 0) {
           $(".messages-container").html(data.html);
         } else {
@@ -465,11 +467,11 @@ function Wo_GetUserMessages(user_id, user_name, userlink) {
 
   $('.text-sender-container').find('.ball-pulse').fadeIn(100);
   $('.text-sender-container').find('.msg_progress').fadeIn(100);
-  
+
   if($('.messages-recipients-list').hasClass('active')) {
 	$('.messages-recipients-list').removeClass('active');
 	$('#messages-recipient-' + user_id).addClass('active');
-  } else { 
+  } else {
 	$('#messages-recipient-' + user_id).addClass('active');
   }
   $('#user-id').attr('value', user_id);
@@ -556,7 +558,7 @@ function Wo_GetUserMessages(user_id, user_name, userlink) {
 
 function Wo_GetGroupMessages(group_id, group_name) {
   view_more_wrapper = $('.view-more-wrapper');
-  
+
   $('.text-sender-container').find('.ball-pulse').fadeIn(100);
   $('.text-sender-container').find('.msg_progress').fadeIn(100);
   $('#user-name').text(group_name).removeClass('hidden');
@@ -564,7 +566,7 @@ function Wo_GetGroupMessages(group_id, group_name) {
   if($('.messages-recipients-list').hasClass('active')) {
 	$('.messages-recipients-list').removeClass('active');
 	$('#messages-recipient-' + group_id).addClass('active');
-  } else { 
+  } else {
 	$('#messages-recipient-' + group_id).addClass('active');
   }
   $('#messages-group-id').attr('value', group_id);
@@ -592,7 +594,7 @@ function Wo_GetGroupMessages(group_id, group_name) {
       if(data.html.length == 0) {
         view_more_wrapper.hide();
         $('.messages-container').html('<div class="no-messages empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg><?php echo $wo["lang"]["no_more_message_to_show"];?> </div>');
-      } 
+      }
       else {
         $('.messages-container').html(data.html);
 		view_more_wrapper.html('<a href="javascript:void(0);" title="' + data.view_more_text + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13,15L15.5,17.5L16.92,16.08L12,11.16L7.08,16.08L8.5,17.5L11,15V21H13V15M3,3H21V5H3V3M3,7H13V9H3V7Z" /></svg></a>').show();
@@ -642,7 +644,7 @@ function Wo_DeleteGroupChat(id = false){
   }
 function Wo_GetPageMessages(page_id, page_user_id,page_name,user_id) {
   view_more_wrapper = $('.view-more-wrapper');
-  
+
   $('.text-sender-container').find('.ball-pulse').fadeIn(100);
   $('.text-sender-container').find('.msg_progress').fadeIn(100);
   $('#user-name').text(page_name).removeClass('hidden');
@@ -650,7 +652,7 @@ function Wo_GetPageMessages(page_id, page_user_id,page_name,user_id) {
   if($('.messages-recipients-list').hasClass('active')) {
 	$('.messages-recipients-list').removeClass('active');
 	$('#messages-recipient-' + user_id).addClass('active');
-  } else { 
+  } else {
 	$('#messages-recipient-' + user_id).addClass('active');
   }
   $('#user-avatar-right img').addClass('hidden');
@@ -680,7 +682,7 @@ function Wo_GetPageMessages(page_id, page_user_id,page_name,user_id) {
       if(data.html.length == 0) {
         view_more_wrapper.hide();
         $('.messages-container').html('<div class="no-messages empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg><?php echo $wo["lang"]["no_more_message_to_show"];?> </div>');
-      } 
+      }
       else {
         $('.messages-container').html(data.html);
         view_more_wrapper.html('<a href="javascript:void(0);" title="' + data.view_more_text + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13,15L15.5,17.5L16.92,16.08L12,11.16L7.08,16.08L8.5,17.5L11,15V21H13V15M3,3H21V5H3V3M3,7H13V9H3V7Z" /></svg></a>').show();
@@ -884,10 +886,10 @@ $(function(){
     var lastScrollTop = 0, delta = 5;
     $('.messages-container').scroll(function(event){
        var st = $(this).scrollTop();
-       
+
        if(Math.abs(lastScrollTop - st) <= delta)
           return;
-       
+
 if (st > lastScrollTop){
        // downscroll code
     $(".messages-load-more-messages").addClass("above_header")
@@ -927,7 +929,7 @@ function Wo_GetGChatParticipants(name){
     })
     .fail(function() {
         console.log("error");
-    })   
+    })
 }
 var chat_part_array = [];
 $(document).on('click', '.group_chat_mbr_part', function(event) {
@@ -936,7 +938,7 @@ $(document).on('click', '.group_chat_mbr_part', function(event) {
         if ($.inArray(self_id, chat_part_array) == -1) {
             chat_part_array.push(self_id);
             $("#group_chat_mbrs").text(chat_part_array.length);
-            
+
             $(this).fadeOut(100,function(){
                 $("#chat_group_users").val(chat_part_array.join());
                 $(this).remove();
@@ -968,7 +970,7 @@ jQuery(document).ready(function($) {
         }
         else if (data.status == 500){
             $("#insert-caht-alert").html('<div class="alert alert-danger">' + data['message'] + '</div>');
-        } 
+        }
         $('#insert-caht-parts').find('.add_wow_loader').removeClass('btn-loading');
     }});
 });

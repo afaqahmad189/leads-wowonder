@@ -12,17 +12,19 @@
 
 			<div class="page-margin wow_content wow_sett_content">
 				<form class="form form-horizontal" method="post" id="form-create-lead">
-					<div class="wow_form_fields">
+					<div class="row h-0">
+                    <div class="wow_form_fields form-group col-lg-6">
 						<label for="lead-name"><?php echo $wo['lang']['ser_name']; ?></label>
-						<input id="lead-name" placeholder="<?php echo $wo['lang']['ser_name']; ?>" name="service_name" type="text">
+						<input id="lead-name" placeholder="<?php echo $wo['lang']['ser_name']; ?>" name="service_name" type="text" class="form-control">
 					</div>
-                    <div class="wow_form_fields">
+                    <div class="wow_form_fieldscol form-group col-lg-6"style="margin-left:15px;" >
                         <label for="lead-tag-keyword"><?php echo $wo['lang']['tag_key']; ?></label>
-                        <input id="lead-tag-keyword" placeholder="<?php echo $wo['lang']['tag_key_placeholder']; ?>" name="tag_keyword" type="text">
+                        <input id="lead-tag-keyword" placeholder="<?php echo $wo['lang']['tag_key_placeholder']; ?>" name="tag_keyword" type="text" class="form-control">
+                    </div>
                     </div>
 
                     <div class="row h-m0">
-                            <div class="col-md-6 wow_form_fields h-p0">
+                            <div class="col-md-6 from-group wow_form_fields h-p0">
                                 <label class="col-md-12" for="category"><?php echo $wo['lang']['category']; ?> *</label>
                                 <div class="col-md-12">
                                     <select name="group_category" id="category" class="form-control" onchange="GetGroupJobCategory(this)">
@@ -33,7 +35,7 @@
                                 </div>
                             </div>
                             <?php if (!empty($wo['private_job_categories'])) { ?>
-                                <div class="wow_form_fields col-lg-6 h-p0">
+                                <div class="wow_form_fields form-group col-lg-6 h-p0">
                                     <label class="col-md-12" for="group_job_category"><?php echo $wo['lang']['job_category']; ?> *</label>
                                     <div class="col-md-12">
                                         <select name="job_category" id="group_job_category" class="form-control" onchange="Wo_ChangeOptions(this)">
@@ -48,7 +50,7 @@
                             <?php } ?>
                         </div>
                     <div class="row h-m0">
-                            <div class="col-md-6 wow_form_fields h-p0">
+                            <div class="col-md-6 wow_form_fields ">
                                 <label class="col-md-12" for="category"><?php echo $wo['lang']['product_category']; ?> *</label>
                                 <div class="col-md-12">
                                     <select name="product_category" id="category" class="form-control" onchange="GetGroupJobCategory(this)">
@@ -60,13 +62,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6 wow_form_fields">
+                            <div class="col-md-6 wow_form_fields h-p0" style="margin-top:30px;">
                                 <label for="lead-start"><?php echo $wo['lang']['lead_budget']; ?></label>
 
 
                                 <input type="text" id="" placeholder="<?php echo $wo['lang']['lead_budget_placeholder']; ?>" class="" name="budget">
                             </div>
-                        </div>
+                        </div><br>
 
 
                     <div class="wow_form_fields">
@@ -77,7 +79,7 @@
 <!--                        <div id="review-location">-->
 <!--                            <div id="place"></div>-->
 <!--                        </div>-->
-<!--                    --><?php //} ?>
+<!--                    --><?php //} ?><br>
 					<div class="wow_form_fields">
 						<label for="lead-description"><?php echo $wo['lang']['lead_details']; ?></label>
 						<textarea name="details" id="lead-description" placeholder="<?php echo $wo['lang']['lead_details_placeholder']; ?>" rows="5"></textarea>

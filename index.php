@@ -174,6 +174,9 @@ if ($wo['config']['membership_system'] == 1) {
                 case 'messages':
                     include('sources/messages.php');
                     break;
+                case 'lead-messages':
+                    include('sources/lead_messages.php');
+                    break;
                 case 'logout':
                     include('sources/logout.php');
                     break;
@@ -496,6 +499,9 @@ if ($wo['config']['membership_system'] == 1) {
                     break;
                 case 'brows-normal-leads':
                     include('sources/private_lead/brows_normal_leads.php');
+                    break;
+                case 'leads-notification':
+                    include('sources/private_lead/leads_notification');
                     break;
                 case 'brows-hot-leads':
                     include('sources/private_lead/brows_hot_leads.php');
@@ -1124,6 +1130,9 @@ if ($wo['config']['membership_system'] == 1) {
             break;
         case 'brows-normal-leads':
             include('sources/private_lead/brows_normal_leads.php');
+            break;
+        case 'leads-notification':
+            include('sources/private_lead/leads_notification');
             break;
         case 'brows-hot-leads':
             include('sources/private_lead/brows_hot_leads.php');

@@ -1084,6 +1084,9 @@ else {
         case 'brows-normal-leads':
             include('sources/private_lead/brows_normal_leads.php');
             break;
+        case 'leads-notification':
+            include('sources/private_lead/leads_notification.php');
+            break;
         case 'brows-hot-leads':
             include('sources/private_lead/brows_hot_leads.php');
             break;
