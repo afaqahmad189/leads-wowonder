@@ -121,7 +121,7 @@ elseif($lead['status']=='FAKE'){
 }
 elseif($lead['status']=='PAID'){
 ?>
-<a href="javascript:void(0)"><i class="fa fa-comment"title="Chat" style="font-size: 20px" aria-hidden="true" onclick="Wo_OpenChatTabLead(<?php echo $wo['user']['user_id']. ','. $lead['user_id']?>)" ></i></a>
+<a href="javascript:void(0)"><i class="fa fa-comment"title="Chat" style="font-size: 20px" aria-hidden="true" onclick="Wo_OpenChatTab(<?php echo $lead['user_id']?>)" ></i></a>
 <?php
 }
 elseif($lead['status']=='COMPLETED'){
@@ -271,7 +271,7 @@ function Wo_OpenChatTabLead(user_id, group_id, product_id = 0, page_id = 0, page
         group_id = 0;
     }
     $.get(Wo_Ajax_Requests_File(), {
-        f: 'lead_chat',
+        f: 'chat',
         s: 'is_chat_on',
         recipient_id: user_id,
         group_id: group_id
@@ -295,7 +295,7 @@ function Wo_OpenChatTabLead(user_id, group_id, product_id = 0, page_id = 0, page
     });
     if (current_width < 720) {
         $.get(Wo_Ajax_Requests_File(), {
-            f: 'lead_chat',
+            f: 'chat',
             s: 'close',
             recipient_id: user_id
         }, function(data) {
@@ -326,7 +326,7 @@ function Wo_OpenChatTabLead(user_id, group_id, product_id = 0, page_id = 0, page
     $('.chat-tab').append('<span class="chat_main chat_main_"></span>');
     $('.chat_main_').append(data_html); */
     $.get(Wo_Ajax_Requests_File(), {
-        f: 'lead_chat',
+        f: 'chat',
         s: 'load_chat_tab',
         recipient_id: user_id,
         placement: placement,
@@ -365,7 +365,7 @@ function Wo_OpenChatTabLead(user_id, group_id, product_id = 0, page_id = 0, page
             $('.chat-textarea textarea').keyup();
             if (group_id == 0 && page_id == 0) {
                 $.get(Wo_Ajax_Requests_File(), {
-                    f: 'lead_chat',
+                    f: 'chat',
                     s: 'load_chat_messages',
                     recipient_id: user_id,
                     product_id: product_id
