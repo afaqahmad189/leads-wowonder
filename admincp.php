@@ -5,6 +5,7 @@ require 'assets/init.php';
 
 $is_admin = Wo_IsAdmin();
 $is_moderoter = Wo_IsModerator();
+$is_subadmin=Wo_IsSubAdmin();
 
 if ($wo['config']['maintenance_mode'] == 1) {
     if ($wo['loggedin'] == false) {
@@ -17,7 +18,7 @@ if ($wo['config']['maintenance_mode'] == 1) {
         }
     } 
 }
-if ($is_admin == false && $is_moderoter == false) {
+if ($is_admin == false && $is_moderoter == false && $is_subadmin==false) {
 	header("Location: " . Wo_SeoLink('index.php?link1=welcome'));
     exit();
 }

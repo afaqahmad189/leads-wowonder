@@ -117,7 +117,6 @@ $pages = array(
     'manage-product-category',
     'approve-lead',
     //end
-
     //afaq
     'user-created-lead',
     'normal-leads',
@@ -132,6 +131,9 @@ $pages = array(
 
 );
 $mod_pages = array('dashboard', 'post-settings', 'manage-stickers', 'manage-gifts', 'manage-users','manage_subadmin', 'online-users', 'manage-stories', 'manage-pages', 'manage-groups', 'manage-posts', 'manage-articles', 'manage-events', 'manage-forum-threads', 'manage-forum-messages', 'manage-movies', 'manage-games', 'add-new-game', 'manage-user-ads', 'manage-reports', 'manage-third-psites', 'edit-movie', 'bank-receipts', 'job-categories', 'manage-jobs');
+
+$subadmin_pages = array('dashboard','approve-lead', 'user-created-lead', 'normal-leads', 'manage-normal-leads',
+    'all-lead','manage-user-payment-lead', 'manage-user-paid-lead');
 
 
 // private group mod pages links - START
@@ -157,8 +159,17 @@ $wo['decode_ios_value']  = base64_decode('I2FhYQ==');
 $wo['decode_windwos_v']  = $wo['config']['footer_text_color'];
 $wo['decode_windwos_value']  = base64_decode('I2RkZA==');
 
-if ($is_moderoter == true && $is_admin == false) {
-    if (!in_array($page, $mod_pages)) {
+if ($is_moderoter == true && $is_admin == false)
+{
+    if (!in_array($page, $mod_pages))
+    {
+        header("Location: " . Wo_SeoLink('index.php?link1=admin-cp'));
+        exit();
+    }
+}
+if($is_subadmin == true && $is_admin == false){
+    if (!in_array($page, $subadmin_pages))
+    {
         header("Location: " . Wo_SeoLink('index.php?link1=admin-cp'));
         exit();
     }
@@ -392,6 +403,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             </ul>
                         </li>
                     <?php } ?>
+                    <?php if ($is_admin == true || $is_moderoter==true) { ?>
                     <li <?php echo ($page == 'manage-users'|| $page=='manage_subadmin'|| $page == 'manage-stories' || $page == 'manage-profile-fields' || $page == 'add-new-profile-field' || $page == 'edit-profile-field' || $page == 'manage-verification-reqeusts' || $page == 'affiliates-settings' || $page == 'payment-reqeuests' || $page == 'referrals-list' || $page == 'online-users' || $page == 'manage-genders') ? 'class="active"' : ''; ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">account_circle</i>
@@ -410,6 +422,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             <li <?php echo ($page == 'manage-stories') ? 'class="active"' : ''; ?>>
                                 <a href="<?php echo Wo_LoadAdminLinkSettings('manage-stories'); ?>">Manage User Stories / Status</a>
                             </li>
+
                             <?php if ($is_admin == true) { ?>
                                 <li <?php echo ($page == 'manage-profile-fields') ? 'class="active"' : ''; ?>>
                                     <a href="<?php echo Wo_LoadAdminLinkSettings('manage-profile-fields'); ?>">Manage Custom Profile Fields</a>
@@ -444,6 +457,8 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             <?php } ?>
                         </ul>
                     </li>
+                    <?php } ?>
+                    <?php if ($is_admin == true || $is_moderoter==true) { ?>
                     <li <?php echo ($page == 'manage-product-category' || $page == 'add-product-category' || $page == 'edit-product-category') ? 'class="active"' : ''; ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">language</i>
@@ -458,6 +473,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             </li>
                         </ul>
                     </li>
+                    <?php } ?>
                     <?php if ($is_admin == true) { ?>
                         <li <?php echo ($page == 'pro-settings' || $page == 'pro-memebers' || $page == 'pro-payments' || $page == 'pro-features' || $page == 'pro-refund') ? 'class="active"' : ''; ?>>
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -485,6 +501,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                     <?php } ?>
 
                     <!-- private group links at the end -->
+                    <?php if ($is_admin == true || $is_moderoter==true) { ?>
                     <li <?php echo ($page == 'manage-apps' || $page == 'manage-pages' || $page == 'manage-stickers' || $page == 'add-new-sticker' || $page == 'manage-gifts' || $page == 'add-new-gift' || $page == 'manage-groups' || $page == 'manage-posts' || $page == 'manage-articles' || $page == 'manage-events' ||  $page == 'manage-forum-sections' || $page == 'manage-forum-forums' || $page == 'manage-forum-threads' || $page == 'manage-forum-messages' || $page == 'create-new-forum' || $page == 'create-new-section' || $page == 'manage-movies' || $page == 'add-new-movies' || $page == 'manage-games' || $page == 'add-new-game' || $page == 'edit-movie' || $page == 'pages-categories' || $page == 'pages-sub-categories' || $page == 'groups-sub-categories' || $page == 'products-sub-categories' || $page == 'groups-categories' || $page == 'blogs-categories' || $page == 'products-categories' || $page == 'manage-fund' || $page == 'manage-jobs' || $page == 'manage-offers' || $page == 'pages-fields' || $page == 'groups-fields' || $page == 'products-fields' || in_array($page, array('manage-private-groups', 'private-groups-setting', 'private-job-categories', 'private-job-category-suggestions', 'private-groups-categories'))) ? 'class="active"' : ''; ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">view_agenda</i>
@@ -749,12 +766,15 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
 
                         </ul>
                     </li>
+                    <?php } ?>
+                    <?php if ($is_admin == true || $is_moderoter==true) { ?>
                     <li <?php echo ($page == 'bank-receipts') ? 'class="active"' : ''; ?>>
                         <a href="<?php echo Wo_LoadAdminLinkSettings('bank-receipts'); ?>">
                             <i class="material-icons">credit_card</i>
                             <span>Manage Bank Receipts</span>
                         </a>
                     </li>
+                    <?php } ?>
                     <?php if ($is_admin == true) { ?>
                         <li <?php echo ($page == 'packages') ? 'class="active"' : ''; ?>>
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -772,7 +792,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                         </li>
                     <?php } ?>
 
-                    <?php if ($is_admin == true) { ?>
+                    <?php if ($is_admin == true || $is_subadmin==true) { ?>
                         <li <?php echo ($page=='all-lead'||$page == 'user-created-lead'|| $page=='manage-user-payment-lead' || $page=='manage-user-paid-lead') ? 'class="active"' : ''; ?>>
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">dns</i>
@@ -825,25 +845,25 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
 <!--                        </a>-->
 <!--                    </li>-->
 
-                    <?php if ($is_admin == true) { ?>
-                        <li <?php echo ($page == 'normal-leads'|| $page=='manage-normal-leads') ? 'class="active"' : ''; ?>>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">dns</i>
-                                <span>Normal Leads</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li <?php echo ($page == 'normal-leads') ? 'class="active"' : ''; ?>>
-                                    <a href="<?php echo Wo_LoadAdminLinkSettings('normal-leads'); ?>">Create Normal Leads</a>
-                                </li>
-                                <li <?php echo ($page == 'manage-normal-leads') ? 'class="active"' : ''; ?>>
-                                    <a href="<?php echo Wo_LoadAdminLinkSettings('manage-normal-leads'); ?>">Manage Normal Leads</a>
-                                </li>
-                            </ul>
-                        </li>
-                    <?php } ?>
+<!--                    --><?php //if ($is_admin == true) { ?>
+<!--                        <li --><?php //echo ($page == 'normal-leads'|| $page=='manage-normal-leads') ? 'class="active"' : ''; ?><!--
+                            <a href="javascript:void(0);" class="menu-toggle">-->
+<!--                                <i class="material-icons">dns</i>-->
+<!--                                <span>Normal Leads</span>-->
+<!--                            </a>-->
+<!--                            <ul class="ml-menu">-->
+<!--                                <li --><?php //echo ($page == 'normal-leads') ? 'class="active"' : ''; ?><!--
+                                    <a href="--><?php //echo Wo_LoadAdminLinkSettings('normal-leads'); ?><!--">Create Normal Leads</a>-->
+<!--                                </li>-->
+<!--                                <li --><?php //echo ($page == 'manage-normal-leads') ? 'class="active"' : ''; ?><!--
+                                  <a href="--><?php //echo Wo_LoadAdminLinkSettings('manage-normal-leads'); ?><!--">Manage Normal Leads</a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                    --><?php //} ?>
 
 
-
+                    <?php if ($is_admin == true || $is_moderoter==true) { ?>
                     <li <?php echo ($page == 'ads-settings' || $page == 'manage-site-ads' || $page == 'manage-user-ads') ? 'class="active"' : ''; ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">attach_money</i>
@@ -865,6 +885,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             </li>
                         </ul>
                     </li>
+                    <?php } ?>
                     <?php if ($is_admin == true) { ?>
                         <li <?php echo ($page == 'manage-themes' || $page == 'manage-site-design' || $page == 'custom-code') ? 'class="active"' : ''; ?>>
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -953,6 +974,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             </ul>
                         </li>
                     <?php } ?>
+                    <?php  if ($is_admin == true || $is_moderoter==true) { ?>
                     <li <?php echo ($page == 'manage-reports') ? 'class="active"' : ''; ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">warning</i>
@@ -964,6 +986,7 @@ $lead_new_count = $db->where('status',0)->getValue('wo_leads','count(id)');
                             </li>
                         </ul>
                     </li>
+                    <?php } ?>
                     <?php if ($is_admin == true) { ?>
                         <li <?php echo ($page == 'verfiy-applications' || $page == 'push-notifications-system' || $page == 'manage-api-access-keys' || $page == 'manage-third-psites') ? 'class="active"' : ''; ?>>
                             <a href="javascript:void(0);" class="menu-toggle">

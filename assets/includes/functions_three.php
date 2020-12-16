@@ -8189,6 +8189,59 @@ function Wo_GetPaid_lead_pro($args = array())
     }
     return $data;
 }
+function Wo_GetUser_Created_Lead_filter($args = array())
+{
+    global $sqlConnect, $wo;
+    $options   = array(
+        "id" => false,
+        "offset" => 0,
+        "limit" => false,
+        "search" => false,
+        "keyword" => false,
+        "forums" => false,
+        "order_by" => 'ASC'
+    );
+    $args      = array_merge($options, $args);
+    $offset    = Wo_Secure($args['offset']);
+    $id        = Wo_Secure($args['id']);
+    $limit     = Wo_Secure($args['limit']);
+    $search    = Wo_Secure($args['search']);
+    $keyword   = Wo_Secure($args['keyword']);
+    $forums    = Wo_Secure($args['forums']);
+    $order_by  = Wo_Secure($args['order_by']);
+    $query_one = "";
+    if ($offset > 0) {
+        $query_one .= " AND `id` < {$offset} AND `id` <> {$offset} ";
+    }
+    if ($id) {
+        $query_one .= " AND `id` = '$id' ";
+    }
+    if ($order_by) {
+        $query_one .= " ORDER BY `id` $order_by";
+    }
+    if ($limit) {
+        $query_one .= " LIMIT {$limit} ";
+    }
+    $sql_query_one = mysqli_query($sqlConnect, "SELECT * FROM " . T_LEADS . " A JOIN ". T_USERS ." B 
+                            ON A.user_id=B.user_id where A.`id` > 0 {$query_one}");
+    $data          = array();
+    while ($fetched_data = mysqli_fetch_assoc($sql_query_one)) {
+        if ($forums) {
+            $fetched_data['forums'] = Wo_GetUser_Created_Lead_filter(array(
+                "section" => $fetched_data['id'],
+                "search" => $search,
+                "keyword" => $keyword
+            ));
+            if (count($fetched_data['forums']) > 0) {
+                $data[] = $fetched_data;
+            }
+        }
+        else {
+            $data[] = $fetched_data;
+        }
+    }
+    return $data;
+}
 function Wo_Deletenormallead($id = false)
 {
     global $sqlConnect, $wo;

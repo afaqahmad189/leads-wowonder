@@ -4897,6 +4897,23 @@ function Wo_IsAdmin($user_id = 0)
     }
     return false;
 }
+function Wo_IsSubAdmin($user_id = 0)
+{
+    global $wo, $sqlConnect;
+    if ($wo['loggedin'] == false) {
+        return false;
+    }
+    $user_id =$wo['user']['user_id'];
+    if (!empty($user_id) && $user_id > 0) {
+        $query = mysqli_query($sqlConnect, "SELECT COUNT(`user_id`) as count FROM " . T_subadmin . " WHERE type = '1' AND user_id = {$user_id}");
+        $sql = mysqli_fetch_assoc($query);
+        if ($sql['count'] > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
 function Wo_IsModerator($user_id = '')
 {

@@ -1,8 +1,12 @@
 <?php 
 if ($f == "lead") {
     if ($s == 'insert') {
-        if (empty($_POST['service_name']) || empty($_POST['tag_keyword']) || empty($_POST['group_category']) || empty($_POST['job_category'])  || empty($_POST['product_category'])  || empty($_POST['budget'])  || empty($_POST['service_location'])  || empty($_POST['details']) || Wo_CheckSession($hash_id) === FALSE) {
-            $errors[] = $error_icon . $wo['lang']['please_check_details'];
+        if (empty($_POST['service_name']) || empty($_POST['tag_keyword'])
+            || empty($_POST['group_category']) || empty($_POST['job_category'])
+            || empty($_POST['product_category']) || empty($_POST['budget'])
+            || empty($_POST['service_location']) || empty($_POST['details'])
+            || Wo_CheckSession($hash_id) === FALSE) {
+            $errors = $error_icon . $wo['lang']['please_check_details'];
         }
         if (empty($errors)) {
             $data_array = array(
@@ -22,7 +26,8 @@ if ($f == "lead") {
                 $data['status'] = 200;
                 $data['message'] = $success_icon . $wo['lang']['lead_create_success'];
             }
-        }else {
+        }
+        else {
             $data = array(
                 'status' => 400,
                 'errors' => $errors

@@ -116,12 +116,12 @@
       $( ".date" ).datepicker({ dateFormat: 'yy-mm-dd', minDate: 'today'});
       $( ".date1" ).datepicker({ dateFormat: 'yy-mm-dd', minDate: '+1day'});
       $( ".time1" ).timepicker();
-
       $("#event-cover").change(function(event) {
         $("#wow_fcov_img_holder").html("<img src='" + window.URL.createObjectURL(this.files[0]) + "' alt='Picture'>")
       });
 
       $('#form-create-lead').ajaxForm({
+
             url: Wo_Ajax_Requests_File() + '?f=lead&s=insert',
             beforeSend: function() {
               $('.wo_settings_page').find('.add_wow_loader').addClass('btn-loading');
@@ -139,9 +139,9 @@
                       window.location.reload();
                   }, 3000)
               }
-              else if (data['message']) {
-                $("#lead-alert").html('<div class="alert alert-danger">' + data['message'] + '</div>');
-              } 
+              else if(data['errors']) {
+                $("#lead-alert").html('<div class="alert alert-danger">' + data['errors'] + '</div>');
+               }
               $('.wo_settings_page').find('.add_wow_loader').removeClass('btn-loading');
             }
       });
